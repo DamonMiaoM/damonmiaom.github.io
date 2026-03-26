@@ -2,7 +2,9 @@ backend:
   name: github
   repo: DamonMiaoM/damonmiaom.github.io
   branch: main
-  base_url: https://lively-kheer-447e2e.netlify.app
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  site_domain: lively-kheer-447e2e.netlify.app
 
 media_folder: static/images/uploads
 public_folder: /images/uploads
