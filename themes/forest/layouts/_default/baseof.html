@@ -11,6 +11,7 @@
 </head>
 <body>
   {{ partial "header.html" . }}
+  {{ block "hero" . }}{{ end }}
   <main class="main-content">
     {{ block "main" . }}{{ end }}
   </main>

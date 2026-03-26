@@ -1,8 +1,13 @@
-{{ define "main" }}
+{{ define "hero" }}
 <section class="hero">
-  <h1>{{ .Site.Params.tagline }}</h1>
+  <div class="hero-inner">
+    <h1>{{ .Site.Params.tagline }}</h1>
+    <p class="hero-sub">{{ .Site.Params.name }}</p>
+  </div>
 </section>
+{{ end }}
 
+{{ define "main" }}
 <section class="post-grid">
   <h2 class="section-label">Recent Posts</h2>
   <div class="grid">
