@@ -1,6 +1,7 @@
 ---
 title: "Understanding GitHub Tokens — A Beginner's Guide"
 date: 2026-03-26T16:00:00
+description: "What GitHub tokens are, why passwords won't work, and why a leaked token is dangerous — explained in plain language."
 ---
 
 *从零开始理解 GitHub Token：它是什么，为什么需要它，为什么必须保密。*

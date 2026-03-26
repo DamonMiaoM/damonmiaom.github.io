@@ -1,16 +1,21 @@
 {{ define "main" }}
-<div class="page-header">
+<div class="archive-header">
   <h1>{{ .Title }}</h1>
+  <span class="archive-count">{{ len .Pages }} posts</span>
 </div>
-<div class="post-list">
-  {{ range .Pages }}
-  <article class="post-item">
-    <a href="{{ .RelPermalink }}">
-      <h2>{{ .Title }}</h2>
-      <time>{{ .Date.Format "January 2, 2006" }}</time>
-      {{ if .Summary }}<p>{{ .Summary }}</p>{{ end }}
+<ol class="archive-list" reversed>
+  {{ $total := len .Pages }}
+  {{ range $index, $page := .Pages }}
+  <li class="archive-item">
+    <a href="{{ $page.RelPermalink }}">
+      <div class="archive-meta">
+        <span class="archive-number">{{ printf "%02d" (add 1 $index) }}</span>
+        <time>{{ $page.Date.Format "Jan 2, 2006" }}</time>
+      </div>
+      <h2>{{ $page.Title }}</h2>
+      {{ if $page.Description }}<p class="archive-desc">{{ $page.Description }}</p>{{ end }}
     </a>
-  </article>
+  </li>
   {{ end }}
-</div>
+</ol>
 {{ end }}

@@ -1,6 +1,7 @@
 ---
 title: "How to Add a Project to Your Personal Website"
 date: 2026-03-26T16:00:00
+description: "A complete record of how to showcase a new project on your personal website — every command, every concept, and everything a beginner needs to understand."
 ---
 
 *一个关于"把新项目展示在个人网站上"的完整记录——每一条命令、每一个概念、每一个新手需要知道的道理。*
