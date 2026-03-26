@@ -1,27 +1,32 @@
 {{ define "main" }}
-<div class="archive-header">
-  <h1>{{ .Title }}</h1>
-  <span class="archive-count">{{ len .Pages }} entries</span>
-</div>
-<div class="archive-list">
-  {{ range $index, $page := .Pages }}
-  <div class="archive-item">
-    <div class="archive-meta">
-      <span class="archive-number">{{ printf "%02d" (add 1 $index) }}</span>
-      <time>{{ $page.Date.Format "Jan 2, 2006" }}</time>
+<div class="split-layout">
+  <div class="split-left">
+    <div class="archive-header">
+      <h1>{{ .Title }}</h1>
+      <span class="archive-count">{{ len .Pages }} entries</span>
     </div>
-    <a class="archive-link" href="{{ $page.RelPermalink }}">
-      <h2>{{ $page.Title }}</h2>
-      {{ if $page.Description }}<p class="archive-desc">{{ $page.Description }}</p>{{ end }}
-    </a>
-    {{ if $page.Params.tags }}
-    <div class="tag-list">
-      {{ range $page.Params.tags }}
-      <a class="tag-chip" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+    <div class="archive-list">
+      {{ range $index, $page := .Pages }}
+      <div class="archive-item">
+        <div class="archive-meta">
+          <span class="archive-number">{{ printf "%02d" (add 1 $index) }}</span>
+          <time>{{ $page.Date.Format "01/02/06" }}</time>
+        </div>
+        <a class="archive-link" href="{{ $page.RelPermalink }}">
+          <h2>{{ $page.Title }}</h2>
+          {{ if $page.Description }}<p class="archive-desc">{{ $page.Description }}</p>{{ end }}
+        </a>
+        {{ if $page.Params.tags }}
+        <div class="tag-list">
+          {{ range $page.Params.tags }}
+          <a class="tag-chip" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
       {{ end }}
     </div>
-    {{ end }}
   </div>
-  {{ end }}
+  <div class="split-right"></div>
 </div>
 {{ end }}

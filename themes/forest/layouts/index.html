@@ -16,7 +16,7 @@
   <article class="editorial-item">
     <div class="editorial-meta">
       <span class="editorial-number">{{ printf "%02d" (sub $total $index) }}</span>
-      <time>{{ $page.Date.Format "Jan 2, 2006" }}</time>
+      <time>{{ $page.Date.Format "01/02/06" }}</time>
     </div>
     <a class="editorial-link" href="{{ $page.RelPermalink }}">
       <h3>{{ $page.Title }}</h3>
