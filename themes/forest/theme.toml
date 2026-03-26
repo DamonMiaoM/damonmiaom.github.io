@@ -1,0 +1,4 @@
+name = "forest"
+license = "MIT"
+description = "A minimal, nature-inspired Hugo theme"
+min_version = "0.110.0"
