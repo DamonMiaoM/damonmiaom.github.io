@@ -163,19 +163,44 @@ body {
   line-height: 1.45;
 }
 
-.post-card time {
+.post-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--sage);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+}
+
+.post-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-bottom: 0.65rem;
+}
+
+.post-dates time {
   font-family: 'Poppins', sans-serif;
   font-size: 0.775rem;
   color: var(--sage);
   display: block;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0;
 }
 
-.post-card p {
+.post-summary {
   font-size: 0.9rem;
   color: var(--near-black);
   opacity: 0.8;
   line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ── Page Header ── */
