@@ -173,3 +173,7 @@ git config --global credential.helper osxkeychain
 *"了解工具背后的逻辑，比记住操作步骤更重要。"*
 
 *"Understanding the logic behind tools matters more than memorizing the steps."*
+
+---
+
+<p class="post-revised">Published: Mar 26, 2026, 16:00</p>
