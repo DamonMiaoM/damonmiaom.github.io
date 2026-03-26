@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="page-header">
+  <h1>{{ .Title }}</h1>
+</div>
+<div class="post-list">
+  {{ range .Pages }}
+  <article class="post-item">
+    <a href="{{ .RelPermalink }}">
+      <h2>{{ .Title }}</h2>
+      <time>{{ .Date.Format "January 2, 2006" }}</time>
+      {{ if .Summary }}<p>{{ .Summary }}</p>{{ end }}
+    </a>
+  </article>
+  {{ end }}
+</div>
+{{ end }}

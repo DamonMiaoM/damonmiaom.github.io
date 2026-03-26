@@ -1,0 +1,12 @@
+baseURL = 'https://damonmiaom.github.io/'
+languageCode = 'en-us'
+title = 'Damon Miao'
+theme = 'forest'
+
+[params]
+  name = 'Damon Miao'
+  tagline = 'Notes on AI, technology, and thinking.'
+  glossaryURL = 'https://damonmiaom.github.io/AI-Glossary/'
+
+[markup.goldmark.renderer]
+  unsafe = true
