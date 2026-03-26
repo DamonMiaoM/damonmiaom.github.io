@@ -8,23 +8,28 @@
 {{ end }}
 
 {{ define "main" }}
-<section class="post-grid">
-  <h2 class="section-label">Recent Posts</h2>
-  <div class="grid">
-    {{ $posts := (where .Site.RegularPages "Section" "blog") }}
-    {{ $total := len $posts }}
-    {{ range $index, $page := first 6 $posts }}
-    <article class="post-card">
-      <a href="{{ $page.RelPermalink }}">
-        <span class="post-number">Post #{{ sub $total $index }}</span>
-        <h3>{{ $page.Title }}</h3>
-        <div class="post-dates">
-          <time>{{ $page.Date.Format "Jan 2, 2006, 15:04" }}</time>
-        </div>
-        <p class="post-summary">{{ $page.Summary | plainify | truncate 120 "..." }}</p>
-      </a>
-    </article>
-    {{ end }}
+<section class="post-editorial">
+  <h2 class="section-label">Writing</h2>
+  {{ $posts := (where .Site.RegularPages "Section" "blog") }}
+  {{ $total := len $posts }}
+  {{ range $index, $page := first 6 $posts }}
+  <article class="editorial-item">
+    <div class="editorial-meta">
+      <span class="editorial-number">{{ printf "%02d" (sub $total $index) }}</span>
+      <time>{{ $page.Date.Format "Jan 2, 2006" }}</time>
+    </div>
+    <a class="editorial-link" href="{{ $page.RelPermalink }}">
+      <h3>{{ $page.Title }}</h3>
+      {{ if $page.Description }}<p class="editorial-desc">{{ $page.Description }}</p>{{ end }}
+    </a>
+  </article>
+  {{ end }}
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <p class="cta-headline"><em>Let's connect.</em></p>
+    <a class="cta-email" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
   </div>
 </section>
 {{ end }}

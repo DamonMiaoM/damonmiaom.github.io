@@ -148,87 +148,126 @@ body {
   margin: 0;
 }
 
-/* ── Post Grid ── */
+/* ── Editorial Post List (Homepage) ── */
 
-.post-grid {
-  margin-top: 0;
+.post-editorial {
+  padding: 5rem 0 3rem;
 }
 
 .section-label {
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 0.72rem;
+  font-weight: 400;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   color: var(--sage);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+.editorial-item {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
 }
 
-.post-card {
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
+.editorial-item:last-child {
+  border-bottom: 1px solid var(--border);
 }
 
-.post-card:hover {
-  border-color: var(--sage);
-  box-shadow: 0 4px 20px rgba(22, 69, 44, 0.06);
-}
-
-.post-card a {
-  display: block;
-  padding: 1.75rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-.post-card h3 {
-  font-family: 'Lora', Georgia, serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--near-black);
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-}
-
-.post-number {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--forest);
-  background: transparent;
-  border: 1px solid var(--forest);
-  padding: 0.12rem 0.5rem;
-  border-radius: 2px;
-  display: inline-block;
-  margin-bottom: 0.75rem;
-}
-
-.post-dates {
+.editorial-meta {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 0.75rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
-.post-dates time {
+.editorial-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  color: var(--sage);
+  letter-spacing: 0.1em;
+}
+
+.editorial-item time {
   font-family: 'Poppins', sans-serif;
   font-size: 0.68rem;
   color: var(--sage);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.1em;
 }
+
+.editorial-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.editorial-link h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--near-black);
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.editorial-link:hover h3 {
+  color: var(--forest);
+}
+
+.editorial-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--sage);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── CTA Section ── */
+
+.cta-section {
+  background: var(--forest);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 7rem 2rem;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.cta-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-headline {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.cta-email {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.cta-email:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── post-revised (article footer) ── */
 
 .post-revised {
   font-family: 'Poppins', sans-serif;
@@ -238,17 +277,6 @@ body {
   margin-top: 3rem !important;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border);
-}
-
-.post-summary {
-  font-size: 0.88rem;
-  color: var(--near-black);
-  opacity: 0.7;
-  line-height: 1.65;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* ── Page Header ── */
