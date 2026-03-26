@@ -2,6 +2,7 @@
 title: "Hello, World"
 date: 2026-03-26T09:00:00
 description: "A first note — what this site is for and what I plan to write about."
+tags: ["Personal", "Reflection", "Beginnings"]
 ---
 
 Welcome to my site. This is the first post — a placeholder while things get set up.

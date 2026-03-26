@@ -2,6 +2,7 @@
 title: "Building a Word-to-PPT Transformer: A Developer's Journal"
 date: 2026-03-26T18:00:00
 description: "How a life insurance agent used AI to turn a Word exam paper into a clean PowerPoint deck — six phases, eight bugs, and everything learned along the way."
+tags: ["AI", "Tools", "Project"]
 ---
 
 *一个寿险顾问，如何用 AI 把一张 Word 试卷变成一套漂亮的 PPT——六个阶段、八个 Bug、以及一路走来的收获。*

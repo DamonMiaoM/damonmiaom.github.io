@@ -2,6 +2,7 @@
 title: "My First Website — A Beginner's Journey"
 date: 2026-03-26T14:00:00
 description: "How a life insurance agent with no coding background built and deployed a personal website in one afternoon — every obstacle, every fix, every lesson."
+tags: ["Hugo", "Tutorial", "Beginner"]
 ---
 
 *一个没有编程背景的寿险顾问，如何在一个下午完整搭建并上线个人网站——每一个障碍、每一次修复、每一条经验。*
