@@ -1,6 +1,6 @@
 ---
 title: "My First Website — A Beginner's Journey"
-date: 2026-03-26
+date: 2026-03-26T14:00:00
 ---
 
 *How a life insurance agent with no coding background built and deployed a real website in one afternoon — every obstacle, every fix, and every lesson.*

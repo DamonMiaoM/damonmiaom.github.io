@@ -1,6 +1,6 @@
 ---
 title: "Hello, World"
-date: 2026-03-26
+date: 2026-03-26T09:00:00
 ---
 
 Welcome to my site. This is the first post — a placeholder while things get set up.

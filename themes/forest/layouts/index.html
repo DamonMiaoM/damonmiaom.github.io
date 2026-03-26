@@ -14,8 +14,11 @@
         <span class="post-number">Post #{{ sub $total $index }}</span>
         <h3>{{ $page.Title }}</h3>
         <div class="post-dates">
-          <time>Published: {{ $page.Date.Format "Jan 2, 2006" }}</time>
-          <time>Updated: {{ $page.Lastmod.Format "Jan 2, 2006" }}</time>
+          <time>{{ $page.Date.Format "Jan 2, 2006" }}</time>
+          {{ if ne ($page.Date.Format "2006-01-02") ($page.Lastmod.Format "2006-01-02") }}
+          <span class="meta-divider">·</span>
+          <span class="meta-updated">Upd. {{ $page.Lastmod.Format "Jan 2, 2006" }}</span>
+          {{ end }}
         </div>
         <p class="post-summary">{{ $page.Summary | plainify | truncate 120 "..." }}</p>
       </a>
