@@ -17,7 +17,7 @@
           <time>Published: {{ $page.Date.Format "Jan 2, 2006" }}</time>
           <time>Updated: {{ $page.Lastmod.Format "Jan 2, 2006" }}</time>
         </div>
-        <p class="post-summary">{{ $page.Summary }}</p>
+        <p class="post-summary">{{ $page.Summary | plainify | truncate 120 "..." }}</p>
       </a>
     </article>
     {{ end }}
