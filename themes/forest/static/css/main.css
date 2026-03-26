@@ -108,14 +108,14 @@ body {
   justify-content: center;
   background-image: url('/images/lotus.jpg');
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 55%;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(14, 24, 20, 0.50);
+  background: rgba(10, 18, 14, 0.42);
 }
 
 .hero-inner {
@@ -547,7 +547,7 @@ body {
   .hero {
     height: 60vh;
     min-height: 360px;
-    background-position: center 40%;
+    background-position: center 55%;
   }
 
   .grid {
