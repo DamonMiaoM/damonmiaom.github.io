@@ -314,6 +314,16 @@ body {
 .post-content h3 { font-size: 1.15rem; }
 .post-content h4 { font-size: 1rem; }
 
+.heading-note {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: -0.5rem !important;
+  margin-bottom: 1.5rem !important;
+  line-height: 1.4;
+}
+
 .post-content p {
   margin-bottom: 1.35rem;
 }
