@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: DamonMiaoM/damonmiaom.github.io
+  name: git-gateway
   branch: main
-  auth_type: pkce
-  app_id: Ov23lipLliinshmaPPGW
 
 media_folder: static/images/journal
 public_folder: /images/journal

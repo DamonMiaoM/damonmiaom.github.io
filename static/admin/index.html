@@ -6,53 +6,6 @@
   <title>Journal Admin</title>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/decap-cms@3.3.3/dist/decap-cms.js"></script>
-<script>
-CMS.init({
-  config: {
-    load_config_file: false,
-    backend: {
-      name: 'github',
-      repo: 'DamonMiaoM/damonmiaom.github.io',
-      branch: 'main',
-      auth_type: 'pkce',
-      app_id: 'Ov23lipLliinshmaPPGW'
-    },
-    media_folder: 'static/images/journal',
-    public_folder: '/images/journal',
-    collections: [{
-      name: 'journal',
-      label: 'Journal',
-      label_singular: 'Entry',
-      folder: 'content/journal',
-      create: true,
-      slug: '{{year}}-{{month}}-{{day}}',
-      editor: { preview: false },
-      fields: [
-        {
-          label: 'Date',
-          name: 'date',
-          widget: 'datetime',
-          time_format: false,
-          format: 'YYYY-MM-DDTHH:mm:ssZ',
-          hint: 'Pick the date of this entry'
-        },
-        {
-          label: 'Description',
-          name: 'description',
-          widget: 'string',
-          required: false,
-          hint: 'One-line summary shown in the journal list (optional)'
-        },
-        {
-          label: 'Body',
-          name: 'body',
-          widget: 'markdown'
-        }
-      ]
-    }]
-  }
-});
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.3.3/dist/decap-cms.js"></script>
 </body>
 </html>
