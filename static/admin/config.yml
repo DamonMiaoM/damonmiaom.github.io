@@ -1,0 +1,36 @@
+backend:
+  name: github
+  repo: DamonMiaoM/damonmiaom.github.io
+  branch: main
+  auth_type: pkce
+  app_id: REPLACE_WITH_YOUR_OAUTH_APP_CLIENT_ID
+
+media_folder: static/images/journal
+public_folder: /images/journal
+
+collections:
+  - name: journal
+    label: Journal
+    label_singular: Entry
+    folder: content/journal
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    editor:
+      preview: false
+    fields:
+      - label: Date
+        name: date
+        widget: datetime
+        time_format: false
+        format: "YYYY-MM-DDTHH:mm:ssZ"
+        hint: "Pick the date of this entry"
+      - label: Description
+        name: description
+        widget: string
+        required: false
+        hint: "One-line summary shown in the journal list (optional)"
+      - label: Body
+        name: body
+        widget: markdown
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image]

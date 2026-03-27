@@ -840,3 +840,68 @@ body {
   80%  { transform: scale(0.97); }
   100% { transform: scale(1); }
 }
+
+/* ── Journal ── */
+
+.journal-split-right {
+  background-image: url('/images/lotus.jpg') !important;
+  background-position: center center !important;
+}
+
+.journal-single {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.journal-back {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sage);
+  text-decoration: none;
+  margin-bottom: 3rem;
+  transition: color 0.2s;
+}
+
+.journal-back:hover { color: var(--forest); }
+
+.journal-date {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--near-black);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.journal-dateline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  color: var(--sage);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.journal-body img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 2rem 0;
+  display: block;
+}
+
+.journal-body iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 4px;
+  margin: 2rem 0;
+  display: block;
+}

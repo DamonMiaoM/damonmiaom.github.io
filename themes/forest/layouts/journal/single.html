@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="journal-single">
+  <a class="journal-back" href="/journal/">← Journal</a>
+  <h1 class="journal-date">{{ .Date.Format "Jan 2, 2006" }}</h1>
+  <p class="journal-dateline">{{ .Date.Format "Monday" }}</p>
+  <div class="post-content journal-body">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

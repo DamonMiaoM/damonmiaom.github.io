@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="split-layout">
+  <div class="split-left">
+    <div class="archive-header">
+      <h1>{{ .Title }}</h1>
+      <span class="archive-count">{{ len .Pages }} entries</span>
+    </div>
+    <div class="archive-list">
+      {{ range $index, $page := .Pages }}
+      <div class="archive-item">
+        <div class="archive-meta">
+          <span class="archive-number">{{ printf "%02d" (add 1 $index) }}</span>
+          <time>{{ $page.Date.Format "01/02/06" }}</time>
+        </div>
+        <a class="archive-link" href="{{ $page.RelPermalink }}">
+          <h2>{{ $page.Date.Format "Jan 2, 2006" }}</h2>
+          {{ if $page.Description }}<p class="archive-desc">{{ $page.Description }}</p>{{ end }}
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="split-right journal-split-right"></div>
+</div>
+{{ end }}
