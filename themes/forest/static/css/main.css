@@ -237,7 +237,9 @@ body {
 /* ── CTA Section ── */
 
 .cta-section {
-  background: var(--forest);
+  background-image: url('/images/ripple.jpg');
+  background-size: cover;
+  background-position: center 40%;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   padding: 7rem 2rem;
