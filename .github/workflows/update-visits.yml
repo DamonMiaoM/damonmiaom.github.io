@@ -22,7 +22,8 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/traffic/views")
 
-          # Extract total view count for the last 14 days (or 0 on error)
+          echo "API response: $RESPONSE"
+
           COUNT=$(echo "$RESPONSE" | python3 -c "
           import sys, json
           try:
@@ -34,7 +35,7 @@ jobs:
 
           mkdir -p static/data
           printf '{"visits":%s}\n' "$COUNT" > static/data/visits.json
-          echo "Visit count: $COUNT"
+          echo "Visit count written: $COUNT"
 
       - name: Commit and push if changed
         run: |
