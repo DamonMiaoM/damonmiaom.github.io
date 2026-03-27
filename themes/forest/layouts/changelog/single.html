@@ -20,6 +20,8 @@
   --cl-tag-imp-ink:    #4a5e80;
   --cl-tag-meta-bg:    rgba(150, 168, 156, 0.12);
   --cl-tag-meta-ink:   #5a6e60;
+
+  --cl-zh-font: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Georgia, serif;
 }
 
 /* ── Page shell ── */
@@ -29,33 +31,51 @@
   margin: 0 auto;
 }
 
-/* ── Header ── */
+/* ════════════════════════════════════════
+   PAGE HEADER
+   ════════════════════════════════════════ */
+
 .cl-header {
   text-align: center;
   padding-bottom: 5.5rem;
 }
 
+/* Eyebrow — both languages on one line, separated by · */
 .cl-eyebrow {
   font-family: 'Poppins', sans-serif;
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--cl-gold);
   margin-bottom: 1.1rem;
 }
 
+/* Title — large italic English, Chinese as a secondary block */
 .cl-title {
-  font-family: 'Lora', 'PingFang SC', 'Hiragino Sans GB', Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: clamp(2rem, 5vw, 2.9rem);
   font-weight: 400;
   font-style: italic;
   color: var(--near-black);
   letter-spacing: -0.01em;
-  margin: 0 0 1.1rem;
+  margin: 0 0 0.5rem;
   line-height: 1.2;
 }
 
+.cl-title-zh {
+  display: block;
+  font-family: var(--cl-zh-font);
+  font-size: 0.42em;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.3em;
+  color: var(--sage);
+  margin-top: 0.55em;
+  text-transform: none;
+}
+
+/* Subtitle — English, then Chinese in lighter weight below */
 .cl-subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 0.75rem;
@@ -63,87 +83,26 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--sage);
-  margin: 0;
+  margin: 0.9rem 0 0;
+  line-height: 1.9;
 }
 
-/* ── Language toggle ── */
-.cl-lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 1.75rem;
-  border: 1px solid rgba(212, 175, 55, 0.28);
-  border-radius: 3px;
-  padding: 0.3rem 0.9rem;
-  background: rgba(212, 175, 55, 0.04);
-}
-
-.cl-lang-btn {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.67rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.cl-subtitle-zh {
+  display: block;
+  font-family: var(--cl-zh-font);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
   color: var(--sage);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.1rem 0;
-  transition: color 0.2s ease;
-  line-height: 1;
-}
-
-.cl-lang-btn.active {
-  color: var(--cl-gold);
-}
-
-.cl-lang-btn:hover {
-  color: var(--cl-gold);
-}
-
-.cl-lang-sep {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.65rem;
-  color: var(--border);
-  pointer-events: none;
-  user-select: none;
+  opacity: 0.75;
+  margin-top: 0.3rem;
 }
 
 /* ════════════════════════════════════════
-   BILINGUAL VISIBILITY
-   .lang-en  = English content  (default visible)
-   .lang-zh  = Chinese content  (default hidden)
-   .cl-page.zh = Chinese mode active
+   TIMELINE STRUCTURE
    ════════════════════════════════════════ */
 
-/* By default, hide all Chinese layers */
-.lang-zh { display: none; }
-
-/* In Chinese mode: hide English, reveal Chinese */
-.cl-page.zh .lang-en { display: none; }
-.cl-page.zh .lang-zh { display: block; }
-
-/* Inline elements (spans inside headings, tags, time) stay inline */
-.cl-page.zh span.lang-zh { display: inline; }
-
-/* Chinese typography improvements */
-.cl-page.zh .cl-title {
-  font-style: normal;   /* italic looks odd with Chinese glyphs */
-  letter-spacing: 0.04em;
-}
-
-.cl-page.zh .cl-entry-title {
-  font-style: normal;
-  font-weight: 600;
-  font-family: 'Lora', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Georgia, serif;
-}
-
-.cl-page.zh .cl-desc,
-.cl-page.zh .cl-list {
-  font-family: 'Lora', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Georgia, serif;
-}
-
-/* ── Timeline container ── */
 .cl-timeline {
   position: relative;
 }
@@ -174,7 +133,7 @@ article.cl-entry {
   grid-template-columns: 1fr 48px 1fr;
   gap: 0 2.5rem;
   align-items: start;
-  margin-bottom: 5rem;
+  margin-bottom: 5.5rem;
   z-index: 1;
   opacity: 0;
   transform: translateX(-28px);
@@ -190,7 +149,10 @@ article.cl-entry.cl-visible {
   transform: translateX(0);
 }
 
-/* ── Meta (version badge + date) ── */
+/* ════════════════════════════════════════
+   META COLUMN (version + date)
+   ════════════════════════════════════════ */
+
 .cl-meta {
   grid-column: 1;
   grid-row: 1;
@@ -217,18 +179,33 @@ article.cl-entry.cl-visible {
   font-family: 'Poppins', sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   color: var(--sage);
   margin-top: 0.45rem;
+  line-height: 1.6;
 }
 
-/* ── Node (dot on the golden line) ── */
+/* Chinese date — smaller, on its own line */
+.cl-date-zh {
+  display: block;
+  font-family: var(--cl-zh-font);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--sage);
+  opacity: 0.7;
+}
+
+/* ════════════════════════════════════════
+   NODE (gold dot on the line)
+   ════════════════════════════════════════ */
+
 .cl-node {
   grid-column: 2;
   grid-row: 1;
   display: flex;
   justify-content: center;
-  padding-top: 0.28rem;
+  padding-top: 0.3rem;
   z-index: 2;
 }
 
@@ -253,13 +230,17 @@ article.cl-entry:hover .cl-dot {
     0 0 16px var(--cl-glow-hover);
 }
 
-/* ── Body (content) ── */
+/* ════════════════════════════════════════
+   BODY (content block)
+   ════════════════════════════════════════ */
+
 .cl-body {
   grid-column: 3;
   grid-row: 1;
   text-align: left;
 }
 
+/* Entry title — English heading with Chinese sub-title */
 .cl-entry-title {
   font-family: 'Lora', Georgia, serif;
   font-size: 1.1rem;
@@ -269,12 +250,24 @@ article.cl-entry:hover .cl-dot {
   line-height: 1.4;
 }
 
+.cl-zh-sub {
+  display: block;
+  font-family: var(--cl-zh-font);
+  font-size: 0.8em;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--sage);
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+}
+
 /* ── Tags ── */
 .cl-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.8rem;
 }
 
 .cl-tag {
@@ -292,7 +285,7 @@ article.cl-entry:hover .cl-dot {
 .cl-tag-improve { background: var(--cl-tag-imp-bg);  color: var(--cl-tag-imp-ink);  }
 .cl-tag-meta    { background: var(--cl-tag-meta-bg); color: var(--cl-tag-meta-ink); }
 
-/* ── Description + list ── */
+/* ── English description ── */
 .cl-desc {
   font-family: 'Lora', Georgia, serif;
   font-size: 0.9rem;
@@ -301,21 +294,30 @@ article.cl-entry:hover .cl-dot {
   margin: 0;
 }
 
+/* ── Chinese description — appears below English, visually distinct ── */
+.cl-desc-zh {
+  font-family: var(--cl-zh-font);
+  font-size: 0.875rem;
+  line-height: 1.9;
+  color: #5a7060;
+  margin: 0.6rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(150, 168, 156, 0.20);
+}
+
+/* ── Bullet list ── */
 .cl-list {
   list-style: none;
   padding: 0;
-  margin: 0.55rem 0 0;
+  margin: 0.7rem 0 0;
 }
 
+/* Each li: dash — English text, Chinese below */
 .cl-list li {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 0.55rem;
-  font-family: 'Lora', Georgia, serif;
-  font-size: 0.875rem;
-  line-height: 1.8;
-  color: #3d4d42;
-  padding: 0.12rem 0;
+  padding: 0.18rem 0;
 }
 
 .cl-list li::before {
@@ -324,10 +326,34 @@ article.cl-entry:hover .cl-dot {
   flex-shrink: 0;
   font-size: 0.75rem;
   opacity: 0.85;
+  margin-top: 0.18rem; /* nudge to align with first line */
+}
+
+/* Inner wrapper: EN on top, ZH below */
+.li-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.li-en {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #3d4d42;
+}
+
+.li-zh {
+  font-family: var(--cl-zh-font);
+  font-size: 0.80rem;
+  line-height: 1.6;
+  color: var(--sage);
+  opacity: 0.85;
 }
 
 /* ════════════════════════════════
    ALTERNATING LAYOUT (even entries)
+   Even entries: body LEFT, meta RIGHT
    ════════════════════════════════ */
 
 article.cl-entry:nth-of-type(even) .cl-meta {
@@ -352,6 +378,10 @@ article.cl-entry:nth-of-type(even) .cl-list li {
   flex-direction: row-reverse;
 }
 
+article.cl-entry:nth-of-type(even) .li-inner {
+  align-items: flex-end;
+}
+
 /* ── Footer note ── */
 .cl-foot {
   text-align: center;
@@ -360,7 +390,7 @@ article.cl-entry:nth-of-type(even) .cl-list li {
   border-top: 1px solid rgba(212, 175, 55, 0.18);
 }
 
-.cl-foot p {
+.cl-foot-en {
   font-family: 'Poppins', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
@@ -368,8 +398,18 @@ article.cl-entry:nth-of-type(even) .cl-list li {
   color: var(--sage);
 }
 
+.cl-foot-zh {
+  font-family: var(--cl-zh-font);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--sage);
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
+
 /* ════════════════════════════
    MOBILE  (≤ 768px)
+   Single-column, line on left
    ════════════════════════════ */
 
 @media (max-width: 768px) {
@@ -431,6 +471,10 @@ article.cl-entry:nth-of-type(even) .cl-list li {
   article.cl-entry:nth-of-type(even) .cl-list li {
     flex-direction: row;
   }
+
+  article.cl-entry:nth-of-type(even) .li-inner {
+    align-items: flex-start;
+  }
 }
 </style>
 
@@ -441,28 +485,15 @@ article.cl-entry:nth-of-type(even) .cl-list li {
 <div class="cl-page">
 
   <header class="cl-header">
-
-    <!-- Eyebrow — bilingual block pair -->
-    <p class="cl-eyebrow lang-en">Evolutionary Journey</p>
-    <p class="cl-eyebrow lang-zh">成长之旅</p>
-
-    <!-- Title — single h1 with inner spans -->
+    <p class="cl-eyebrow">Evolutionary Journey &nbsp;·&nbsp; 成长之旅</p>
     <h1 class="cl-title">
-      <span class="lang-en">Changelog</span>
-      <span class="lang-zh">更新日志</span>
+      Changelog
+      <span class="cl-title-zh">更新日志</span>
     </h1>
-
-    <!-- Subtitle — bilingual block pair -->
-    <p class="cl-subtitle lang-en">A living archive of growth, one update at a time</p>
-    <p class="cl-subtitle lang-zh">一份关于成长的活档案，每一次更新都是新的里程碑</p>
-
-    <!-- Language toggle -->
-    <div class="cl-lang-toggle" role="group" aria-label="Select language / 选择语言">
-      <button class="cl-lang-btn" data-lang="en" aria-pressed="true">EN</button>
-      <span class="cl-lang-sep" aria-hidden="true">·</span>
-      <button class="cl-lang-btn" data-lang="zh" aria-pressed="false">中文</button>
-    </div>
-
+    <p class="cl-subtitle">
+      A living archive of growth, one update at a time
+      <span class="cl-subtitle-zh">一份关于成长的活档案，每一次更新都是新的里程碑</span>
+    </p>
   </header>
 
   <section class="cl-timeline" aria-label="Site update history">
@@ -474,31 +505,25 @@ article.cl-entry:nth-of-type(even) .cl-list li {
       <div class="cl-meta">
         <span class="cl-version">v 0.1</span>
         <time class="cl-date" datetime="2025-01">
-          <span class="lang-en">January 2025</span>
-          <span class="lang-zh">2025年1月</span>
+          January 2025
+          <span class="cl-date-zh">2025年1月</span>
         </time>
       </div>
       <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
       <div class="cl-body">
-        <h2 class="cl-entry-title lang-en">Site Goes Live</h2>
-        <h2 class="cl-entry-title lang-zh">网站上线</h2>
+        <h2 class="cl-entry-title">
+          Site Goes Live
+          <span class="cl-zh-sub">网站上线</span>
+        </h2>
         <div class="cl-tags">
-          <span class="cl-tag cl-tag-new">
-            <span class="lang-en">New</span>
-            <span class="lang-zh">新增</span>
-          </span>
+          <span class="cl-tag cl-tag-new">New</span>
         </div>
-        <p class="cl-desc lang-en">The first stone is laid. A personal site launches with Hugo and the forest theme — a quiet corner of the internet to call home.</p>
-        <p class="cl-desc lang-zh">第一块基石落定。以 Hugo 和 forest 主题搭建个人网站，在互联网上找到了一片属于自己的宁静角落。</p>
-        <ul class="cl-list lang-en">
-          <li>Hugo static site with forest theme</li>
-          <li>GitHub Actions CI/CD pipeline</li>
-          <li>Responsive, mobile-first layout</li>
-        </ul>
-        <ul class="cl-list lang-zh">
-          <li>Hugo 静态网站 + forest 主题</li>
-          <li>GitHub Actions 自动部署流水线</li>
-          <li>响应式移动端优先布局</li>
+        <p class="cl-desc">The first stone is laid. A personal site launches with Hugo and the forest theme — a quiet corner of the internet to call home.</p>
+        <p class="cl-desc-zh">第一块基石落定。以 Hugo 和 forest 主题搭建个人网站，在互联网上找到了一片属于自己的宁静角落。</p>
+        <ul class="cl-list">
+          <li><div class="li-inner"><span class="li-en">Hugo static site with forest theme</span><span class="li-zh">Hugo 静态网站 + forest 主题</span></div></li>
+          <li><div class="li-inner"><span class="li-en">GitHub Actions CI/CD pipeline</span><span class="li-zh">GitHub Actions 自动部署流水线</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Responsive, mobile-first layout</span><span class="li-zh">响应式移动端优先布局</span></div></li>
         </ul>
       </div>
     </article>
@@ -508,29 +533,24 @@ article.cl-entry:nth-of-type(even) .cl-list li {
       <div class="cl-meta">
         <span class="cl-version">v 0.2</span>
         <time class="cl-date" datetime="2025-02">
-          <span class="lang-en">February 2025</span>
-          <span class="lang-zh">2025年2月</span>
+          February 2025
+          <span class="cl-date-zh">2025年2月</span>
         </time>
       </div>
       <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
       <div class="cl-body">
-        <h2 class="cl-entry-title lang-en">Word → PPT Transformer</h2>
-        <h2 class="cl-entry-title lang-zh">Word → PPT 转换工具</h2>
+        <h2 class="cl-entry-title">
+          Word &rarr; PPT Transformer
+          <span class="cl-zh-sub">Word → PPT 转换工具</span>
+        </h2>
         <div class="cl-tags">
-          <span class="cl-tag cl-tag-new">
-            <span class="lang-en">New</span>
-            <span class="lang-zh">新增</span>
-          </span>
+          <span class="cl-tag cl-tag-new">New</span>
         </div>
-        <p class="cl-desc lang-en">First tool goes live. Converts Word exam papers into clean PowerPoint slides — a small gift to every teacher who has spent hours reformatting content.</p>
-        <p class="cl-desc lang-zh">第一个工具上线。将 Word 试卷一键转换为整洁的幻灯片——献给每一位曾花大量时间重排内容的老师们。</p>
-        <ul class="cl-list lang-en">
-          <li>Hosted at damonmiaom.github.io/Word_To_PPT</li>
-          <li>Pure HTML / CSS / JS, no backend required</li>
-        </ul>
-        <ul class="cl-list lang-zh">
-          <li>托管于 damonmiaom.github.io/Word_To_PPT</li>
-          <li>纯 HTML / CSS / JS，无需后端</li>
+        <p class="cl-desc">First tool goes live. Converts Word exam papers into clean PowerPoint slides — a small gift to every teacher who has spent hours reformatting content.</p>
+        <p class="cl-desc-zh">第一个工具上线。将 Word 试卷一键转换为整洁的幻灯片——献给每一位曾花大量时间重排内容的老师们。</p>
+        <ul class="cl-list">
+          <li><div class="li-inner"><span class="li-en">Hosted at damonmiaom.github.io/Word_To_PPT</span><span class="li-zh">托管于 damonmiaom.github.io/Word_To_PPT</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Pure HTML / CSS / JS, no backend required</span><span class="li-zh">纯 HTML / CSS / JS，无需后端</span></div></li>
         </ul>
       </div>
     </article>
@@ -540,35 +560,26 @@ article.cl-entry:nth-of-type(even) .cl-list li {
       <div class="cl-meta">
         <span class="cl-version">v 0.3</span>
         <time class="cl-date" datetime="2025-04">
-          <span class="lang-en">April 2025</span>
-          <span class="lang-zh">2025年4月</span>
+          April 2025
+          <span class="cl-date-zh">2025年4月</span>
         </time>
       </div>
       <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
       <div class="cl-body">
-        <h2 class="cl-entry-title lang-en">Gallery &amp; First Essays</h2>
-        <h2 class="cl-entry-title lang-zh">相册与第一批文章</h2>
+        <h2 class="cl-entry-title">
+          Gallery &amp; First Essays
+          <span class="cl-zh-sub">相册与第一批文章</span>
+        </h2>
         <div class="cl-tags">
-          <span class="cl-tag cl-tag-new">
-            <span class="lang-en">New</span>
-            <span class="lang-zh">新增</span>
-          </span>
-          <span class="cl-tag cl-tag-improve">
-            <span class="lang-en">Improve</span>
-            <span class="lang-zh">优化</span>
-          </span>
+          <span class="cl-tag cl-tag-new">New</span>
+          <span class="cl-tag cl-tag-improve">Improve</span>
         </div>
-        <p class="cl-desc lang-en">The site grows its voice. An image gallery is added, and the first essays begin to take shape on the blog.</p>
-        <p class="cl-desc lang-zh">网站开始有了自己的声音。图片相册上线，博客里也孕育出了第一批文字。</p>
-        <ul class="cl-list lang-en">
-          <li>Image gallery with CSS column layout</li>
-          <li>Projects page with external links</li>
-          <li>First blog entries published</li>
-        </ul>
-        <ul class="cl-list lang-zh">
-          <li>CSS 多列布局的图片相册</li>
-          <li>作品集页面与外部链接</li>
-          <li>第一批博客文章正式发布</li>
+        <p class="cl-desc">The site grows its voice. An image gallery is added, and the first essays begin to take shape on the blog.</p>
+        <p class="cl-desc-zh">网站开始有了自己的声音。图片相册上线，博客里也孕育出了第一批文字。</p>
+        <ul class="cl-list">
+          <li><div class="li-inner"><span class="li-en">Image gallery with CSS column layout</span><span class="li-zh">CSS 多列布局的图片相册</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Projects page with external links</span><span class="li-zh">作品集页面与外部链接</span></div></li>
+          <li><div class="li-inner"><span class="li-en">First blog entries published</span><span class="li-zh">第一批博客文章正式发布</span></div></li>
         </ul>
       </div>
     </article>
@@ -578,35 +589,26 @@ article.cl-entry:nth-of-type(even) .cl-list li {
       <div class="cl-meta">
         <span class="cl-version">v 0.4</span>
         <time class="cl-date" datetime="2025-07">
-          <span class="lang-en">July 2025</span>
-          <span class="lang-zh">2025年7月</span>
+          July 2025
+          <span class="cl-date-zh">2025年7月</span>
         </time>
       </div>
       <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
       <div class="cl-body">
-        <h2 class="cl-entry-title lang-en">Polish &amp; Performance</h2>
-        <h2 class="cl-entry-title lang-zh">打磨与性能优化</h2>
+        <h2 class="cl-entry-title">
+          Polish &amp; Performance
+          <span class="cl-zh-sub">打磨与性能优化</span>
+        </h2>
         <div class="cl-tags">
-          <span class="cl-tag cl-tag-fix">
-            <span class="lang-en">Fix</span>
-            <span class="lang-zh">修复</span>
-          </span>
-          <span class="cl-tag cl-tag-improve">
-            <span class="lang-en">Improve</span>
-            <span class="lang-zh">优化</span>
-          </span>
+          <span class="cl-tag cl-tag-fix">Fix</span>
+          <span class="cl-tag cl-tag-improve">Improve</span>
         </div>
-        <p class="cl-desc lang-en">Quiet refinements beneath the surface. Mobile navigation tightened, typography calibrated, images noticeably faster.</p>
-        <p class="cl-desc lang-zh">悄无声息的深层打磨。移动端导航更顺畅，字体比例更精准，图片加载速度肉眼可见地提升了。</p>
-        <ul class="cl-list lang-en">
-          <li>Mobile nav and spacing fixes</li>
-          <li>Line-height and font-size tuning</li>
-          <li>Image compression and lazy loading</li>
-        </ul>
-        <ul class="cl-list lang-zh">
-          <li>修复移动端导航与间距</li>
-          <li>行高与字号精细调整</li>
-          <li>图片压缩与懒加载</li>
+        <p class="cl-desc">Quiet refinements beneath the surface. Mobile navigation tightened, typography calibrated, images noticeably faster.</p>
+        <p class="cl-desc-zh">悄无声息的深层打磨。移动端导航更顺畅，字体比例更精准，图片加载速度肉眼可见地提升了。</p>
+        <ul class="cl-list">
+          <li><div class="li-inner"><span class="li-en">Mobile nav and spacing fixes</span><span class="li-zh">修复移动端导航与间距</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Line-height and font-size tuning</span><span class="li-zh">行高与字号精细调整</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Image compression and lazy loading</span><span class="li-zh">图片压缩与懒加载</span></div></li>
         </ul>
       </div>
     </article>
@@ -616,29 +618,24 @@ article.cl-entry:nth-of-type(even) .cl-list li {
       <div class="cl-meta">
         <span class="cl-version">v 0.5</span>
         <time class="cl-date" datetime="2025-11">
-          <span class="lang-en">November 2025</span>
-          <span class="lang-zh">2025年11月</span>
+          November 2025
+          <span class="cl-date-zh">2025年11月</span>
         </time>
       </div>
       <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
       <div class="cl-body">
-        <h2 class="cl-entry-title lang-en">Community &amp; Comments</h2>
-        <h2 class="cl-entry-title lang-zh">社区与评论</h2>
+        <h2 class="cl-entry-title">
+          Community &amp; Comments
+          <span class="cl-zh-sub">社区与评论</span>
+        </h2>
         <div class="cl-tags">
-          <span class="cl-tag cl-tag-new">
-            <span class="lang-en">New</span>
-            <span class="lang-zh">新增</span>
-          </span>
+          <span class="cl-tag cl-tag-new">New</span>
         </div>
-        <p class="cl-desc lang-en">Writing becomes a conversation. Giscus brings readers into the space — writing now feels like a dialogue rather than a monologue.</p>
-        <p class="cl-desc lang-zh">写作变成了一场对话。Giscus 让读者走进了这个空间——文字不再是独白，而是两端都有人的交流。</p>
-        <ul class="cl-list lang-en">
-          <li>Giscus (GitHub Discussions) on all posts</li>
-          <li>Regular writing cadence established</li>
-        </ul>
-        <ul class="cl-list lang-zh">
-          <li>所有文章接入 Giscus 评论系统</li>
-          <li>确立规律的写作节奏</li>
+        <p class="cl-desc">Writing becomes a conversation. Giscus brings readers into the space — writing now feels like a dialogue rather than a monologue.</p>
+        <p class="cl-desc-zh">写作变成了一场对话。Giscus 让读者走进了这个空间——文字不再是独白，而是两端都有人的交流。</p>
+        <ul class="cl-list">
+          <li><div class="li-inner"><span class="li-en">Giscus (GitHub Discussions) on all posts</span><span class="li-zh">所有文章接入 Giscus 评论系统</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Regular writing cadence established</span><span class="li-zh">确立规律的写作节奏</span></div></li>
         </ul>
       </div>
     </article>
@@ -648,35 +645,26 @@ article.cl-entry:nth-of-type(even) .cl-list li {
       <div class="cl-meta">
         <span class="cl-version">v 0.6</span>
         <time class="cl-date" datetime="2026-03">
-          <span class="lang-en">March 2026</span>
-          <span class="lang-zh">2026年3月</span>
+          March 2026
+          <span class="cl-date-zh">2026年3月</span>
         </time>
       </div>
       <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
       <div class="cl-body">
-        <h2 class="cl-entry-title lang-en">This Page</h2>
-        <h2 class="cl-entry-title lang-zh">这个页面</h2>
+        <h2 class="cl-entry-title">
+          This Page
+          <span class="cl-zh-sub">这个页面</span>
+        </h2>
         <div class="cl-tags">
-          <span class="cl-tag cl-tag-new">
-            <span class="lang-en">New</span>
-            <span class="lang-zh">新增</span>
-          </span>
-          <span class="cl-tag cl-tag-meta">
-            <span class="lang-en">Meta</span>
-            <span class="lang-zh">元信息</span>
-          </span>
+          <span class="cl-tag cl-tag-new">New</span>
+          <span class="cl-tag cl-tag-meta">Meta</span>
         </div>
-        <p class="cl-desc lang-en">A record of records. The changelog arrives — turning a working site into a documented story of intention and steady progress.</p>
-        <p class="cl-desc lang-zh">记录的记录。更新日志上线——让一个运转中的网站，成为一个有意图、有脉络的成长故事。</p>
-        <ul class="cl-list lang-en">
-          <li>Timeline layout with scroll-reveal animations</li>
-          <li>Golden thread axis design system</li>
-          <li>Bilingual support (EN / 中文)</li>
-        </ul>
-        <ul class="cl-list lang-zh">
-          <li>带滚动揭示动画的时间轴布局</li>
-          <li>香槟金线条设计语言</li>
-          <li>中英双语切换支持</li>
+        <p class="cl-desc">A record of records. The changelog arrives — turning a working site into a documented story of intention and steady progress.</p>
+        <p class="cl-desc-zh">记录的记录。更新日志上线——让一个运转中的网站，成为一个有意图、有脉络的成长故事。</p>
+        <ul class="cl-list">
+          <li><div class="li-inner"><span class="li-en">Timeline layout with scroll-reveal animations</span><span class="li-zh">带滚动揭示动画的时间轴布局</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Golden thread axis design system</span><span class="li-zh">香槟金线条设计语言</span></div></li>
+          <li><div class="li-inner"><span class="li-en">Bilingual — English prose with Chinese alongside</span><span class="li-zh">中英双语并排呈现</span></div></li>
         </ul>
       </div>
     </article>
@@ -684,8 +672,8 @@ article.cl-entry:nth-of-type(even) .cl-list li {
   </section><!-- /.cl-timeline -->
 
   <footer class="cl-foot">
-    <p class="lang-en">The journey continues &nbsp;·&nbsp; Updated as milestones are reached</p>
-    <p class="lang-zh">旅程仍在继续 &nbsp;·&nbsp; 每到里程碑，即时更新</p>
+    <p class="cl-foot-en">The journey continues &nbsp;·&nbsp; Updated as milestones are reached</p>
+    <p class="cl-foot-zh">旅程仍在继续 &nbsp;·&nbsp; 每到里程碑，即时更新</p>
   </footer>
 
 </div><!-- /.cl-page -->
@@ -694,9 +682,6 @@ article.cl-entry:nth-of-type(even) .cl-list li {
      JAVASCRIPT
      1. Golden line scroll-reveal
      2. Entry reveal via IntersectionObserver
-     3. Language toggle (EN ↔ 中文)
-        — persists via localStorage
-        — auto-detects Chinese browsers on first visit
      ════════════════════════════════════════ -->
 <script>
 (function () {
@@ -704,8 +689,6 @@ article.cl-entry:nth-of-type(even) .cl-list li {
 
   var line     = document.querySelector('.cl-line');
   var timeline = document.querySelector('.cl-timeline');
-  var page     = document.querySelector('.cl-page');
-  var langBtns = document.querySelectorAll('.cl-lang-btn');
 
   /* ── 1. Golden thread grows as user scrolls ── */
   function updateLine () {
@@ -726,45 +709,13 @@ article.cl-entry:nth-of-type(even) .cl-list li {
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('article.cl-entry').forEach(function (el) {
     io.observe(el);
   });
 
-  /* ── 3. Language toggle ── */
-  function setLang (lang) {
-    if (lang === 'zh') {
-      page.classList.add('zh');
-    } else {
-      page.classList.remove('zh');
-    }
-    langBtns.forEach(function (btn) {
-      var active = btn.dataset.lang === lang;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    try { localStorage.setItem('cl-lang', lang); } catch (e) {}
-  }
-
-  langBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      setLang(this.dataset.lang);
-    });
-  });
-
-  /* Auto-detect on first visit; restore saved preference afterwards */
-  (function () {
-    var saved;
-    try { saved = localStorage.getItem('cl-lang'); } catch (e) {}
-    if (!saved) {
-      var bl = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      saved = bl.startsWith('zh') ? 'zh' : 'en';
-    }
-    setLang(saved);
-  })();
-
-  /* ── 4. Event listeners ── */
+  /* ── 3. Listeners ── */
   window.addEventListener('scroll', updateLine, { passive: true });
   window.addEventListener('resize', updateLine, { passive: true });
   updateLine();
