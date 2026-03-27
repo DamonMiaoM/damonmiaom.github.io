@@ -25,10 +25,53 @@
   {{ end }}
 </section>
 
+<!-- ── Visitor Counter ── -->
+<section class="vc-section">
+  <div class="vc-inner">
+    <div class="vc-number" id="vcNumber">—</div>
+    <p class="vc-label">
+      Visits &nbsp;<span class="vc-sep">·</span>&nbsp; 访问次数
+    </p>
+  </div>
+</section>
+
 <section class="cta-section">
   <div class="cta-inner">
     <p class="cta-headline"><em>Let's Connect.</em></p>
     <a class="cta-email" href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
   </div>
 </section>
+
+<script>
+(function () {
+  var el = document.getElementById('vcNumber');
+  if (!el) return;
+
+  function animateCount(target) {
+    var duration = 1800;
+    var start    = Date.now();
+    (function tick() {
+      var elapsed  = Date.now() - start;
+      var progress = Math.min(elapsed / duration, 1);
+      /* ease-out cubic */
+      var eased    = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target).toLocaleString();
+      if (progress < 1) requestAnimationFrame(tick);
+    })();
+  }
+
+  fetch('https://api.countapi.xyz/hit/damonmiaom-site/homepage-v1')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d && typeof d.value === 'number') {
+        animateCount(d.value);
+      } else {
+        document.querySelector('.vc-section').style.display = 'none';
+      }
+    })
+    .catch(function () {
+      document.querySelector('.vc-section').style.display = 'none';
+    });
+})();
+</script>
 {{ end }}
