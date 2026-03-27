@@ -17,3 +17,21 @@ title: "Gallery"
 </figure>
 
 </div>
+
+<div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<script>
+document.querySelectorAll('.gallery-item img').forEach(function(img) {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', function() {
+    document.getElementById('lightbox-img').src = this.src;
+    document.getElementById('lightbox-img').alt = this.alt;
+    document.getElementById('lightbox').classList.add('active');
+  });
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+});
+</script>
