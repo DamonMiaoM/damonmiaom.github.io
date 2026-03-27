@@ -3,7 +3,7 @@ backend:
   repo: DamonMiaoM/damonmiaom.github.io
   branch: main
   auth_type: pkce
-  app_id: REPLACE_WITH_YOUR_OAUTH_APP_CLIENT_ID
+  app_id: Ov23lipLliinshmaPPGW
 
 media_folder: static/images/journal
 public_folder: /images/journal
