@@ -1,0 +1,7 @@
+[build]
+  command = "hugo --buildFuture"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.140.2"
+  HUGO_ENV = "production"
