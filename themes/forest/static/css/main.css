@@ -326,7 +326,7 @@ body {
   position: sticky;
   top: 70px;
   height: calc(100vh - 70px);
-  background-image: url('/images/ripple.jpg');
+  background-image: url('/images/lotus.jpg');
   background-size: cover;
   background-position: center 40%;
 }
