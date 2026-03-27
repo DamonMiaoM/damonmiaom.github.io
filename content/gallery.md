@@ -1,8 +1,11 @@
 ---
 title: "Gallery"
+eyebrow_en: "Visual Pause"
+eyebrow_zh: "视觉停驻"
+title_zh: "相册"
+desc_en: "Images worth pausing for — nature, stillness, the spaces between things"
+desc_zh: "值得驻足的图像：自然、静谧、万物之间的留白"
 ---
-
-<p class="gallery-intro">A collection of images I find worth pausing for — nature, stillness, and the spaces between things.</p>
 
 <div class="gallery-grid">
 

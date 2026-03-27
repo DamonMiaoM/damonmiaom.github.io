@@ -905,3 +905,77 @@ body {
   margin: 2rem 0;
   display: block;
 }
+
+/* ════════════════════════════════════════
+   PAGE HERO — shared header style
+   mirrors Changelog header design
+   ════════════════════════════════════════ */
+
+.ph-header {
+  text-align: center;
+  padding: 4.5rem 2rem 5rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ph-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D4AF37;
+  margin-bottom: 1.1rem;
+}
+
+.ph-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--near-black);
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.ph-title-zh {
+  display: block;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Georgia, serif;
+  font-size: 0.42em;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.3em;
+  color: var(--sage);
+  margin-top: 0.55em;
+  text-transform: none;
+}
+
+.ph-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin: 0.9rem 0 0;
+  line-height: 1.9;
+}
+
+.ph-desc-zh {
+  display: block;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Georgia, serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--sage);
+  opacity: 0.75;
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .ph-header {
+    padding: 3rem 1.5rem 3.5rem;
+  }
+}

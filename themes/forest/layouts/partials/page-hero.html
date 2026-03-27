@@ -1,0 +1,13 @@
+{{ with .Params.eyebrow_en }}
+<header class="ph-header">
+  <p class="ph-eyebrow">{{ $.Params.eyebrow_en }}&nbsp;·&nbsp;{{ $.Params.eyebrow_zh }}</p>
+  <h1 class="ph-title">
+    {{ $.Title }}
+    <span class="ph-title-zh">{{ $.Params.title_zh }}</span>
+  </h1>
+  <p class="ph-desc">
+    {{ $.Params.desc_en }}
+    <span class="ph-desc-zh">{{ $.Params.desc_zh }}</span>
+  </p>
+</header>
+{{ end }}

@@ -1,8 +1,9 @@
 {{ define "main" }}
+{{ partial "page-hero.html" . }}
 <div class="split-layout">
   <div class="split-left">
     <div class="archive-header">
-      <h1>{{ .Title }}</h1>
+      {{ if not .Params.eyebrow_en }}<h1>{{ .Title }}</h1>{{ end }}
       <span class="archive-count">{{ len .Pages }} entries</span>
     </div>
     <div class="archive-list">

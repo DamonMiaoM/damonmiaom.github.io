@@ -1,5 +1,10 @@
 ---
 title: "Projects"
+eyebrow_en: "Things I Built"
+eyebrow_zh: "我做的东西"
+title_zh: "项目"
+desc_en: "Tools made with curiosity, AI, and no prior experience"
+desc_zh: "用好奇心与 AI 构建，从零出发，不需要先验经验"
 ---
 
 ## AI Glossary
