@@ -885,6 +885,15 @@ body {
   color: var(--sage);
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+}
+
+.journal-wordcount {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--sage);
+  opacity: 0.65;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);

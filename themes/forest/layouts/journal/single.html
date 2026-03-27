@@ -3,6 +3,7 @@
   <a class="journal-back" href="/journal/">← Journal</a>
   <h1 class="journal-date">{{ .Date.Format "Jan 2, 2006" }}</h1>
   <p class="journal-dateline">{{ .Date.Format "Monday" }}</p>
+  <p class="journal-wordcount">{{ .WordCount }} words</p>
   <div class="post-content journal-body">
     {{ .Content }}
   </div>
