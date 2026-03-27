@@ -18,4 +18,4 @@ A web tool that converts Word exam papers into PowerPoint presentations, making 
 
 A curated collection of recorded online sessions on wealth management fundamentals — covering economics basics, time value of money, and Excel financial calculations — designed for insurance professionals.
 
-[View 财富管理入门 →](https://damonmiaom.github.io/wealth-course/)
+[View 财富管理入门 →](https://damonmiaom.github.io/Wealth-Course/)
