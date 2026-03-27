@@ -1,0 +1,573 @@
+{{ define "main" }}
+<style>
+/* ════════════════════════════════════════════
+   Changelog — Embedded Styles
+   All selectors prefixed with .cl- to avoid
+   collisions with the forest theme.
+   ════════════════════════════════════════════ */
+
+:root {
+  --cl-gold:        #D4AF37;
+  --cl-gold-light:  #F1D592;
+  --cl-glow:        rgba(212, 175, 55, 0.40);
+  --cl-glow-hover:  rgba(212, 175, 55, 0.75);
+
+  --cl-tag-new-bg:     rgba(74, 122, 90, 0.10);
+  --cl-tag-new-ink:    #3e7050;
+  --cl-tag-fix-bg:     rgba(138, 80, 80, 0.10);
+  --cl-tag-fix-ink:    #884848;
+  --cl-tag-imp-bg:     rgba(80, 96, 128, 0.10);
+  --cl-tag-imp-ink:    #4a5e80;
+  --cl-tag-meta-bg:    rgba(150, 168, 156, 0.12);
+  --cl-tag-meta-ink:   #5a6e60;
+}
+
+/* ── Page shell ── */
+.cl-page {
+  padding: 2rem 0 7rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.cl-header {
+  text-align: center;
+  padding-bottom: 5.5rem;
+}
+
+.cl-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cl-gold);
+  margin-bottom: 1.1rem;
+}
+
+.cl-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--near-black);
+  letter-spacing: -0.01em;
+  margin: 0 0 1.1rem;
+  line-height: 1.2;
+}
+
+.cl-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin: 0;
+}
+
+/* ── Timeline container ── */
+.cl-timeline {
+  position: relative;
+}
+
+/* ── The golden thread ── */
+.cl-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--cl-gold),
+    var(--cl-gold-light) 50%,
+    var(--cl-gold)
+  );
+  /* Starts fully hidden; JS reveals it on scroll */
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Individual entry ── */
+article.cl-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  gap: 0 2.5rem;
+  align-items: start;
+  margin-bottom: 5rem;
+  z-index: 1;
+
+  /* Scroll-reveal: start hidden, slide from left */
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+article.cl-entry:nth-of-type(even) {
+  /* Even entries slide from right */
+  transform: translateX(28px);
+}
+
+article.cl-entry.cl-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Meta (version badge + date) ── */
+.cl-meta {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  padding-top: 0.2rem;
+}
+
+.cl-version {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cl-gold);
+  border: 1px solid rgba(212, 175, 55, 0.30);
+  background: rgba(212, 175, 55, 0.06);
+  padding: 0.18rem 0.6rem;
+  border-radius: 2px;
+}
+
+.cl-date {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--sage);
+  margin-top: 0.45rem;
+}
+
+/* ── Node (dot on the golden line) ── */
+.cl-node {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.28rem;
+  z-index: 2;
+}
+
+.cl-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cl-gold), var(--cl-gold-light));
+  /* Ring + glow */
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 8px var(--cl-glow);
+  flex-shrink: 0;
+  transition:
+    transform  0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+
+/* Hover: node blooms and glows */
+article.cl-entry:hover .cl-dot {
+  transform: scale(1.7);
+  box-shadow:
+    0 0 0 3px var(--bg),
+    0 0 16px var(--cl-glow-hover);
+}
+
+/* ── Body (content) ── */
+.cl-body {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: left;
+}
+
+.cl-entry-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--near-black);
+  margin: 0 0 0.7rem;
+  line-height: 1.4;
+}
+
+/* ── Tags ── */
+.cl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.cl-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.60rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem;
+  border-radius: 2px;
+}
+
+.cl-tag-new     { background: var(--cl-tag-new-bg);  color: var(--cl-tag-new-ink);  }
+.cl-tag-fix     { background: var(--cl-tag-fix-bg);  color: var(--cl-tag-fix-ink);  }
+.cl-tag-improve { background: var(--cl-tag-imp-bg);  color: var(--cl-tag-imp-ink);  }
+.cl-tag-meta    { background: var(--cl-tag-meta-bg); color: var(--cl-tag-meta-ink); }
+
+/* ── Description + list ── */
+.cl-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: #3d4d42;
+  margin: 0;
+}
+
+.cl-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.55rem 0 0;
+}
+
+.cl-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: #3d4d42;
+  padding: 0.12rem 0;
+}
+
+.cl-list li::before {
+  content: "—";
+  color: var(--cl-gold);
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+/* ════════════════════════════════
+   ALTERNATING LAYOUT (even entries)
+   Even entries: body LEFT, meta RIGHT
+   ════════════════════════════════ */
+
+article.cl-entry:nth-of-type(even) .cl-meta {
+  grid-column: 3;
+  text-align: left;
+}
+
+article.cl-entry:nth-of-type(even) .cl-node {
+  grid-column: 2;
+}
+
+article.cl-entry:nth-of-type(even) .cl-body {
+  grid-column: 1;
+  text-align: right;
+}
+
+article.cl-entry:nth-of-type(even) .cl-tags {
+  justify-content: flex-end;
+}
+
+article.cl-entry:nth-of-type(even) .cl-list li {
+  flex-direction: row-reverse;
+}
+
+/* ── Footer note ── */
+.cl-foot {
+  text-align: center;
+  padding-top: 3rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.cl-foot p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* ════════════════════════════
+   MOBILE  (≤ 768px)
+   Single-column, line on left
+   ════════════════════════════ */
+
+@media (max-width: 768px) {
+  .cl-page {
+    padding: 1.5rem 0 5rem;
+  }
+
+  .cl-header {
+    padding-bottom: 3.5rem;
+  }
+
+  /* Move line to left edge */
+  .cl-line {
+    left: 18px;
+    transform: none;
+  }
+
+  /* Reset both odd and even to same single-column grid */
+  article.cl-entry,
+  article.cl-entry:nth-of-type(even) {
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0 1.25rem;
+    margin-bottom: 3.5rem;
+    transform: translateX(0);
+    opacity: 0;
+    transition: opacity 0.55s ease;
+  }
+
+  article.cl-entry.cl-visible {
+    opacity: 1;
+  }
+
+  /* Node: column 1, row 1 */
+  article.cl-entry .cl-node,
+  article.cl-entry:nth-of-type(even) .cl-node {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Meta: column 2, row 1 */
+  article.cl-entry .cl-meta,
+  article.cl-entry:nth-of-type(even) .cl-meta {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+
+  /* Body: column 2, row 2 */
+  article.cl-entry .cl-body,
+  article.cl-entry:nth-of-type(even) .cl-body {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+    padding-top: 0.65rem;
+  }
+
+  article.cl-entry .cl-tags,
+  article.cl-entry:nth-of-type(even) .cl-tags {
+    justify-content: flex-start;
+  }
+
+  article.cl-entry .cl-list li,
+  article.cl-entry:nth-of-type(even) .cl-list li {
+    flex-direction: row;
+  }
+}
+</style>
+
+<!-- ══════════════════════════════════════
+     CHANGELOG PAGE MARKUP
+     ══════════════════════════════════════ -->
+
+<div class="cl-page">
+
+  <header class="cl-header">
+    <p class="cl-eyebrow">Evolutionary Journey</p>
+    <h1 class="cl-title">Changelog</h1>
+    <p class="cl-subtitle">A living archive of growth, one update at a time</p>
+  </header>
+
+  <section class="cl-timeline" aria-label="Site update history">
+
+    <!-- The golden thread — revealed by scroll via JS -->
+    <div class="cl-line" aria-hidden="true"></div>
+
+    <!-- ── v 0.1 ── -->
+    <article class="cl-entry">
+      <div class="cl-meta">
+        <span class="cl-version">v 0.1</span>
+        <time class="cl-date" datetime="2025-01">January 2025</time>
+      </div>
+      <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
+      <div class="cl-body">
+        <h2 class="cl-entry-title">Site Goes Live</h2>
+        <div class="cl-tags">
+          <span class="cl-tag cl-tag-new">New</span>
+        </div>
+        <p class="cl-desc">The first stone is laid. A personal site launches with Hugo and the forest theme — a quiet corner of the internet to call home.</p>
+        <ul class="cl-list">
+          <li>Hugo static site with forest theme</li>
+          <li>GitHub Actions CI/CD pipeline</li>
+          <li>Responsive, mobile-first layout</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── v 0.2 ── -->
+    <article class="cl-entry">
+      <div class="cl-meta">
+        <span class="cl-version">v 0.2</span>
+        <time class="cl-date" datetime="2025-02">February 2025</time>
+      </div>
+      <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
+      <div class="cl-body">
+        <h2 class="cl-entry-title">Word → PPT Transformer</h2>
+        <div class="cl-tags">
+          <span class="cl-tag cl-tag-new">New</span>
+        </div>
+        <p class="cl-desc">First tool goes live. Converts Word exam papers into clean PowerPoint slides — a small gift to every teacher who has spent hours reformatting content.</p>
+        <ul class="cl-list">
+          <li>Hosted at damonmiaom.github.io/Word_To_PPT</li>
+          <li>Pure HTML / CSS / JS, no backend required</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── v 0.3 ── -->
+    <article class="cl-entry">
+      <div class="cl-meta">
+        <span class="cl-version">v 0.3</span>
+        <time class="cl-date" datetime="2025-04">April 2025</time>
+      </div>
+      <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
+      <div class="cl-body">
+        <h2 class="cl-entry-title">Gallery &amp; First Essays</h2>
+        <div class="cl-tags">
+          <span class="cl-tag cl-tag-new">New</span>
+          <span class="cl-tag cl-tag-improve">Improve</span>
+        </div>
+        <p class="cl-desc">The site grows its voice. An image gallery is added, and the first essays begin to take shape on the blog.</p>
+        <ul class="cl-list">
+          <li>Image gallery with CSS column layout</li>
+          <li>Projects page with external links</li>
+          <li>First blog entries published</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── v 0.4 ── -->
+    <article class="cl-entry">
+      <div class="cl-meta">
+        <span class="cl-version">v 0.4</span>
+        <time class="cl-date" datetime="2025-07">July 2025</time>
+      </div>
+      <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
+      <div class="cl-body">
+        <h2 class="cl-entry-title">Polish &amp; Performance</h2>
+        <div class="cl-tags">
+          <span class="cl-tag cl-tag-fix">Fix</span>
+          <span class="cl-tag cl-tag-improve">Improve</span>
+        </div>
+        <p class="cl-desc">Quiet refinements beneath the surface. Mobile navigation tightened, typography calibrated, images noticeably faster.</p>
+        <ul class="cl-list">
+          <li>Mobile nav and spacing fixes</li>
+          <li>Line-height and font-size tuning</li>
+          <li>Image compression and lazy loading</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── v 0.5 ── -->
+    <article class="cl-entry">
+      <div class="cl-meta">
+        <span class="cl-version">v 0.5</span>
+        <time class="cl-date" datetime="2025-11">November 2025</time>
+      </div>
+      <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
+      <div class="cl-body">
+        <h2 class="cl-entry-title">Community &amp; Comments</h2>
+        <div class="cl-tags">
+          <span class="cl-tag cl-tag-new">New</span>
+        </div>
+        <p class="cl-desc">Writing becomes a conversation. Giscus brings readers into the space — writing now feels like a dialogue rather than a monologue.</p>
+        <ul class="cl-list">
+          <li>Giscus (GitHub Discussions) on all posts</li>
+          <li>Regular writing cadence established</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ── v 0.6 ── -->
+    <article class="cl-entry">
+      <div class="cl-meta">
+        <span class="cl-version">v 0.6</span>
+        <time class="cl-date" datetime="2026-03">March 2026</time>
+      </div>
+      <div class="cl-node" aria-hidden="true"><div class="cl-dot"></div></div>
+      <div class="cl-body">
+        <h2 class="cl-entry-title">This Page</h2>
+        <div class="cl-tags">
+          <span class="cl-tag cl-tag-new">New</span>
+          <span class="cl-tag cl-tag-meta">Meta</span>
+        </div>
+        <p class="cl-desc">A record of records. The changelog arrives — turning a working site into a documented story of intention and steady progress.</p>
+        <ul class="cl-list">
+          <li>Timeline layout with scroll-reveal animations</li>
+          <li>Golden thread axis design system</li>
+          <li>Fully responsive, mobile-first</li>
+        </ul>
+      </div>
+    </article>
+
+  </section><!-- /.cl-timeline -->
+
+  <footer class="cl-foot">
+    <p>The journey continues &nbsp;·&nbsp; Updated as milestones are reached</p>
+  </footer>
+
+</div><!-- /.cl-page -->
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+     1. Golden line scroll-reveal
+     2. Entry reveal via IntersectionObserver
+     ══════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  var line     = document.querySelector('.cl-line');
+  var timeline = document.querySelector('.cl-timeline');
+
+  /* ── 1. Golden thread grows as user scrolls ── */
+  function updateLine () {
+    if (!line || !timeline) return;
+    var rect     = timeline.getBoundingClientRect();
+    var vh       = window.innerHeight;
+    /* Reveal starts when timeline top hits 70% down the viewport,
+       finishes when timeline bottom clears the top of the viewport. */
+    var scrolled = (vh * 0.70) - rect.top;
+    var progress = Math.max(0, Math.min(1, scrolled / rect.height));
+    var pct      = ((1 - progress) * 100).toFixed(2);
+    line.style.clipPath = 'inset(0 0 ' + pct + '% 0)';
+  }
+
+  /* ── 2. Entry fade-in via IntersectionObserver ── */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('cl-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('article.cl-entry').forEach(function (el) {
+    io.observe(el);
+  });
+
+  /* ── 3. Listeners ── */
+  window.addEventListener('scroll', updateLine, { passive: true });
+  window.addEventListener('resize', updateLine, { passive: true });
+  /* Run once immediately in case page loads already scrolled */
+  updateLine();
+
+})();
+</script>
+
+{{ end }}
