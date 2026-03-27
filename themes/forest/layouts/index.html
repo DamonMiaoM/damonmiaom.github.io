@@ -60,17 +60,17 @@
     })();
   }
 
-  fetch('https://counterapi.dev/api/damonmiaom-site/homepage/up')
+  /* Fetch from our own repo — no third-party dependency, never fails due to CORS */
+  fetch('/data/visits.json')
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      var count = d && (d.count || d.value);
-      if (typeof count === 'number') {
-        animateCount(count);
+      if (d && typeof d.visits === 'number' && d.visits > 0) {
+        animateCount(d.visits);
       }
-      /* on unexpected shape: leave el showing — */
+      /* visits === 0: leave el showing — until first daily run populates it */
     })
     .catch(function () {
-      /* API unreachable: leave el showing — */
+      /* file missing: leave el showing — */
     });
 })();
 </script>

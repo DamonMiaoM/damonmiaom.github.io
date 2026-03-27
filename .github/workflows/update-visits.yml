@@ -1,0 +1,46 @@
+name: Update Visit Count
+
+# Runs daily + can be triggered manually from GitHub Actions tab
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC every day
+  workflow_dispatch:
+
+permissions:
+  contents: write          # needed to commit visits.json back to the repo
+
+jobs:
+  update-visits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch GitHub Pages traffic
+        run: |
+          RESPONSE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/traffic/views")
+
+          # Extract total view count for the last 14 days (or 0 on error)
+          COUNT=$(echo "$RESPONSE" | python3 -c "
+          import sys, json
+          try:
+              d = json.load(sys.stdin)
+              print(int(d.get('count', 0)))
+          except Exception:
+              print(0)
+          ")
+
+          mkdir -p static/data
+          printf '{"visits":%s}\n' "$COUNT" > static/data/visits.json
+          echo "Visit count: $COUNT"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/data/visits.json
+          # Only commit when the number actually changed
+          git diff --staged --quiet || \
+            (git commit -m "chore: update visit count" && git push)
