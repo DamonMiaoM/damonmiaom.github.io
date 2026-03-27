@@ -12,6 +12,11 @@ title: "Gallery"
 </figure>
 
 <figure class="gallery-item">
+  <img src="/images/waterlily.jpg" alt="White water lily floating on dark still water" />
+  <figcaption>White lotus · Still water · Photo: Nong / Unsplash</figcaption>
+</figure>
+
+<figure class="gallery-item">
   <img src="/images/ripple.jpg" alt="Concentric ripples on a dark calm lake surface" />
   <figcaption>Ripples · Still lake · Photo: Vitaly K / Unsplash</figcaption>
 </figure>
