@@ -11,4 +11,9 @@ title: "Gallery"
   <figcaption>Water lily · Still water · Photo: Saffu / Unsplash</figcaption>
 </figure>
 
+<figure class="gallery-item">
+  <img src="/images/ripple.jpg" alt="Concentric ripples on a dark calm lake surface" />
+  <figcaption>Ripples · Still lake · Photo: Vitaly K / Unsplash</figcaption>
+</figure>
+
 </div>

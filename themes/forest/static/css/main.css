@@ -108,9 +108,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/images/lotus.jpg');
+  background-image: url('/images/ripple.jpg');
   background-size: cover;
-  background-position: center 55%;
+  background-position: center 40%;
 }
 
 .hero::before {
@@ -326,9 +326,9 @@ body {
   position: sticky;
   top: 70px;
   height: calc(100vh - 70px);
-  background-image: url('/images/lotus.jpg');
+  background-image: url('/images/ripple.jpg');
   background-size: cover;
-  background-position: center 55%;
+  background-position: center 40%;
 }
 
 .split-right::before {
@@ -747,4 +747,14 @@ body {
   .post-single {
     max-width: 100%;
   }
+}
+
+
+/* Comments section */
+.comments-section {
+  max-width: 680px;
+  margin: 3rem auto 4rem;
+  padding: 0 1.5rem;
+  border-top: 1px solid var(--surface);
+  padding-top: 2.5rem;
 }
