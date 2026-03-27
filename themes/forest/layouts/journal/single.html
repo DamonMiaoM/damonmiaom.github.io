@@ -3,9 +3,24 @@
   <a class="journal-back" href="/journal/">← Journal</a>
   <h1 class="journal-date">{{ .Date.Format "Jan 2, 2006" }}</h1>
   <p class="journal-dateline">{{ .Date.Format "Monday" }}</p>
-  <p class="journal-wordcount">{{ .WordCount }} words</p>
+  <p class="journal-wordcount" id="journal-wc"></p>
   <div class="post-content journal-body">
     {{ .Content }}
   </div>
 </article>
+<script>
+(function () {
+  var body = document.querySelector('.journal-body');
+  var el   = document.getElementById('journal-wc');
+  if (!body || !el) return;
+  var text    = body.innerText || body.textContent || '';
+  var chinese = (text.match(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g) || []).length;
+  if (chinese > 20) {
+    el.textContent = chinese + ' 字';
+  } else {
+    var words = text.trim().split(/\s+/).filter(function (w) { return w.length > 0; }).length;
+    el.textContent = words + ' words';
+  }
+})();
+</script>
 {{ end }}
