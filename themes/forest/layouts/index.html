@@ -60,17 +60,17 @@
     })();
   }
 
-  fetch('https://api.countapi.xyz/hit/damonmiaom-site/homepage-v1')
+  fetch('https://counterapi.dev/api/damonmiaom-site/homepage/up')
     .then(function (r) { return r.json(); })
     .then(function (d) {
-      if (d && typeof d.value === 'number') {
-        animateCount(d.value);
-      } else {
-        document.querySelector('.vc-section').style.display = 'none';
+      var count = d && (d.count || d.value);
+      if (typeof count === 'number') {
+        animateCount(count);
       }
+      /* on unexpected shape: leave el showing — */
     })
     .catch(function () {
-      document.querySelector('.vc-section').style.display = 'none';
+      /* API unreachable: leave el showing — */
     });
 })();
 </script>
