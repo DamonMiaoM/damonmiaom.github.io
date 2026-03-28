@@ -1,0 +1,87 @@
+<div class="mw-card mw-lw">
+
+  <!-- Step 1: Intro -->
+  <div class="mw-lw-intro" id="mw-intro">
+    <p class="mw-lw-eyebrow">Memento mori &nbsp;·&nbsp; 活在当下</p>
+    <h3 class="mw-lw-title">
+      Your life<br>in weeks
+      <span class="mw-lw-title-zh">以周为单位，看见你的一生</span>
+    </h3>
+    <p class="mw-lw-desc">
+      80 yrs &nbsp;·&nbsp; 4,160 weeks<br>each square is one
+      <span class="mw-lw-desc-zh">每一格代表一周</span>
+    </p>
+    <label class="mw-lw-label" for="mw-dob">Date of birth &nbsp;·&nbsp; 出生日期</label>
+    <input type="date" id="mw-dob" class="mw-lw-input">
+    <button class="mw-lw-btn" id="mw-submit">See yours &nbsp;·&nbsp; 看见</button>
+  </div>
+
+  <!-- Step 2: Result -->
+  <div class="mw-lw-result" id="mw-result">
+    <div class="mw-lw-grid" id="mw-grid"></div>
+    <div class="mw-lw-legend">
+      <span><span class="mw-lw-dot" style="background:var(--sage);opacity:0.75"></span>Lived</span>
+      <span><span class="mw-lw-dot" style="background:#D4AF37"></span>Now</span>
+      <span><span class="mw-lw-dot" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15)"></span>Ahead</span>
+    </div>
+    <p class="mw-lw-n" id="mw-n">—</p>
+    <span class="mw-lw-nsub" id="mw-nsub"></span>
+    <span class="mw-lw-nsub-zh" id="mw-nsub-zh"></span>
+    <button class="mw-lw-reset" id="mw-reset">&#8635; Start over &nbsp;·&nbsp; 重来</button>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var intro  = document.getElementById('mw-intro');
+  var result = document.getElementById('mw-result');
+  var grid   = document.getElementById('mw-grid');
+  var nEl    = document.getElementById('mw-n');
+  var nSub   = document.getElementById('mw-nsub');
+  var nZh    = document.getElementById('mw-nsub-zh');
+  var input  = document.getElementById('mw-dob');
+  var btn    = document.getElementById('mw-submit');
+  var reset  = document.getElementById('mw-reset');
+
+  if (!btn) return;
+
+  input.max = new Date().toISOString().split('T')[0];
+
+  btn.addEventListener('click', function () {
+    if (!input.value) return;
+    render(new Date(input.value + 'T00:00:00'));
+  });
+
+  reset.addEventListener('click', function () {
+    result.classList.remove('on');
+    intro.classList.remove('off');
+    grid.innerHTML = '';
+  });
+
+  function render(dob) {
+    var now     = new Date();
+    var MS_WEEK = 7 * 24 * 60 * 60 * 1000;
+    var TOTAL   = 80 * 52;
+    var lived   = Math.floor((now - dob) / MS_WEEK);
+    var pct     = (lived / TOTAL * 100).toFixed(1);
+    var remain  = TOTAL - lived;
+
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < TOTAL; i++) {
+      var sq = document.createElement('div');
+      sq.className = 'mw-lw-sq' + (i < lived ? ' past' : i === lived ? ' now' : '');
+      frag.appendChild(sq);
+    }
+    grid.innerHTML = '';
+    grid.appendChild(frag);
+
+    nEl.textContent  = lived.toLocaleString();
+    nSub.textContent = 'weeks lived · ' + pct + '% of 80 yrs';
+    nZh.textContent  = '已活过 · 还剩 ' + remain.toLocaleString() + ' 周';
+
+    intro.classList.add('off');
+    result.classList.add('on');
+  }
+})();
+</script>
