@@ -11,3 +11,8 @@ theme = 'forest'
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+  ordered = false

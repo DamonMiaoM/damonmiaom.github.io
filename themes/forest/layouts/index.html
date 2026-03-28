@@ -43,6 +43,28 @@
 </section>
 
 <script>
+/* Scroll-triggered stagger on post list */
+(function () {
+  var section = document.querySelector('.post-editorial');
+  if (!section) return;
+  section.classList.add('stagger-ready');
+  var items = section.querySelectorAll('.editorial-item');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  items.forEach(function (el, i) {
+    el.style.transitionDelay = (i * 90) + 'ms';
+    observer.observe(el);
+  });
+})();
+</script>
+
+<script>
 (function () {
   var el = document.getElementById('vcNumber');
   if (!el) return;

@@ -1,17 +1,17 @@
 <header class="site-header">
   <nav class="nav-grid">
     <div class="nav-left">
-      <a href="/about/">About</a>
-      <a href="/blog/">Blog</a>
-      <a href="/journal/">Journal</a>
+      <a href="/about/"{{ if hasPrefix .RelPermalink "/about" }} class="nav-active"{{ end }}>About</a>
+      <a href="/blog/"{{ if hasPrefix .RelPermalink "/blog" }} class="nav-active"{{ end }}>Blog</a>
+      <a href="/journal/"{{ if hasPrefix .RelPermalink "/journal" }} class="nav-active"{{ end }}>Journal</a>
     </div>
     <div class="nav-center">
       <a href="/" class="site-title">{{ .Site.Params.name }}</a>
     </div>
     <div class="nav-right">
-      <a href="/projects/">Projects</a>
-      <a href="/gallery/">Gallery</a>
-      <a href="/changelog/">Changelog</a>
+      <a href="/projects/"{{ if hasPrefix .RelPermalink "/projects" }} class="nav-active"{{ end }}>Projects</a>
+      <a href="/gallery/"{{ if hasPrefix .RelPermalink "/gallery" }} class="nav-active"{{ end }}>Gallery</a>
+      <a href="/changelog/"{{ if hasPrefix .RelPermalink "/changelog" }} class="nav-active"{{ end }}>Changelog</a>
     </div>
   </nav>
 </header>

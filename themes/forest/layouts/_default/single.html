@@ -1,16 +1,73 @@
 {{ define "main" }}
+<div id="reading-progress"></div>
 {{ partial "page-hero.html" . }}
-<article class="post-single">
-  {{ if not .Params.eyebrow_en }}
-  <header class="post-header">
-    <h1>{{ .Title }}</h1>
-    {{ if not .Date.IsZero }}<time>{{ .Date.Format "January 2, 2006" }}</time>{{ end }}
-  </header>
+<div class="post-layout{{ if and .TableOfContents (eq .Section "blog") }} has-toc{{ end }}">
+  {{ if and .TableOfContents (eq .Section "blog") }}
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    {{ .TableOfContents }}
+  </aside>
   {{ end }}
-  <div class="post-content">
-    {{ .Content }}
-  </div>
-</article>
+  <article class="post-single">
+    {{ if not .Params.eyebrow_en }}
+    <header class="post-header">
+      <h1>{{ .Title }}</h1>
+      {{ if not .Date.IsZero }}<time>{{ .Date.Format "January 2, 2006" }}</time><span class="reading-time"> · {{ .ReadingTime }} min read</span>{{ end }}
+    </header>
+    {{ end }}
+    <div class="post-content{{ if eq .Section "blog" }} has-dropcap{{ end }}">
+      {{ .Content }}
+    </div>
+  </article>
+</div>
+
+{{ if eq .Section "blog" }}
+{{ $related := first 3 (where (where .Site.RegularPages "Section" "blog") "RelPermalink" "ne" .RelPermalink) }}
+{{ if $related }}
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  {{ range $related }}
+  <a href="{{ .RelPermalink }}" class="related-item">
+    <span class="related-title">{{ .Title }}</span>
+    <time class="related-date">{{ .Date.Format "Jan 2006" }}</time>
+  </a>
+  {{ end }}
+</aside>
+{{ end }}
+{{ end }}
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
 
 {{ if eq .Section "blog" }}
 <section class="comments-section">
