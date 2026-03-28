@@ -1,4 +1,5 @@
 {{ define "main" }}
+<div id="reading-progress"></div>
 <article class="journal-single">
   <a class="journal-back" href="/journal/">← Journal</a>
   <h1 class="journal-date">{{ .Date.Format "Jan 2, 2006" }}</h1>
@@ -21,6 +22,20 @@
     var words = text.trim().split(/\s+/).filter(function (w) { return w.length > 0; }).length;
     el.textContent = words + ' words';
   }
+})();
+</script>
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.journal-body');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 </script>
 {{ end }}
