@@ -109,7 +109,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/images/ripple.jpg');
+  background-image: url('/images/lotus-ripple-vitalyk.jpg');
   background-size: cover;
   background-position: center 40%;
 }
@@ -238,7 +238,7 @@ body {
 /* ── CTA Section ── */
 
 .cta-section {
-  background-image: url('/images/ripple.jpg');
+  background-image: url('/images/lotus-ripple-vitalyk.jpg');
   background-size: cover;
   background-position: center 40%;
   width: 100vw;
@@ -381,7 +381,7 @@ body {
   position: sticky;
   top: 70px;
   height: calc(100vh - 70px);
-  background-image: url('/images/lotus.jpg');
+  background-image: url('/images/lotus-pink-saffu.jpg');
   background-size: cover;
   background-position: center 40%;
 }
@@ -845,7 +845,7 @@ body {
 /* ── Journal ── */
 
 .journal-split-right {
-  background-image: url('/images/waterlily.jpg') !important;
+  background-image: url('/images/lotus-white-nong.jpg') !important;
   background-position: center center !important;
 }
 
