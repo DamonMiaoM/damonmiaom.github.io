@@ -2120,6 +2120,16 @@ body::after {
   .gallery-item { background: var(--surface); }
   .related-title { color: #CDD9D0; }
   body::after { opacity: 0.015; }
+  /* Page hero — all section headers (About, Blog, Journal, Projects, Gallery) */
+  .ph-title { color: #CDD9D0; }
+  .ph-title-zh { color: var(--sage); }
+  .ph-desc { color: var(--sage); }
+  .ph-desc-zh { color: var(--sage); opacity: 0.7; }
+  /* Active nav item */
+  .nav-left a.nav-active,
+  .nav-right a.nav-active { color: var(--sage); }
+  .nav-left a.nav-active::after,
+  .nav-right a.nav-active::after { background: var(--sage); }
   /* TOC sidebar — subtle scrollbar in dark mode */
   .toc-sidebar {
     scrollbar-width: thin;
