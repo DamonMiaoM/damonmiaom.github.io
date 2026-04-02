@@ -2100,6 +2100,8 @@ body::after {
     --surface: #182018;
     --border: #263026;
     --sage: #849E8C;
+    --near-black: #CDD9D0;
+    --forest: #5a9e78;
   }
   body { color: #CDD9D0; }
   .site-header { background: var(--bg); }
