@@ -1,4 +1,12 @@
 {{ with .Params.eyebrow_en }}
+<style>
+@media (prefers-color-scheme: dark) {
+  .ph-title    { color: #CDD9D0 !important; }
+  .ph-title-zh { color: #849E8C !important; }
+  .ph-desc     { color: #849E8C !important; }
+  .ph-desc-zh  { color: #849E8C !important; opacity: 0.7; }
+}
+</style>
 <header class="ph-header">
   <p class="ph-eyebrow">{{ $.Params.eyebrow_en }}&nbsp;·&nbsp;{{ $.Params.eyebrow_zh }}</p>
   <h1 class="ph-title">
