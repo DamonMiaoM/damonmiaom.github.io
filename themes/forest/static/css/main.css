@@ -2112,7 +2112,20 @@ body::after {
   .vc-number { color: #CDD9D0; }
   .post-content { color: #CDD9D0; }
   .post-content code { background: var(--surface); color: #B8D4C0; }
+  .post-content pre {
+    background: #1C2B22;
+    color: #B8D4C0;
+  }
+  .post-content pre code { color: inherit; }
   .gallery-item { background: var(--surface); }
   .related-title { color: #CDD9D0; }
   body::after { opacity: 0.015; }
+  /* TOC sidebar — subtle scrollbar in dark mode */
+  .toc-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #2e3e34 transparent;
+  }
+  .toc-sidebar::-webkit-scrollbar { width: 3px; }
+  .toc-sidebar::-webkit-scrollbar-track { background: transparent; }
+  .toc-sidebar::-webkit-scrollbar-thumb { background: #2e3e34; border-radius: 2px; }
 }
