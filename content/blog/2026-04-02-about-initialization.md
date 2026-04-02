@@ -3,7 +3,8 @@ title: "项目初始化：在开始之前，先告诉 Claude 你是谁"
 date: 2026-04-02T10:00:00
 author: Damon Miao
 description: "用 What / Why / How 的逻辑，搞清楚 Claude Code 项目初始化到底在做什么，以及不做会发生什么。"
-tags: [Claude Code, 42plugin, 学习笔记]
+tags: [Claude Code, 42plugin, 学习笔记, 跟着CC学CC]
+series: 跟着CC学CC
 slug: about-initialization
 ---
 
