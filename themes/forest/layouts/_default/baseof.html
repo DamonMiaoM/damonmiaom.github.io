@@ -8,6 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
 </head>
 <body>
   {{ partial "header.html" . }}
