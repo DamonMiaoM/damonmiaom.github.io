@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Built a Journal Section with a Web Editor — No Terminal Required | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</a></li>
+    <li><a href="#why-a-separate-journal-section--为什么要单独建一个-journal">Why a Separate Journal Section? / 为什么要单独建一个 Journal？</a></li>
+    <li><a href="#what-changed-in-the-code--代码层面发生了什么">What Changed in the Code / 代码层面发生了什么</a>
+      <ul>
+        <li><a href="#1-new-hugo-section-journal">1. New Hugo Section: <code>/journal/</code></a></li>
+        <li><a href="#2-journal-titles-are-automatic-dates">2. Journal Titles Are Automatic Dates</a></li>
+        <li><a href="#3-distinct-visual-identity">3. Distinct Visual Identity</a></li>
+      </ul>
+    </li>
+    <li><a href="#setting-up-the-web-editor--搭建网页编辑器">Setting Up the Web Editor / 搭建网页编辑器</a>
+      <ul>
+        <li><a href="#what-i-wanted">What I Wanted</a></li>
+        <li><a href="#the-tool-decap-cms">The Tool: Decap CMS</a></li>
+        <li><a href="#the-dead-end-pkce-authentication">The Dead End: PKCE Authentication</a></li>
+        <li><a href="#the-solution-netlify-as-auth-proxy">The Solution: Netlify as Auth Proxy</a></li>
+        <li><a href="#the-setup-steps-i-completed-by-hand">The Setup Steps I Completed by Hand</a></li>
+      </ul>
+    </li>
+    <li><a href="#my-first-journal-entry--我的第一篇日记">My First Journal Entry / 我的第一篇日记</a></li>
+    <li><a href="#what-i-can-now-do--我现在能做什么">What I Can Now Do / 我现在能做什么</a></li>
+    <li><a href="#key-concepts-learned-today--今天学到的关键概念">Key Concepts Learned Today / 今天学到的关键概念</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>How I Built a Journal Section with a Web Editor — No Terminal Required</h1>
+      <time>March 27, 2026</time><span class="reading-time"> · 6 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <h1 id="learning-log--march-27-2026">Learning Log — March 27, 2026</h1>
+<h1 id="学习日志--2026年3月27日">学习日志 — 2026年3月27日</h1>
+<p><strong>Topic:</strong> Building a Journal Section + Web-Based Publishing with Decap CMS
+<strong>主题：</strong> 创建 Journal 栏目 + 用 Decap CMS 实现网页端直接发布</p>
+<hr>
+<h2 id="what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</h2>
+<p>Today I gave my site a new dimension. I created a separate Journal section — distinct from the Blog — and set up a web-based editor so I can write and publish new entries directly from a browser, without touching the terminal or pushing any code. The path to get there involved more dead ends than expected, but each one taught me something real about how the web works.</p>
+<p>今天我为网站增添了新的维度。我创建了一个独立的 Journal 栏目——区别于 Blog——并搭建了一个网页编辑器，让我可以直接在浏览器里写作和发布，不需要碰终端或推送代码。这条路上遇到的弯路比预期的多，但每一个弯路都让我真正理解了一些网络运作的原理。</p>
+<hr>
+<h2 id="why-a-separate-journal-section--为什么要单独建一个-journal">Why a Separate Journal Section? / 为什么要单独建一个 Journal？</h2>
+<p>My Blog has a clear theme: <em>Notes on AI, technology, and thinking.</em> A dinner journal, a travel note, a personal reflection — those belong somewhere else. Mixing them would dilute both.</p>
+<p>The Journal is for daily life. The Blog is a learning log. Two different registers, two different audiences, two different sides of the same person.</p>
+<p>我的 Blog 有明确主题：AI、技术、思考的笔记。吃饭日记、旅行记录、个人感悟——那些应该有自己的位置。混在一起只会稀释彼此。</p>
+<p>Journal 是日常生活。Blog 是学习日志。两种不同的语气，两种不同的读者，同一个人的两面。</p>
+<hr>
+<h2 id="what-changed-in-the-code--代码层面发生了什么">What Changed in the Code / 代码层面发生了什么</h2>
+<h3 id="1-new-hugo-section-journal">1. New Hugo Section: <code>/journal/</code></h3>
+<p>Hugo organizes content into <strong>sections</strong> — folders inside <code>content/</code>. Creating <code>content/journal/</code> automatically makes <code>damonmiaom.github.io/journal/</code> a real page. I added:</p>
+<ul>
+<li><code>content/journal/_index.md</code> — the section index</li>
+<li><code>themes/forest/layouts/journal/list.html</code> — the archive list layout</li>
+<li><code>themes/forest/layouts/journal/single.html</code> — the individual entry layout</li>
+</ul>
+<p>Hugo 通过<strong>栏目</strong>（<code>content/</code> 里的文件夹）组织内容。创建 <code>content/journal/</code> 会自动生成 <code>damonmiaom.github.io/journal/</code> 页面。</p>
+<p><strong>New concept: Hugo Layouts</strong></p>
+<p>Hugo applies different templates to different sections. By creating <code>layouts/journal/</code>, I told Hugo: <em>&ldquo;use these specific templates for Journal pages, not the default ones.&rdquo;</em> Each section can have its own look and feel.</p>
+<p><strong>新概念：Hugo 布局（Layouts）</strong></p>
+<p>Hugo 对不同栏目应用不同模板。通过创建 <code>layouts/journal/</code>，我告诉 Hugo：&ldquo;对 Journal 页面用这套专属模板，不用默认的。&ldquo;每个栏目都可以有自己独特的外观。</p>
+<h3 id="2-journal-titles-are-automatic-dates">2. Journal Titles Are Automatic Dates</h3>
+<p>Each Journal entry uses <code>.Date.Format &quot;Jan 2, 2006&quot;</code> in the template — so the heading always renders as <strong>&ldquo;Mar 27, 2026&rdquo;</strong> regardless of what filename I use. No manual title needed.</p>
+<p>每篇 Journal 的标题在模板里使用 <code>.Date.Format &quot;Jan 2, 2006&quot;</code>，所以标题永远自动渲染为 <strong>&ldquo;Mar 27, 2026&rdquo;</strong> 这样的日期格式，无需手动输入。</p>
+<h3 id="3-distinct-visual-identity">3. Distinct Visual Identity</h3>
+<p>The Journal list page uses the same split-layout as the Blog, but with a different photo on the right panel:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Section</th>
+          <th>Side Image</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Blog</td>
+          <td><code>ripple.jpg</code> — dark teal water ripples</td>
+      </tr>
+      <tr>
+          <td>Journal</td>
+          <td><code>waterlily.jpg</code> — white lotus on still water</td>
+      </tr>
+  </tbody>
+</table>
+<p>This single CSS line creates the distinction:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">journal-split-right</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: url(<span style="color:#e6db74">&#39;/images/waterlily.jpg&#39;</span>) <span style="color:#75715e">!important</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="setting-up-the-web-editor--搭建网页编辑器">Setting Up the Web Editor / 搭建网页编辑器</h2>
+<p>This was the most technical part — and the most educational.</p>
+<h3 id="what-i-wanted">What I Wanted</h3>
+<p>A URL I can open in any browser → log in → write → upload photos → click Publish → done. No terminal. No git. No Markdown syntax required (Rich Text mode handles it).</p>
+<p>我想要的：打开某个网址 → 登录 → 写作 → 上传图片 → 点发布 → 完成。不需要终端，不需要 git，不需要 Markdown 语法。</p>
+<h3 id="the-tool-decap-cms">The Tool: Decap CMS</h3>
+<p>Decap CMS is an open-source web interface that saves your content directly to GitHub as Markdown files. It&rsquo;s invisible to visitors — only the author sees it.</p>
+<p>Decap CMS 是一个开源网页界面，把内容直接以 Markdown 文件保存到 GitHub。访客看不到它，只有作者能使用。</p>
+<p>The admin panel lives at a special URL. Everything I write there becomes a real file committed to my GitHub repo, which triggers GitHub Actions to rebuild and deploy the site.</p>
+<p>管理界面在一个专属网址。我在那里写的所有内容都会变成提交到 GitHub 仓库的真实文件，触发 GitHub Actions 重新构建并部署网站。</p>
+<h3 id="the-dead-end-pkce-authentication">The Dead End: PKCE Authentication</h3>
+<p>My site is hosted on GitHub Pages, which is a static server — it can&rsquo;t run server-side code. Decap CMS has a feature called <strong>PKCE</strong> designed specifically for this: a way to authenticate with GitHub directly from the browser, no server needed.</p>
+<p>我的网站托管在 GitHub Pages——一个静态服务器，不能运行服务端代码。Decap CMS 有一个叫 <strong>PKCE</strong> 的功能专门为此设计：直接在浏览器里通过 GitHub 认证，无需服务器。</p>
+<p>In theory. In practice, Decap CMS 3.x has a persistent bug where PKCE config is silently ignored — the CMS always falls back to Netlify&rsquo;s authentication proxy, which returns &ldquo;Not Found&rdquo; unless your site is registered there.</p>
+<p>理论上如此。实际上，Decap CMS 3.x 有一个持久性 bug：PKCE 配置被静默忽略——CMS 总是回退到 Netlify 的认证代理，而该代理对未注册的网站返回 &ldquo;Not Found&rdquo;。</p>
+<p><strong>New concept: OAuth Authentication</strong></p>
+<p>When you click &ldquo;Login with GitHub&rdquo; on a website, GitHub needs to verify you are who you say you are, then tell the website &ldquo;yes, this person is allowed.&rdquo; This exchange requires a trusted middleman. PKCE was supposed to eliminate the middleman. When it failed, we needed a real one.</p>
+<p><strong>新概念：OAuth 认证</strong></p>
+<p>当你在网站上点击&quot;用 GitHub 登录&quot;时，GitHub 需要验证你的身份，然后告诉网站&quot;是的，这个人有权限&rdquo;。这个交换需要一个可信的中间人。PKCE 本应消除中间人。当它失败时，我们需要一个真正的中间人。</p>
+<h3 id="the-solution-netlify-as-auth-proxy">The Solution: Netlify as Auth Proxy</h3>
+<p><strong>Netlify</strong> is a free hosting platform with built-in Identity services. The solution: deploy the same GitHub repo to Netlify (for free), use Netlify purely as the authentication layer, while the main site continues to live on GitHub Pages.</p>
+<p><strong>Netlify</strong> 是一个内置身份验证服务的免费托管平台。解决方案：把同一个 GitHub 仓库也部署到 Netlify（免费），纯粹用 Netlify 做认证层，而主网站继续托管在 GitHub Pages 上。</p>
+<p>The writing workflow now uses the Netlify URL for the admin panel. Every published entry commits to GitHub, triggers GitHub Actions, and appears on <code>damonmiaom.github.io</code> within a minute.</p>
+<p>写作流程现在用 Netlify 的网址访问管理界面。每篇已发布的日记都会提交到 GitHub，触发 GitHub Actions，在一分钟内出现在 <code>damonmiaom.github.io</code> 上。</p>
+<h3 id="the-setup-steps-i-completed-by-hand">The Setup Steps I Completed by Hand</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Step</th>
+          <th>What I Did</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Created a Netlify account via GitHub login</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Connected my GitHub repo to Netlify</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Set build command to <code>hugo --buildFuture</code></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Enabled Netlify Identity</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Enabled Git Gateway (lets Netlify commit to GitHub on my behalf)</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>Invited myself as an admin user</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>Set my password via the recovery email</td>
+      </tr>
+  </tbody>
+</table>
+<p>Steps 4–7 are the human parts. Every time I clicked a button and filled in a field myself, I understood a little more about what was actually happening.</p>
+<p>第 4–7 步是我亲手完成的部分。每次我自己点击按钮、填写字段，我就对正在发生的事情多理解了一点。</p>
+<hr>
+<h2 id="my-first-journal-entry--我的第一篇日记">My First Journal Entry / 我的第一篇日记</h2>
+<p>Before even testing images, I wrote something real — a reflection on why I want this Journal at all:</p>
+<p>在测试图片上传之前，我写下了真实的内容——一篇关于为什么想要这个 Journal 的思考：</p>
+<blockquote>
+<p><em>在这里疯狂地记日记。不同于 Blog 里的内容，Journal 中的都是日常生活。反观 Blog，我现在都是让 Claude Code 帮我完成一项任务之后，wrap up 成一篇技术性的文章，在我看来它本质上是 Learning Log。先拿到结果，再学习。</em></p>
+</blockquote>
+<p>That line — <em>先拿到结果，再学习</em> — is actually a good description of how I&rsquo;ve been learning to use AI tools. Get the outcome first. Understand it after. Both things are real learning.</p>
+<p>那句话——<em>先拿到结果，再学习</em>——其实很好地描述了我学习使用 AI 工具的方式。先获得结果，再去理解。两者都是真正的学习。</p>
+<hr>
+<h2 id="what-i-can-now-do--我现在能做什么">What I Can Now Do / 我现在能做什么</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Task</th>
+          <th>How</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Write a Journal entry</td>
+          <td>Open <code>sparkly-klepon-26f158.netlify.app/admin/</code> → New Entry</td>
+      </tr>
+      <tr>
+          <td>Upload photos</td>
+          <td>Rich Text mode → image icon → select from computer</td>
+      </tr>
+      <tr>
+          <td>Embed videos</td>
+          <td>Paste YouTube/Bilibili link in Rich Text mode</td>
+      </tr>
+      <tr>
+          <td>Publish</td>
+          <td>Click Publish → live in ~1 minute</td>
+      </tr>
+      <tr>
+          <td>Write a Blog post</td>
+          <td>Still via terminal / git push (intentional — Blog = technical log)</td>
+      </tr>
+  </tbody>
+</table>
+<p>The two workflows match the two purposes. Journal entries are spontaneous and personal — low barrier, browser only. Blog posts are more considered and technical — worth the extra step of opening the terminal.</p>
+<p>两种工作流匹配两种用途。Journal 随性而私人——门槛低，只需浏览器。Blog 更深思熟虑、更技术性——值得多走开终端这一步。</p>
+<hr>
+<h2 id="key-concepts-learned-today--今天学到的关键概念">Key Concepts Learned Today / 今天学到的关键概念</h2>
+<p><strong>Hugo Sections &amp; Layouts</strong> — Content organization and template routing in a static site generator.
+Hugo 的栏目与布局 — 静态网站生成器中的内容组织与模板路由。</p>
+<p><strong>CMS (Content Management System)</strong> — A web interface for editing site content without touching code.
+内容管理系统 — 无需接触代码即可编辑网站内容的网页界面。</p>
+<p><strong>OAuth &amp; Authentication Proxy</strong> — How websites verify your identity through a trusted third party.
+OAuth 与认证代理 — 网站如何通过可信第三方验证你的身份。</p>
+<p><strong>Static vs. Dynamic Hosting</strong> — GitHub Pages can serve files but not run code. Netlify can do both.
+静态与动态托管的区别 — GitHub Pages 只能提供文件，不能运行代码。Netlify 两者都能做。</p>
+<p><strong>Git Gateway</strong> — A service that lets Netlify commit files to your GitHub repo on your behalf.
+Git Gateway — 一项让 Netlify 代表你向 GitHub 仓库提交文件的服务。</p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mar 27, 2026 | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/journal/" class="nav-active">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+<article class="journal-single">
+  <a class="journal-back" href="/journal/">← Journal</a>
+  <header class="post-header">
+    <h1>March 27, 2026</h1>
+    <time>March 27, 2026</time><span class="reading-time" id="journal-wc"></span>
+  </header>
+  <div class="post-content journal-body">
+    <p><img src="/images/journal/photo-2.jpg" alt="阿大说这张把我拍得帅，感恩康总～" title="Mar 26, 2026 真西聚餐合影"></p>
+<p>在这里疯狂地记日记，<strong>Document Relentlessly</strong> ！！！</p>
+<p>不同于 <strong>Blog</strong> 里的内容，<strong>Journal</strong> 中的都是日常生活。<strong>Claude Code</strong> 给了我想象的空间，未来我想把 Vlog 或者其他日常生活的记录放到这里。</p>
+<p>反观 Blog，我现在都是让 <strong>Claude Code</strong> 帮我完成一项任务之后，wrap up 成一小篇技术性的文章，在我看来它本质上是 Learning Log。在 <strong>Claude Code</strong> 的加持下，完整地把搭建网站的过程记录下来变得非常轻松。虽然很多技术性的内容目前我还看不懂，不过因为有了体验，拿到结果之后，再反过来重新检查流程。每一步采取的 action 到底意味着什么，交给 Claude 来解释。</p>
+<p>对，先拿到结果，再学习。</p>
+<p>昨天吃饭、聊天到很晚，不过并不妨碍我带着强大的热情一早起来就跟 Claude Code 继续捣鼓个人网页。<br>
+<br>
+今天添加了 Changelog，非常有意思，一旦进入开发者的视角和思维，一个我未曾想象的想象空间瞬间打开。</p>
+<p>AI 时代的创造路径 ： 用心记录生活、体验、感受、想法，沉淀下来，形成个人数据资产（<strong>Personal Data Assets</strong>），喂给 AI，让他们帮忙形成洞见 <strong>Insights</strong>，既加速个人成长，还能够形成个体化的产品，可谓一举两得。</p>
+
+  </div>
+</article>
+<script>
+(function () {
+  var body = document.querySelector('.journal-body');
+  var el   = document.getElementById('journal-wc');
+  if (!body || !el) return;
+  var text    = body.innerText || body.textContent || '';
+  var chinese = (text.match(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g) || []).length;
+  if (chinese > 20) {
+    el.textContent = ' · ' + chinese + ' 字';
+  } else {
+    var words = text.trim().split(/\s+/).filter(function (w) { return w.length > 0; }).length;
+    el.textContent = ' · ' + words + ' words';
+  }
+})();
+</script>
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.journal-body');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

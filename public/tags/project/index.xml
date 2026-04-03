@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/project/</link>
+    <description>Recent content in Project on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2026 18:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Word-to-PPT Transformer: A Developer&#39;s Journal</title>
+      <link>https://damonmiaom.github.io/blog/word-to-ppt-transformer-journal/</link>
+      <pubDate>Thu, 26 Mar 2026 18:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/word-to-ppt-transformer-journal/</guid>
+      <description>&lt;p&gt;&lt;em&gt;一个寿险顾问，如何用 AI 把一张 Word 试卷变成一套漂亮的 PPT——六个阶段、八个 Bug、以及一路走来的收获。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;How a life insurance agent used AI to turn a Word exam paper into a clean PowerPoint deck — six phases, eight bugs, and everything learned along the way.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;工具地址 / Live URL:&lt;/strong&gt; &lt;a href=&#34;https://damonmiaom.github.io/Word_To_PPT&#34;&gt;damonmiaom.github.io/Word_To_PPT&lt;/a&gt;&#xA;&lt;strong&gt;源代码 / GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/DamonMiaoM/Word_To_PPT&#34;&gt;github.com/DamonMiaoM/Word_To_PPT&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Background&lt;/p&gt;&#xA;&lt;p&gt;我是一名寿险顾问，同时也在给孩子们做数学辅导。上课时，我发现把试卷上的题目一道一道地展示在屏幕上，比让学生盯着一整张密密麻麻的 Word 文档要好得多。于是我想：能不能做一个工具，自动把 Word 试卷转换成演示用的 PowerPoint？&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;I&amp;rsquo;m a life insurance agent who also tutors children in mathematics. In class, I found that showing questions one at a time on screen — rather than scrolling through a dense Word document — made lessons far more engaging. So I asked: could I build a tool to automatically convert a Word exam paper into presentation-ready PowerPoint slides?&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

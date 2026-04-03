@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Word-to-PPT Transformer: A Developer&#39;s Journal | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景">背景</a></li>
+    <li><a href="#第一阶段让项目上线">第一阶段——让项目上线</a></li>
+    <li><a href="#第二阶段修复-bug">第二阶段——修复 Bug</a>
+      <ul>
+        <li><a href="#bug拖拽文件时浏览器直接下载而非上传">Bug：拖拽文件时浏览器直接下载，而非上传</a></li>
+      </ul>
+    </li>
+    <li><a href="#第三阶段布局与视觉重设计">第三阶段——布局与视觉重设计</a></li>
+    <li><a href="#第四阶段题目解析准确性">第四阶段——题目解析准确性</a>
+      <ul>
+        <li><a href="#问题一两道题被合并到同一页">问题一：两道题被合并到同一页</a></li>
+        <li><a href="#问题二大题标题生成了空白幻灯片">问题二：大题标题生成了空白幻灯片</a></li>
+        <li><a href="#问题三所有幻灯片右上角永远显示选择题">问题三：所有幻灯片右上角永远显示&quot;选择题&rdquo;</a></li>
+      </ul>
+    </li>
+    <li><a href="#第五阶段复杂多图多小题">第五阶段——复杂多图多小题</a></li>
+    <li><a href="#第六阶段图片质量最难的-bug">第六阶段——图片质量（最难的 Bug）</a></li>
+    <li><a href="#全部改动汇总">全部改动汇总</a></li>
+    <li><a href="#技术架构">技术架构</a></li>
+    <li><a href="#我学到了什么">我学到了什么</a></li>
+    <li><a href="#下一步">下一步</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>Building a Word-to-PPT Transformer: A Developer&#39;s Journal</h1>
+      <time>March 26, 2026</time><span class="reading-time"> · 8 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <p><em>一个寿险顾问，如何用 AI 把一张 Word 试卷变成一套漂亮的 PPT——六个阶段、八个 Bug、以及一路走来的收获。</em></p>
+<p><em>How a life insurance agent used AI to turn a Word exam paper into a clean PowerPoint deck — six phases, eight bugs, and everything learned along the way.</em></p>
+<p><strong>工具地址 / Live URL:</strong> <a href="https://damonmiaom.github.io/Word_To_PPT">damonmiaom.github.io/Word_To_PPT</a>
+<strong>源代码 / GitHub:</strong> <a href="https://github.com/DamonMiaoM/Word_To_PPT">github.com/DamonMiaoM/Word_To_PPT</a></p>
+<hr>
+<h2 id="背景">背景</h2>
+<p class="heading-note">Background</p>
+<p>我是一名寿险顾问，同时也在给孩子们做数学辅导。上课时，我发现把试卷上的题目一道一道地展示在屏幕上，比让学生盯着一整张密密麻麻的 Word 文档要好得多。于是我想：能不能做一个工具，自动把 Word 试卷转换成演示用的 PowerPoint？</p>
+<p><em>I&rsquo;m a life insurance agent who also tutors children in mathematics. In class, I found that showing questions one at a time on screen — rather than scrolling through a dense Word document — made lessons far more engaging. So I asked: could I build a tool to automatically convert a Word exam paper into presentation-ready PowerPoint slides?</em></p>
+<p>起点是一个从微信收到的文件：<code>wordToPPT.zip</code>。它包含一个 <code>index.html</code>，使用了三个 JavaScript 库：<strong>JSZip</strong>（解压 <code>.docx</code> 文件）、<strong>Mammoth</strong>（解析 Word 内容）和 <strong>PptxGenJS</strong>（生成 <code>.pptx</code> 输出）。它能跑，但仅此而已。本文记录了把这个粗糙原型打磨成我真正引以为豪的工具的全过程。</p>
+<p><em>The starting point was a file received via WeChat: <code>wordToPPT.zip</code>. It contained a single <code>index.html</code> using three JavaScript libraries: <strong>JSZip</strong> (to unpack <code>.docx</code> files), <strong>Mammoth</strong> (to parse Word content), and <strong>PptxGenJS</strong> (to generate <code>.pptx</code> output). It ran, but barely. This journal documents the full journey of turning that rough prototype into something I&rsquo;m genuinely proud of.</em></p>
+<hr>
+<h2 id="第一阶段让项目上线">第一阶段——让项目上线</h2>
+<p class="heading-note">Phase 1 — Getting the Project Online</p>
+<p><strong>问题：</strong> 项目只存在于本地的一个 <code>.zip</code> 文件里，从未被版本化或发布过。</p>
+<p><em>The project only existed as a local <code>.zip</code> file and had never been versioned or published anywhere.</em></p>
+<p><strong>做了什么：</strong></p>
+<p><em>What I did:</em></p>
+<ol>
+<li>解压文件，复制到 <code>~/Projects/wordToPPT/</code></li>
+<li>创建 <code>.gitignore</code>，排除 macOS 系统文件（<code>.DS_Store</code>、<code>__MACOSX/</code>）</li>
+<li>初始化 Git 仓库，完成第一次提交</li>
+<li>在 GitHub 创建仓库 <code>DamonMiaoM/Word_To_PPT</code>，推送代码</li>
+</ol>
+<p><em>1. Extracted the zip into <code>~/Projects/wordToPPT/</code>. 2. Created <code>.gitignore</code> to exclude macOS system files. 3. Initialized a Git repository and made the first commit. 4. Created the GitHub repository and pushed.</em></p>
+<p>开启 GitHub Pages（Settings → Pages → Source: <code>main</code> 分支）后，不到两分钟，工具就上线了——无需服务器，零成本，任何设备打开链接即可使用。</p>
+<p><em>After enabling GitHub Pages, the tool was live in under two minutes — no server, no cost, accessible from any device via a public URL.</em></p>
+<p><strong>关键认知：</strong> 纯前端工具（HTML + JS，无后端）天然适合 GitHub Pages。只需分享一个链接，任何人都能用。</p>
+<p><em><strong>Key lesson:</strong> A pure front-end tool is perfect for GitHub Pages. Share a link — anyone can use it instantly.</em></p>
+<hr>
+<h2 id="第二阶段修复-bug">第二阶段——修复 Bug</h2>
+<p class="heading-note">Phase 2 — Bug Fixes</p>
+<h3 id="bug拖拽文件时浏览器直接下载而非上传">Bug：拖拽文件时浏览器直接下载，而非上传</h3>
+<p class="heading-note">Bug: Drag-and-drop downloaded the file instead of uploading it</p>
+<p><strong>现象：</strong> 把 <code>.docx</code> 文件拖入上传区，浏览器会直接下载它，而不是处理它。</p>
+<p><em>When dragging a <code>.docx</code> file onto the upload zone, the browser would download it instead of processing it.</em></p>
+<p><strong>根本原因：</strong> 上传区只有 <code>onclick</code> 事件，完全没有拖拽事件监听器。浏览器遇到被拖入的文件，默认行为就是下载或导航到该文件。没有 <code>preventDefault()</code>，默认行为就会生效。</p>
+<p><em>Root cause: The upload zone had an <code>onclick</code> handler but zero drag-and-drop event listeners. Without <code>preventDefault()</code>, the browser&rsquo;s default behavior — download the file — takes over.</em></p>
+<p><strong>修复：</strong> 为上传区新增三个事件监听器：</p>
+<ul>
+<li><code>dragover</code> — 调用 <code>preventDefault()</code> 阻止浏览器默认行为，同时高亮显示上传区</li>
+<li><code>dragleave</code> — 取消高亮</li>
+<li><code>drop</code> — 阻止默认行为，将文件交给处理函数</li>
+</ul>
+<p><em>Fix: Added three event listeners — <code>dragover</code> (prevent default + visual highlight), <code>dragleave</code> (reset highlight), <code>drop</code> (prevent default + pass file to handler). Also extracted file handling into a shared <code>handleFile()</code> function used by both click and drag-and-drop.</em></p>
+<hr>
+<h2 id="第三阶段布局与视觉重设计">第三阶段——布局与视觉重设计</h2>
+<p class="heading-note">Phase 3 — Layout and Visual Redesign</p>
+<p><strong>问题：</strong> 导出的幻灯片排版很差，题目标题框只有 1.2 英寸高，28pt 字号太大，长题目会溢出并压住下方的选项。</p>
+<p><em>The exported slides had poor typography. The fixed 1.2-inch title box combined with 28pt font meant long questions overflowed and collided with the answer options below.</em></p>
+<p>经过三轮迭代，最终实现了和参考版本一致的设计：</p>
+<p><em>After three rounds of iteration, the final design matched the reference:</em></p>
+<ul>
+<li><strong>浅蓝色标题栏</strong>，替代原来的深蓝色 / <em>Light blue header bar instead of dark blue</em></li>
+<li><strong>&ldquo;第 X 题&quot;格式</strong>，自动从题目文字中提取题号 / <em>&ldquo;第 X 题&rdquo; format, number auto-extracted from title text</em></li>
+<li><strong>右上角题型标签</strong>（选择题 / 计算题 / 填空题…） / <em>Category label in top-right corner</em></li>
+<li><strong>标题栏下方细分隔线</strong> / <em>Thin separator line under the header</em></li>
+<li><strong>底部左下角页码</strong> / <em>Slide number in the bottom-left corner</em></li>
+<li><strong>微软雅黑 28pt</strong>：题干加粗，选项不加粗 / <em>Microsoft YaHei 28pt: bold for stems, normal for options</em></li>
+<li><strong>短选项水平排列</strong>：<code>A.266    B.304    C.342    D.380</code> / <em>Short options displayed horizontally on one line</em></li>
+</ul>
+<hr>
+<h2 id="第四阶段题目解析准确性">第四阶段——题目解析准确性</h2>
+<p class="heading-note">Phase 4 — Question Parsing Accuracy</p>
+<p>这是最难的阶段。实现&quot;一题一页&quot;需要解决几个相互关联的问题。</p>
+<p><em>This was the hardest phase. Getting &ldquo;one question = one slide&rdquo; required solving several interconnected problems.</em></p>
+<h3 id="问题一两道题被合并到同一页">问题一：两道题被合并到同一页</h3>
+<p class="heading-note">Problem 1: Two questions merged onto one slide</p>
+<p><strong>根本原因 A：</strong> 原来的正则只识别以数字前缀开头的题目（<code>1、</code>、<code>2.</code> 等）。但第4题在 Word 里使用了<strong>自动编号列表</strong>功能，&ldquo;4&quot;是由 Word 的列表引擎自动生成的，<strong>并不出现在原始 XML 文字中</strong>。段落文字直接以&quot;在6×6的方格表中摆放&hellip;&ldquo;开头——没有数字，正则看不见。</p>
+<p><em>Root cause A: The regex only recognized questions with a number prefix. But question 4 used Word&rsquo;s auto-numbered list — the &ldquo;4&rdquo; is generated by Word&rsquo;s engine and doesn&rsquo;t appear in the raw XML text.</em></p>
+<p><strong>根本原因 B：</strong> 用于检测&quot;ABCD 选项已齐&quot;的逻辑要求 <code>D.</code> 出现在行首。但这份文档里四个选项全在同一行：<code>A.15,5,25  B.15,25,5  C.5,15,25  D.25,15,5</code>，<code>D.</code> 在行的中间——检测永远失败。</p>
+<p><em>Root cause B: The &ldquo;options complete&rdquo; check required <code>D.</code> at the start of a line. But all four options were on one line, so <code>D.</code> was in the middle — the check always failed.</em></p>
+<p><strong>修复：</strong> 将 <code>D.</code> 检测改为在 body 文字中任意位置匹配：</p>
+<p><em>Fix: Changed <code>D.</code> detection to match anywhere in the body text:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">seenAllOpts</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">currentSlide</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">/D[\.、]/</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">bodyStr</span>);
+</span></span></code></pre></div><p>检测到选项齐全后，下一段实质性内容（文字或图片）自动触发新建幻灯片。</p>
+<p><em>After detecting all options, the next substantive paragraph automatically triggers a new slide.</em></p>
+<h3 id="问题二大题标题生成了空白幻灯片">问题二：大题标题生成了空白幻灯片</h3>
+<p class="heading-note">Problem 2: Empty slides for section headers</p>
+<p>&ldquo;二、计算。&ldquo;和&quot;三、填空。&ldquo;各自生成了一张空白幻灯片，因为题目正则同时匹配了汉字序号和阿拉伯数字。</p>
+<p><em>&ldquo;二、计算。&rdquo; and &ldquo;三、填空。&rdquo; each generated a blank slide — the question regex matched both Chinese and Arabic numerals.</em></p>
+<p><strong>修复：</strong> 拆成两个正则：<code>sectionRegex</code>（汉字序号 → 只更新题型标签，不建幻灯片）和 <code>questionRegex</code>（阿拉伯数字 → 建幻灯片）。</p>
+<p><em>Fix: Split into two regexes — <code>sectionRegex</code> (Chinese numerals → update label only, no slide) and <code>questionRegex</code> (Arabic numerals → create slide).</em></p>
+<h3 id="问题三所有幻灯片右上角永远显示选择题">问题三：所有幻灯片右上角永远显示&quot;选择题&rdquo;</h3>
+<p class="heading-note">Problem 3: Static "选择题" label on every slide</p>
+<p><strong>修复：</strong> 每个幻灯片对象存储 <code>section</code> 属性，渲染时动态读取，自动跟随所在大题类型变化。</p>
+<p><em>Fix: Each slide object stores a <code>section</code> property set during parsing. The renderer reads it dynamically — the label automatically matches the current section type.</em></p>
+<hr>
+<h2 id="第五阶段复杂多图多小题">第五阶段——复杂多图多小题</h2>
+<p class="heading-note">Phase 5 — Complex Multi-Part Questions</p>
+<p>第6题是一道带手表图解、三张参考图和两道小题的综合几何题，被全部压缩在一张幻灯片上。之前的代码还只显示第一张图片。</p>
+<p><em>Question 6 was a complex geometry problem with a watch diagram, three reference figures, and two sub-questions — all crammed onto one slide. The code also only showed the first image.</em></p>
+<p><strong>解决方案分两步：</strong></p>
+<p><em>Solution in two parts:</em></p>
+<p><strong>A. 多图网格布局：</strong></p>
+<ul>
+<li>1 张图：右侧全高显示</li>
+<li>2 张图：右侧上下竖排</li>
+<li>3-4 张图：右侧 2×2 网格</li>
+</ul>
+<p><em>A. Multi-image grid: 1 image (full column), 2 images (stacked), 3-4 images (2×2 grid).</em></p>
+<p><strong>B. 自动拆分小题：</strong> 当题目有 ≥ 2 张图片且含 <code>(1)(2)</code> 小题标记时，自动拆分为：主题干幻灯片（含全部图片）+ 每道小题独立一页（标注&quot;第X题 · 续&rdquo;）。</p>
+<p><em>B. Auto sub-question splitting: When a question has ≥ 2 images and contains <code>(1)(2)</code> markers, it automatically splits into a stem slide (with all images) plus one slide per sub-question (labeled &ldquo;第X题 · 续&rdquo;).</em></p>
+<hr>
+<h2 id="第六阶段图片质量最难的-bug">第六阶段——图片质量（最难的 Bug）</h2>
+<p class="heading-note">Phase 6 — Image Quality (The Hardest Bug)</p>
+<p><strong>现象：</strong> 尽管使用了 <code>sizing: { type: 'contain' }</code>，图片仍然被严重拉伸。</p>
+<p><em>Despite using <code>sizing: { type: 'contain' }</code> in PptxGenJS, images were visibly stretched.</em></p>
+<p><strong>调查结论：</strong> PptxGenJS 的 <code>contain</code> 模式需要知道图片的原始像素尺寸才能计算缩放比例。但对于 base64 编码的图片（Word 内嵌图片就是这种格式），PptxGenJS <strong>无法获取原始尺寸</strong>，于是静默地退回到直接拉伸填满容器。</p>
+<p><em>Investigation: PptxGenJS&rsquo;s <code>contain</code> mode needs the original pixel dimensions to calculate scaling. But for base64-encoded images — which is how Word embeds them — PptxGenJS cannot determine the original size, so it silently falls back to stretching the image to fill the box.</em></p>
+<p><strong>修复：</strong> 彻底放弃 <code>sizing: contain</code>，改用 JavaScript 的 <code>Image</code> API 手动读取原始尺寸，自行计算等比缩放：</p>
+<p><em>Fix: Replaced <code>sizing: contain</code> entirely with a manual calculation using the browser&rsquo;s <code>Image</code> API:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getAspect</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">dataUrl</span>) =&gt; <span style="color:#66d9ef">new</span> Promise(<span style="color:#a6e22e">res</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Image</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> () =&gt; <span style="color:#a6e22e">res</span>(<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">naturalWidth</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">naturalHeight</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dataUrl</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">addImg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">slide</span>, <span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">bx</span>, <span style="color:#a6e22e">by</span>, <span style="color:#a6e22e">bw</span>, <span style="color:#a6e22e">bh</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ar</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getAspect</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">h</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ar</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">bw</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">bh</span>) { <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bw</span>; <span style="color:#a6e22e">h</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bw</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">ar</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>               { <span style="color:#a6e22e">h</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bh</span>; <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bh</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">ar</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">slide</span>.<span style="color:#a6e22e">addImage</span>({ <span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">bx</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">bw</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">w</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">by</span> <span style="color:#f92672">+</span> (<span style="color:#a6e22e">bh</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">h</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">w</span>, <span style="color:#a6e22e">h</span> });
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>导出函数同步改为 <code>async/await</code>，图片不再拉伸。</p>
+<p><em>The export handler was converted to <code>async/await</code>. Images now display at their true aspect ratio with no distortion.</em></p>
+<hr>
+<h2 id="全部改动汇总">全部改动汇总</h2>
+<p class="heading-note">Summary of All Changes</p>
+<table>
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>问题</th>
+          <th>根本原因</th>
+          <th>修复方法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>拖拽文件被下载</td>
+          <td>缺少 dragover/drop 事件</td>
+          <td>添加事件监听 + <code>preventDefault()</code></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>标题溢出压住选项</td>
+          <td>1.2&rdquo; 固定高度 + 28pt 字号</td>
+          <td>更大的文字框 + 动态字号 + <code>autoFit</code></td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>视觉设计不达标</td>
+          <td>深蓝色标题，无题号格式</td>
+          <td>浅蓝标题栏、第X题格式、动态标签</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>两题合并一页</td>
+          <td>Word 自动编号不入 XML；D. 检测要求行首</td>
+          <td>在 body 任意位置检测 <code>D.</code></td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>大题标题生成空白页</td>
+          <td>汉字正则与阿拉伯数字正则混用</td>
+          <td>拆成两个独立正则</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>题型标签静态</td>
+          <td>硬编码字符串</td>
+          <td><code>s.section</code> 属性动态渲染</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>复杂多图题无法阅读</td>
+          <td>只显示第一张图；全压一页</td>
+          <td>多图网格 + 自动拆分小题</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>图片拉伸模糊</td>
+          <td>pptxgen contain 无法读 base64 尺寸</td>
+          <td>手动用 <code>Image.naturalWidth/Height</code> 计算</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="技术架构">技术架构</h2>
+<p class="heading-note">Technical Architecture</p>
+<p>最终工具是<strong>一个 HTML 文件</strong>，无需构建步骤，无需服务器：</p>
+<p><em>The final tool is a single HTML file — zero build steps, zero server requirements:</em></p>
+<pre tabindex="0"><code>index.html
+├── jszip.min.js       — 解压 .docx（本质是 ZIP 压缩包）
+├── pptxgen.bundle.js  — 生成 .pptx 输出
+</code></pre><p><strong>解析流程：</strong> 加载 <code>.docx</code> → JSZip 解压 → 提取 XML 和图片 → 逐段识别大题/小题/选项/图片 → 后处理（拆分复杂题）</p>
+<p><strong>导出流程：</strong> 逐页生成幻灯片 → 构建标题栏、富文本、图片 → 手动等比缩放图片 → PptxGenJS 异步写出 <code>.pptx</code></p>
+<p><em>Parse pipeline: load <code>.docx</code> → unzip → extract XML and images → classify each paragraph → post-process complex questions. Export pipeline: build each slide → header, rich text, images with manual aspect-ratio calculation → write <code>.pptx</code> via async PptxGenJS API.</em></p>
+<hr>
+<h2 id="我学到了什么">我学到了什么</h2>
+<p class="heading-note">What I Learned</p>
+<p><strong>作为一个编程新手</strong>，这个项目教会了我几件没有预料到的事：</p>
+<p><em>As someone new to coding, this project taught me several things I didn&rsquo;t expect:</em></p>
+<ol>
+<li>
+<p><strong>文件格式就是 ZIP 文件。</strong> <code>.docx</code> 本质上是一个 ZIP 压缩包，里面装着 XML 文件。解压之后，文档就是可以解析的普通文本。 / <em>A <code>.docx</code> is literally a ZIP archive containing XML files. Once unzipped, the document is just text you can parse.</em></p>
+</li>
+<li>
+<p><strong>浏览器 API 很强大。</strong> 加载图片、读取像素尺寸、拖放文件——这些全都可以在浏览器里用纯 JavaScript 完成，无需安装任何东西。 / <em>Loading images, reading pixel dimensions, drag-and-drop — all possible in pure JavaScript, no installation needed.</em></p>
+</li>
+<li>
+<p><strong>&ldquo;在我机器上能跑&quot;只是开始。</strong> 工具在测试时看起来没问题，但真实试卷暴露出我从未预料到的边界情况：没有题号前缀的题目、选项在同一行、多图多小题结构、低分辨率嵌入图片。 / <em>&ldquo;It works on my machine&rdquo; is just the beginning. Real exam papers exposed edge cases I never anticipated.</em></p>
+</li>
+<li>
+<p><strong>迭代才能让软件变好。</strong> 每张截图都揭示了一个新问题，每个问题都有具体的根本原因。解决根本原因——而不是症状——才能让改进真正持久。 / <em>Each screenshot revealed a new problem with a specific root cause. Fixing root causes — not symptoms — is what makes improvements stick.</em></p>
+</li>
+<li>
+<p><strong>AI 作为协作者。</strong> 这个工具完全是通过和 Claude Code 对话构建的。我描述我看到的问题，分享截图，解释我想要什么——AI 写代码，我提供领域知识（一张好的试卷幻灯片应该是什么样子）和测试用例（真实的试卷）。 / <em>I built this entire tool through conversation with Claude Code. The AI wrote the code; I supplied the domain knowledge and the real test cases.</em></p>
+</li>
+</ol>
+<hr>
+<h2 id="下一步">下一步</h2>
+<p class="heading-note">What's Next</p>
+<ul>
+<li>支持 <code>.doc</code>（旧版 Word 格式）—— 目前只支持 <code>.docx</code> / <em>Support for <code>.doc</code> (older Word format)</em></li>
+<li>更好地处理 Word 列表样式题号（题号不在 XML 文字中的情况） / <em>Better handling of Word auto-numbered questions</em></li>
+<li>导出前可自定义配色和字体 / <em>Option to customize color scheme and font before export</em></li>
+<li>移动端友好的上传界面 / <em>Mobile-friendly upload interface</em></li>
+</ul>
+<hr>
+<p><em>本文写于 2026 年 3 月。工具免费开源。/ This journal was written in March 2026. The tool is free and open source.</em>
+<em>GitHub: <a href="https://github.com/DamonMiaoM/Word_To_PPT">github.com/DamonMiaoM/Word_To_PPT</a></em></p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

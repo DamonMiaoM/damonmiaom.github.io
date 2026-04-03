@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.159.1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Damon Miao — Notes on AI, technology, and thinking.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Notes on AI, technology, and thinking.</h1>
+    <p class="hero-sub">Damon Miao</p>
+  </div>
+</section>
+
+  <main class="main-content">
+    
+
+
+<section class="home-section" style="margin-top:0">
+  <h2 class="home-section-label">Latest &nbsp;·&nbsp; Blog &nbsp;·&nbsp; 近期博客</h2>
+  
+  
+  <article class="editorial-item">
+    <div class="editorial-meta">
+      <span class="editorial-number">05</span>
+      <time>04/02/26</time>
+    </div>
+    <a class="editorial-link" href="/blog/about-initialization/">
+      <h3>项目初始化：在开始之前，先告诉 Claude 你是谁</h3>
+    </a>
+  </article>
+  
+  <article class="editorial-item">
+    <div class="editorial-meta">
+      <span class="editorial-number">04</span>
+      <time>03/28/26</time>
+    </div>
+    <a class="editorial-link" href="/blog/design-upgrade-10-improvements/">
+      <h3>How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</h3>
+    </a>
+  </article>
+  
+  <article class="editorial-item">
+    <div class="editorial-meta">
+      <span class="editorial-number">03</span>
+      <time>03/27/26</time>
+    </div>
+    <a class="editorial-link" href="/blog/top-10-claude-code-commands/">
+      <h3>10 Most Powerful Claude Code Commands — And Why You Should Use Them</h3>
+    </a>
+  </article>
+  
+  <article class="editorial-item">
+    <div class="editorial-meta">
+      <span class="editorial-number">02</span>
+      <time>03/27/26</time>
+    </div>
+    <a class="editorial-link" href="/blog/journal-cms-setup/">
+      <h3>How I Built a Journal Section with a Web Editor — No Terminal Required</h3>
+    </a>
+  </article>
+  
+  <article class="editorial-item">
+    <div class="editorial-meta">
+      <span class="editorial-number">01</span>
+      <time>03/27/26</time>
+    </div>
+    <a class="editorial-link" href="/blog/adding-comments-giscus-hugo/">
+      <h3>How I Added a Comment Zone to My Blog — and What It Took to Get There</h3>
+    </a>
+  </article>
+  
+</section>
+
+
+<div class="home-widget-row">
+
+  
+  <div class="mw-card mw-wx">
+    <p class="mw-wx-label">Today &nbsp;·&nbsp; 今日天气</p>
+    <span class="mw-wx-icon" id="wx-icon">⏳</span>
+    <div class="mw-wx-temp" id="wx-temp">—</div>
+    <div class="mw-wx-cond" id="wx-cond">Loading…</div>
+    <div class="mw-wx-loc" id="wx-loc">Detecting location · 定位中</div>
+  </div>
+
+  
+  <div class="mw-card mw-mb">
+    <p class="mw-mb-label">Mood Check &nbsp;·&nbsp; 今日心情</p>
+    <p class="mw-mb-q">How do you feel right now?
+      <span class="mw-mb-q-zh">此刻，你的心情如何？</span>
+    </p>
+    <div class="mw-mb-grid" id="mb-grid"></div>
+    <div class="mw-mb-result" id="mb-result"></div>
+  </div>
+
+  
+  <div class="mw-card mw-dq">
+    <p class="mw-dq-label">Today's Question &nbsp;·&nbsp; 今日一问</p>
+    <p class="mw-dq-q" id="dq-q"></p>
+    <span class="mw-dq-q-zh" id="dq-q-zh"></span>
+    <div id="dq-form">
+      <textarea class="mw-dq-input" id="dq-input" placeholder="Write your answer… · 在此写下你的思考"></textarea>
+      <button class="mw-dq-btn" id="dq-btn">Save &nbsp;·&nbsp; 记录</button>
+    </div>
+    <div class="mw-dq-done" id="dq-done"></div>
+  </div>
+
+</div>
+
+
+<section class="home-section">
+  <h2 class="home-section-label">Latest &nbsp;·&nbsp; Journal &nbsp;·&nbsp; 近期日志</h2>
+  <div class="home-journal-grid">
+    
+    <a class="home-journal-card" href="/journal/2026-03-28/">
+      <time>Mar 28, 2026</time>
+      <h3>LEP 第402次会议实录 · 那些年我们追的星</h3>
+    </a>
+    
+    <a class="home-journal-card" href="/journal/2026-03-27/">
+      <time>Mar 27, 2026</time>
+      <h3></h3>
+    </a>
+    
+  </div>
+</section>
+
+
+<div class="home-widget-row">
+
+  
+  <div class="mw-card mw-lw">
+
+  
+  <div class="mw-lw-intro" id="mw-intro">
+    <p class="mw-lw-eyebrow">Memento mori &nbsp;·&nbsp; 活在当下</p>
+    <h3 class="mw-lw-title">
+      Your life<br>in weeks
+      <span class="mw-lw-title-zh">以周为单位，看见你的一生</span>
+    </h3>
+    <p class="mw-lw-desc">
+      80 yrs &nbsp;·&nbsp; 4,160 weeks<br>each square is one
+      <span class="mw-lw-desc-zh">每一格代表一周</span>
+    </p>
+    <label class="mw-lw-label" for="mw-dob">Date of birth &nbsp;·&nbsp; 出生日期</label>
+    <input type="date" id="mw-dob" class="mw-lw-input">
+    <button class="mw-lw-btn" id="mw-submit">See yours &nbsp;·&nbsp; 看见</button>
+  </div>
+
+  
+  <div class="mw-lw-result" id="mw-result">
+    <div class="mw-lw-grid" id="mw-grid"></div>
+    <div class="mw-lw-legend">
+      <span><span class="mw-lw-dot" style="background:var(--sage);opacity:0.75"></span>Lived</span>
+      <span><span class="mw-lw-dot" style="background:#D4AF37"></span>Now</span>
+      <span><span class="mw-lw-dot" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15)"></span>Ahead</span>
+    </div>
+    <p class="mw-lw-n" id="mw-n">—</p>
+    <span class="mw-lw-nsub" id="mw-nsub"></span>
+    <span class="mw-lw-nsub-zh" id="mw-nsub-zh"></span>
+    <button class="mw-lw-reset" id="mw-reset">&#8635; Start over &nbsp;·&nbsp; 重来</button>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var intro  = document.getElementById('mw-intro');
+  var result = document.getElementById('mw-result');
+  var grid   = document.getElementById('mw-grid');
+  var nEl    = document.getElementById('mw-n');
+  var nSub   = document.getElementById('mw-nsub');
+  var nZh    = document.getElementById('mw-nsub-zh');
+  var input  = document.getElementById('mw-dob');
+  var btn    = document.getElementById('mw-submit');
+  var reset  = document.getElementById('mw-reset');
+
+  if (!btn) return;
+
+  input.max = new Date().toISOString().split('T')[0];
+
+  btn.addEventListener('click', function () {
+    if (!input.value) return;
+    render(new Date(input.value + 'T00:00:00'));
+  });
+
+  reset.addEventListener('click', function () {
+    result.classList.remove('on');
+    intro.classList.remove('off');
+    grid.innerHTML = '';
+  });
+
+  function render(dob) {
+    var now     = new Date();
+    var MS_WEEK = 7 * 24 * 60 * 60 * 1000;
+    var TOTAL   = 80 * 52;
+    var lived   = Math.floor((now - dob) / MS_WEEK);
+    var pct     = (lived / TOTAL * 100).toFixed(1);
+    var remain  = TOTAL - lived;
+
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < TOTAL; i++) {
+      var sq = document.createElement('div');
+      sq.className = 'mw-lw-sq' + (i < lived ? ' past' : i === lived ? ' now' : '');
+      frag.appendChild(sq);
+    }
+    grid.innerHTML = '';
+    grid.appendChild(frag);
+
+    nEl.textContent  = lived.toLocaleString();
+    nSub.textContent = 'weeks lived · ' + pct + '% of 80 yrs';
+    nZh.textContent  = '已活过 · 还剩 ' + remain.toLocaleString() + ' 周';
+
+    intro.classList.add('off');
+    result.classList.add('on');
+  }
+})();
+</script>
+
+
+  
+  <div class="mw-card mw-lt">
+    <p class="mw-lt-eyebrow">Letter to Future Self &nbsp;·&nbsp; 写给未来的你</p>
+    <h3 class="mw-lt-title">Dear Future Me,
+      <span class="mw-lt-title-zh">亲爱的未来的自己</span>
+    </h3>
+    <div id="lt-form" class="mw-lt-form">
+      <textarea class="mw-lt-textarea" id="lt-textarea" placeholder="Write whatever is on your heart… · 写下此刻最想说的话"></textarea>
+      <div class="mw-lt-row">
+        <span class="mw-lt-row-label">Open on &nbsp;·&nbsp; 开启日期</span>
+        <input type="date" class="mw-lt-date" id="lt-date">
+      </div>
+      <button class="mw-lt-btn" id="lt-btn">Seal &amp; Save &nbsp;·&nbsp; 封存</button>
+    </div>
+    <div id="lt-sealed" class="mw-lt-sealed">
+      <div id="lt-sealed-inner"></div>
+    </div>
+  </div>
+
+  
+  <div class="mw-card mw-fs">
+    <p class="mw-fs-eyebrow">Financial Snapshot &nbsp;·&nbsp; 财务快照</p>
+    <h3 class="mw-fs-title">Years to Freedom
+      <span class="mw-fs-title-zh">距离财务自由还有多远</span>
+    </h3>
+    <div class="mw-fs-field">
+      <div class="mw-fs-fl">
+        <span class="mw-fs-field-label">Age &nbsp;·&nbsp; 年龄</span>
+        <span class="mw-fs-field-val" id="fs-age-val">35 岁</span>
+      </div>
+      <input type="range" class="mw-fs-slider" id="fs-age" min="20" max="65" value="35">
+    </div>
+    <div class="mw-fs-field">
+      <div class="mw-fs-fl">
+        <span class="mw-fs-field-label">Monthly Income &nbsp;·&nbsp; 月收入</span>
+        <span class="mw-fs-field-val" id="fs-income-val">2 万 / 月</span>
+      </div>
+      <input type="range" class="mw-fs-slider" id="fs-income" min="1" max="30" value="2">
+    </div>
+    <div class="mw-fs-field">
+      <div class="mw-fs-fl">
+        <span class="mw-fs-field-label">Current Savings &nbsp;·&nbsp; 当前储蓄</span>
+        <span class="mw-fs-field-val" id="fs-savings-val">10 万</span>
+      </div>
+      <input type="range" class="mw-fs-slider" id="fs-savings" min="0" max="500" value="10">
+    </div>
+    <div class="mw-fs-divider"></div>
+    <div class="mw-fs-result">
+      <span class="mw-fs-result-n" id="fs-result-n">—</span>
+      <span class="mw-fs-result-unit" id="fs-result-unit">years · 年</span>
+      <span class="mw-fs-result-zh" id="fs-result-zh"></span>
+      <span class="mw-fs-note">4% rule · 30% savings rate &nbsp;·&nbsp; 基于4%法则 / 30%储蓄率</span>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="home-yp-banner">
+  <div class="home-yp-year" id="yp-year">—</div>
+  <div class="home-yp-bar-wrap">
+    <div class="home-yp-track"><div class="home-yp-fill" id="yp-fill"></div></div>
+    <span class="home-yp-pct" id="yp-pct"></span>
+  </div>
+  <div class="home-yp-days" id="yp-days"></div>
+</div>
+
+
+<section class="vc-section">
+  <div class="vc-inner">
+    <div class="vc-number" id="vcNumber">—</div>
+    <p class="vc-label">Visits &nbsp;<span class="vc-sep">·</span>&nbsp; 访问次数</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <p class="cta-headline"><em>Let's Connect.</em></p>
+    <a class="cta-email" href="mailto:hello@damonmiao.com">hello@damonmiao.com</a>
+  </div>
+</section>
+
+<script>
+ 
+(function () {
+  var section = document.querySelector('.post-editorial');
+  if (!section) return;
+  section.classList.add('stagger-ready');
+  var items = section.querySelectorAll('.editorial-item');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08 });
+  items.forEach(function (el, i) { el.style.transitionDelay = (i * 90) + 'ms'; observer.observe(el); });
+})();
+
+ 
+(function () {
+  var el = document.getElementById('vcNumber');
+  if (!el) return;
+  function animateCount(target) {
+    var duration = 1800, start = Date.now();
+    (function tick() {
+      var p = Math.min((Date.now() - start) / duration, 1);
+      el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target).toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    })();
+  }
+  fetch('/data/visits.json').then(function (r) { return r.json(); })
+    .then(function (d) { if (d && d.visits > 0) animateCount(d.visits); }).catch(function () {});
+})();
+
+ 
+(function () {
+  var now   = new Date();
+  var start = new Date(now.getFullYear(), 0, 1);
+  var end   = new Date(now.getFullYear() + 1, 0, 1);
+  var pct   = (now - start) / (end - start) * 100;
+  var days  = Math.floor((now - start) / 86400000);
+  var left  = Math.floor((end - now) / 86400000);
+  document.getElementById('yp-year').textContent = now.getFullYear();
+  document.getElementById('yp-pct').textContent  = pct.toFixed(1) + '% elapsed · 已过去';
+  document.getElementById('yp-days').textContent = left + ' days left · 还剩 ' + left + ' 天';
+  setTimeout(function () { document.getElementById('yp-fill').style.width = pct.toFixed(2) + '%'; }, 200);
+})();
+
+ 
+(function () {
+  var condMap = {
+    'Sunny':{'icon':'☀️','zh':'晴天'},'Clear':{'icon':'🌙','zh':'晴朗'},
+    'Partly cloudy':{'icon':'⛅','zh':'多云'},'Cloudy':{'icon':'☁️','zh':'阴天'},
+    'Overcast':{'icon':'☁️','zh':'阴天'},'Mist':{'icon':'🌫️','zh':'薄雾'},
+    'Fog':{'icon':'🌫️','zh':'大雾'},'Patchy rain possible':{'icon':'🌦️','zh':'局部小雨'},
+    'Light rain':{'icon':'🌧️','zh':'小雨'},'Moderate rain':{'icon':'🌧️','zh':'中雨'},
+    'Heavy rain':{'icon':'⛈️','zh':'大雨'},'Thundery outbreaks possible':{'icon':'⛈️','zh':'雷暴'},
+    'Blowing snow':{'icon':'❄️','zh':'暴风雪'},'Light snow':{'icon':'🌨️','zh':'小雪'},
+    'Moderate snow':{'icon':'❄️','zh':'中雪'},'Heavy snow':{'icon':'❄️','zh':'大雪'},
+    'Drizzle':{'icon':'🌦️','zh':'毛毛雨'},'Freezing drizzle':{'icon':'🌧️','zh':'冻雨'}
+  };
+  fetch('https://wttr.in/?format=j1')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var cur = d.current_condition[0], area = d.nearest_area[0];
+      var desc = cur.weatherDesc[0].value;
+      var m = condMap[desc] || { icon: '🌡️', zh: desc };
+      document.getElementById('wx-icon').textContent = m.icon;
+      document.getElementById('wx-temp').textContent = cur.temp_C + '°C';
+      document.getElementById('wx-cond').textContent = desc + ' · ' + m.zh;
+      document.getElementById('wx-loc').textContent  = area.areaName[0].value + ', ' + area.country[0].value + ' · 你所在的位置';
+    })
+    .catch(function () {
+      document.getElementById('wx-icon').textContent = '🌡️';
+      document.getElementById('wx-temp').textContent = '—';
+      document.getElementById('wx-cond').textContent = 'Unavailable · 无法获取';
+      document.getElementById('wx-loc').textContent  = '';
+    });
+})();
+
+ 
+(function () {
+  var moods  = [
+    { emoji: '😌', zh: '平静',    color: '#96A89C' },
+    { emoji: '🙏', zh: '感恩',    color: '#D4AF37' },
+    { emoji: '💪', zh: '充满动力', color: '#4A7A5A' },
+    { emoji: '🌿', zh: '沉思',    color: '#6B8F71' },
+    { emoji: '✨', zh: '充满希望', color: '#A0B4D0' }
+  ];
+  var seeds  = [234, 187, 156, 143, 198];
+  var votes  = JSON.parse(localStorage.getItem('mb-votes') || JSON.stringify(seeds));
+  var chosen = localStorage.getItem('mb-chosen');
+  var grid   = document.getElementById('mb-grid');
+  var result = document.getElementById('mb-result');
+  function total() { return votes.reduce(function (a, b) { return a + b; }, 0); }
+  function render() {
+    grid.innerHTML = '';
+    moods.forEach(function (m, i) {
+      var btn = document.createElement('button');
+      btn.className = 'mw-mb-opt' + (chosen == i ? ' chosen' : '');
+      btn.innerHTML = '<span class="mw-mb-emoji">' + m.emoji + '</span><span class="mw-mb-word">' + m.zh + '</span>';
+      if (chosen === null || chosen === '') {
+        btn.addEventListener('click', function () {
+          votes[i]++; localStorage.setItem('mb-votes', JSON.stringify(votes));
+          localStorage.setItem('mb-chosen', i); chosen = String(i); render();
+        });
+      } else { btn.disabled = true; btn.style.cursor = 'default'; }
+      grid.appendChild(btn);
+    });
+    if (chosen !== null && chosen !== '') {
+      var idx = parseInt(chosen);
+      var pct = (votes[idx] / total() * 100).toFixed(0);
+      result.innerHTML = moods[idx].emoji + ' ' + pct + '% of visitors feel <em>' + moods[idx].zh + '</em> today.' +
+        '<span class="mw-mb-result-zh">今日 ' + pct + '% 的访客感到' + moods[idx].zh + '</span>';
+      result.classList.add('on');
+    }
+  }
+  render();
+})();
+
+ 
+(function () {
+  var questions = [
+    { en: "If today were your last day, what would you do differently?", zh: "如果今天是你最后一天，你会做什么不一样的事？" },
+    { en: "What one important thing have you been putting off?", zh: "有什么重要的事情，你一直在推迟？" },
+    { en: "What would you tell your future self five years from now?", zh: "你会对五年后的自己说什么？" },
+    { en: "What does a life well-lived look like to you?", zh: "在你眼中，什么样的人生才算活得好？" },
+    { en: "When did you last feel truly alive?", zh: "你上一次真正感觉到活着，是什么时候？" },
+    { en: "What would you regret not doing at the end of your life?", zh: "如果走到生命终点，你最遗憾没做的是什么？" },
+    { en: "What legacy are you building, one week at a time?", zh: "你在用每一周，慢慢建造怎样的遗产？" }
+  ];
+  var day   = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  var q     = questions[day % questions.length];
+  var today = new Date().toDateString();
+  document.getElementById('dq-q').textContent    = q.en;
+  document.getElementById('dq-q-zh').textContent = q.zh;
+  if (localStorage.getItem('dq-date') === today) {
+    document.getElementById('dq-form').style.display = 'none';
+    var done = document.getElementById('dq-done');
+    done.textContent = '✓ 今天你已经思考过这个问题了';
+    done.classList.add('on');
+  }
+  document.getElementById('dq-btn').addEventListener('click', function () {
+    var val = document.getElementById('dq-input').value.trim();
+    if (!val) return;
+    localStorage.setItem('dq-answer-' + today, val);
+    localStorage.setItem('dq-date', today);
+    document.getElementById('dq-form').style.display = 'none';
+    var done = document.getElementById('dq-done');
+    done.textContent = '✓ 已记录 · ' + (val.length > 28 ? val.substring(0, 28) + '…' : val);
+    done.classList.add('on');
+  });
+})();
+
+ 
+(function () {
+  var KEY_TEXT = 'lt-letter', KEY_DATE = 'lt-open-date';
+  var form     = document.getElementById('lt-form');
+  var sealed   = document.getElementById('lt-sealed');
+  var inner    = document.getElementById('lt-sealed-inner');
+  var textarea = document.getElementById('lt-textarea');
+  var dateEl   = document.getElementById('lt-date');
+  var btn      = document.getElementById('lt-btn');
+  var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+  var oneYear  = new Date(); oneYear.setFullYear(oneYear.getFullYear() + 1);
+  dateEl.min   = tomorrow.toISOString().split('T')[0];
+  dateEl.value = oneYear.toISOString().split('T')[0];
+  var savedText = localStorage.getItem(KEY_TEXT);
+  var savedDate = localStorage.getItem(KEY_DATE);
+  function showSealed(text, openDate) {
+    form.classList.add('off'); sealed.classList.add('on');
+    var open = new Date(openDate), now = new Date();
+    if (now >= open) {
+      inner.innerHTML = '<span class="mw-lt-sealed-icon">💌</span>' +
+        '<div class="mw-lt-sealed-text">Your letter is ready to open.</div>' +
+        '<span class="mw-lt-sealed-zh">你写给未来自己的信，现在可以打开了。</span>' +
+        '<br><button class="mw-lt-open-btn" id="lt-open-btn">Open · 打开</button>' +
+        '<div class="mw-lt-letter-reveal" id="lt-reveal"><p class="mw-lt-letter-text" id="lt-text"></p></div>';
+      document.getElementById('lt-open-btn').addEventListener('click', function () {
+        document.getElementById('lt-text').textContent = text;
+        document.getElementById('lt-reveal').classList.add('on');
+        this.style.display = 'none';
+      });
+    } else {
+      var daysLeft = Math.ceil((open - now) / 86400000);
+      inner.innerHTML = '<span class="mw-lt-sealed-icon">🔒</span>' +
+        '<div class="mw-lt-sealed-text">Sealed until ' +
+          open.toLocaleDateString('en', {year:'numeric',month:'long',day:'numeric'}) + '.</div>' +
+        '<span class="mw-lt-sealed-zh">还有 ' + daysLeft + ' 天可以打开 · 保持期待</span>';
+    }
+  }
+  if (savedText && savedDate) { showSealed(savedText, savedDate); }
+  btn.addEventListener('click', function () {
+    var text = textarea.value.trim(), date = dateEl.value;
+    if (!text || !date) return;
+    localStorage.setItem(KEY_TEXT, text); localStorage.setItem(KEY_DATE, date);
+    showSealed(text, date);
+  });
+})();
+
+ 
+(function () {
+  var ageEl    = document.getElementById('fs-age');
+  var incomeEl = document.getElementById('fs-income');
+  var savingsEl= document.getElementById('fs-savings');
+  function update() {
+    var age     = parseInt(ageEl.value);
+    var income  = parseInt(incomeEl.value) * 10000;
+    var savings = parseInt(savingsEl.value) * 10000;
+    document.getElementById('fs-age-val').textContent     = age + ' 岁';
+    document.getElementById('fs-income-val').textContent  = incomeEl.value + ' 万 / 月';
+    document.getElementById('fs-savings-val').textContent = savingsEl.value + ' 万';
+    var annualSpend = income * 12 * 0.7;
+    var annualSave  = income * 12 * 0.3;
+    var fireTarget  = annualSpend * 25;
+    var needed      = fireTarget - savings;
+    var nEl  = document.getElementById('fs-result-n');
+    var uEl  = document.getElementById('fs-result-unit');
+    var zhEl = document.getElementById('fs-result-zh');
+    if (annualSave <= 0) {
+      nEl.textContent = '∞'; uEl.textContent = 'years · 年'; zhEl.textContent = '请增加收入或储蓄率';
+    } else if (needed <= 0) {
+      nEl.textContent = '✓'; uEl.textContent = ''; zhEl.textContent = '恭喜！你已达到财务自由';
+    } else {
+      var years = Math.ceil(needed / annualSave);
+      nEl.textContent = years; uEl.textContent = 'years · 年';
+      zhEl.textContent = '年后财务自由 · 届时 ' + (age + years) + ' 岁';
+    }
+  }
+  [ageEl, incomeEl, savingsEl].forEach(function (s) { s.addEventListener('input', update); });
+  update();
+})();
+</script>
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</a></li>
+    <li><a href="#the-10-changes--10-项改进">The 10 Changes / 10 项改进</a>
+      <ul>
+        <li><a href="#change-1-scroll-triggered-stagger-on-homepage-posts">Change #1: Scroll-triggered Stagger on Homepage Posts</a></li>
+        <li><a href="#变化-1首页文章列表的滚动渐入动画">变化 #1：首页文章列表的滚动渐入动画</a></li>
+        <li><a href="#change-2-noise-grain-texture-on-the-background">Change #2: Noise Grain Texture on the Background</a></li>
+        <li><a href="#变化-2背景的噪点颗粒感">变化 #2：背景的噪点颗粒感</a></li>
+        <li><a href="#change-3-reading-time--progress-bar-on-articles">Change #3: Reading Time + Progress Bar on Articles</a></li>
+        <li><a href="#变化-3文章的阅读时间与进度条">变化 #3：文章的阅读时间与进度条</a></li>
+        <li><a href="#change-4-jetbrains-mono-for-code">Change #4: JetBrains Mono for Code</a></li>
+        <li><a href="#变化-4代码字体换成-jetbrains-mono">变化 #4：代码字体换成 JetBrains Mono</a></li>
+        <li><a href="#change-5-hero-entrance-animation">Change #5: Hero Entrance Animation</a></li>
+        <li><a href="#变化-5首页-hero-区域的入场动画">变化 #5：首页 Hero 区域的入场动画</a></li>
+        <li><a href="#change-6-active-navigation-state">Change #6: Active Navigation State</a></li>
+        <li><a href="#变化-6导航栏的当前页高亮">变化 #6：导航栏的当前页高亮</a></li>
+        <li><a href="#change-7-table-of-contents-for-long-posts">Change #7: Table of Contents for Long Posts</a></li>
+        <li><a href="#变化-7长文章的目录侧边栏">变化 #7：长文章的目录侧边栏</a></li>
+        <li><a href="#change-8-dark-mode">Change #8: Dark Mode</a></li>
+        <li><a href="#变化-8深色模式">变化 #8：深色模式</a></li>
+        <li><a href="#change-9-related-posts-at-article-end">Change #9: Related Posts at Article End</a></li>
+        <li><a href="#变化-9文章末尾的相关推荐">变化 #9：文章末尾的相关推荐</a></li>
+        <li><a href="#change-10-drop-cap-on-long-form-posts">Change #10: Drop Cap on Long-Form Posts</a></li>
+        <li><a href="#变化-10长文章的首字下沉">变化 #10：长文章的首字下沉</a></li>
+      </ul>
+    </li>
+    <li><a href="#files-changed--修改了哪些文件">Files Changed / 修改了哪些文件</a></li>
+    <li><a href="#new-vocabulary--今天学到的新词汇">New Vocabulary / 今天学到的新词汇</a>
+      <ul>
+        <li><a href="#intersectionobserver--交叉观察者">IntersectionObserver / 交叉观察者</a></li>
+        <li><a href="#css-pseudo-element--css-伪元素">CSS Pseudo-element / CSS 伪元素</a></li>
+        <li><a href="#css-variables--css-变量">CSS Variables / CSS 变量</a></li>
+        <li><a href="#css-grid--css-网格布局">CSS Grid / CSS 网格布局</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary--今日总结">Summary / 今日总结</a></li>
+    <li><a href="#a-note-to-my-future-self--写给未来的自己">A Note to My Future Self / 写给未来的自己</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</h1>
+      <time>March 28, 2026</time><span class="reading-time"> · 9 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <h1 id="learning-log--march-28-2026">Learning Log — March 28, 2026</h1>
+<h1 id="学习日志--2026年3月28日">学习日志 — 2026年3月28日</h1>
+<p><strong>Topic:</strong> 10 Design Upgrades — From Flat to Felt</p>
+<p><strong>主题：</strong> 10 项设计升级——从平淡到有质感</p>
+<hr>
+<h2 id="what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</h2>
+<p>Today I worked with Claude to do a complete design audit of this site and implement 10 improvements — all in one session. We started by fetching the live site, reading the source code, and thinking like a senior web designer across every dimension: structure, aesthetics, motion, accessibility, and interactivity.</p>
+<p>今天我和 Claude 对这个网站做了一次全面的设计审查，并在一次会话里落地了 10 项改进。我们先抓取了线上页面，读了源码，然后像一位资深网页设计师那样，从结构、美学、动效、可访问性、交互性等维度逐一审视。</p>
+<p>None of these required a complete rebuild. Every change was surgical — precise edits to the CSS and Hugo templates that already existed.</p>
+<p>这些改进没有一项需要重建网站。每一项都是精准的&quot;手术式&quot;修改——只针对已有的 CSS 和 Hugo 模板做定点调整。</p>
+<hr>
+<h2 id="the-10-changes--10-项改进">The 10 Changes / 10 项改进</h2>
+<h3 id="change-1-scroll-triggered-stagger-on-homepage-posts">Change #1: Scroll-triggered Stagger on Homepage Posts</h3>
+<h3 id="变化-1首页文章列表的滚动渐入动画">变化 #1：首页文章列表的滚动渐入动画</h3>
+<p><strong>What it does:</strong> When you load the homepage, the blog posts don&rsquo;t all appear at once — they fade up into view one by one, each with a slight delay.</p>
+<p><strong>它做了什么：</strong> 加载首页时，博客文章不再同时出现，而是一篇一篇依次向上淡入，每篇之间有轻微的时间差。</p>
+<p><strong>How it works:</strong></p>
+<p>The browser has a built-in tool called <code>IntersectionObserver</code> — think of it as a &ldquo;watchman&rdquo; that notices when something enters the visible area of the screen. When each post enters view, the watchman triggers a CSS animation.</p>
+<p>浏览器有一个内置工具叫 <code>IntersectionObserver</code>——把它想象成一个&quot;守望者&quot;，当某样东西进入屏幕可见区域时，它就会注意到。每篇文章进入视野时，守望者就触发一段 CSS 动画。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">observer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">IntersectionObserver</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">entries</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">entries</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">entry</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">isIntersecting</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">entry</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;is-visible&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}, { <span style="color:#a6e22e">threshold</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0.08</span> });
+</span></span></code></pre></div><p>Each item starts invisible and shifted 22px downward. When the class <code>is-visible</code> is added, it transitions to full opacity at its natural position. Items stagger 90ms apart so they ripple in like a wave.</p>
+<p>每个项目一开始是不可见的，并向下偏移了 22px。当 <code>is-visible</code> 类被添加时，它就过渡到完全不透明且回到正常位置。各项目之间错开 90ms，像波浪一样依次出现。</p>
+<hr>
+<h3 id="change-2-noise-grain-texture-on-the-background">Change #2: Noise Grain Texture on the Background</h3>
+<h3 id="变化-2背景的噪点颗粒感">变化 #2：背景的噪点颗粒感</h3>
+<p><strong>What it does:</strong> The background no longer feels like a flat digital screen. It has a subtle paper-like texture — almost invisible, but it makes the whole site feel warmer and more physical.</p>
+<p><strong>它做了什么：</strong> 背景不再像一块平坦的数字屏幕。它多了一层微妙的纸张质感——几乎看不见，但让整个网站感觉更温暖、更有触感。</p>
+<p><strong>How it works:</strong></p>
+<p>A tiny SVG image is created entirely in code — no image file needed. It uses a filter called <code>feTurbulence</code> which generates random visual noise mathematically. This is overlaid on the entire page at just 4% opacity using a CSS pseudo-element.</p>
+<p>一张微型 SVG 图片完全用代码生成——不需要任何图片文件。它使用一个叫 <code>feTurbulence</code> 的滤镜，通过数学方式生成随机视觉噪点。然后用 CSS 伪元素以 4% 的透明度叠加在整个页面上。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">body</span>::<span style="color:#a6e22e">after</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">content</span>: <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">fixed</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">inset</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  pointer-events: <span style="color:#66d9ef">none</span>;  <span style="color:#75715e">/* clicks pass through it */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0.04</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">background-image</span>: url(<span style="color:#e6db74">&#34;data:image/svg+xml,...feTurbulence...&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>pointer-events: none</code> means the texture layer is purely visual — you can still click and scroll through it normally.</p>
+<p><code>pointer-events: none</code> 表示这个纹理层纯粹是视觉的——你仍然可以正常点击和滚动。</p>
+<hr>
+<h3 id="change-3-reading-time--progress-bar-on-articles">Change #3: Reading Time + Progress Bar on Articles</h3>
+<h3 id="变化-3文章的阅读时间与进度条">变化 #3：文章的阅读时间与进度条</h3>
+<p><strong>What it does:</strong> Every blog post now shows an estimated reading time (like &ldquo;9 min read&rdquo;) next to the date. A thin green bar at the very top of the page grows from left to right as you scroll through the article.</p>
+<p><strong>它做了什么：</strong> 每篇博客文章的日期旁边现在显示预计阅读时间（如&quot;9 min read&quot;）。页面顶部有一条细细的绿色进度条，随着你向下滚动文章而从左向右增长。</p>
+<p><strong>How it works:</strong></p>
+<p>Hugo (the tool that builds this site) automatically calculates reading time based on word count. Accessing it is a single line in the template:</p>
+<p>Hugo（构建这个网站的工具）会自动根据字数计算阅读时间。在模板里访问它只需一行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ .ReadingTime }} min read
+</span></span></code></pre></div><p>The progress bar is a <code>div</code> fixed to the top of the page. A small JavaScript function calculates how far you&rsquo;ve scrolled through the article and updates the bar&rsquo;s width as a percentage.</p>
+<p>进度条是一个固定在页面顶部的 <code>div</code>。一个小型 JavaScript 函数计算你在文章中滚动了多远，并将进度条的宽度以百分比形式更新。</p>
+<hr>
+<h3 id="change-4-jetbrains-mono-for-code">Change #4: JetBrains Mono for Code</h3>
+<h3 id="变化-4代码字体换成-jetbrains-mono">变化 #4：代码字体换成 JetBrains Mono</h3>
+<p><strong>What it does:</strong> Every code block on the site now uses JetBrains Mono instead of the default Courier New. The difference is like switching from a generic pen to a fine-tipped calligraphy pen.</p>
+<p><strong>它做了什么：</strong> 网站上所有代码块现在使用 JetBrains Mono 而不是默认的 Courier New。区别就像从普通圆珠笔换成了精细的书法笔。</p>
+<p><strong>How it works:</strong></p>
+<p>The font was added to the Google Fonts import in the base template, then the CSS was updated to use it for all code elements.</p>
+<p>字体被添加到基础模板的 Google Fonts 导入中，然后 CSS 被更新为所有代码元素使用它。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">code</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">pre</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-family</span>: <span style="color:#e6db74">&#39;JetBrains Mono&#39;</span>, <span style="color:#e6db74">&#39;Courier New&#39;</span>, <span style="color:#66d9ef">monospace</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The second and third fonts are &ldquo;fallbacks&rdquo; — if JetBrains Mono fails to load for any reason, the browser uses Courier New, then the system default monospace font.</p>
+<p>第二和第三个字体是&quot;备用字体&quot;——如果 JetBrains Mono 因任何原因加载失败，浏览器会使用 Courier New，然后是系统默认等宽字体。</p>
+<hr>
+<h3 id="change-5-hero-entrance-animation">Change #5: Hero Entrance Animation</h3>
+<h3 id="变化-5首页-hero-区域的入场动画">变化 #5：首页 Hero 区域的入场动画</h3>
+<p><strong>What it does:</strong> When you visit the homepage, the tagline <em>&ldquo;Notes on AI, technology, and thinking.&rdquo;</em> doesn&rsquo;t just appear — it glides up and fades in over about one second.</p>
+<p><strong>它做了什么：</strong> 当你访问首页时，标语 <em>&ldquo;Notes on AI, technology, and thinking.&rdquo;</em> 不再突然出现，而是在大约一秒内向上滑入并淡入。</p>
+<p><strong>How it works:</strong></p>
+<p>A CSS <code>@keyframes</code> animation defines the motion path — starting 18px below with 0 opacity, ending at natural position with full opacity. A spring-like easing curve (<code>cubic-bezier(0.16, 1, 0.3, 1)</code>) gives it a natural, organic feel.</p>
+<p>一个 CSS <code>@keyframes</code> 动画定义了运动轨迹——从低 18px、透明度为 0 开始，结束于自然位置、完全不透明。弹簧式缓动曲线（<code>cubic-bezier(0.16, 1, 0.3, 1)</code>）赋予它自然、有机的感觉。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">hero-enter</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">from</span> { <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">transform</span>: translateY(<span style="color:#ae81ff">18</span><span style="color:#66d9ef">px</span>); }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">to</span>   { <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">1</span>; <span style="color:#66d9ef">transform</span>: translateY(<span style="color:#ae81ff">0</span>); }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h3 id="change-6-active-navigation-state">Change #6: Active Navigation State</h3>
+<h3 id="变化-6导航栏的当前页高亮">变化 #6：导航栏的当前页高亮</h3>
+<p><strong>What it does:</strong> When you&rsquo;re on the Blog page, &ldquo;BLOG&rdquo; in the navigation shows a green underline. Same for all other sections — you always know where you are.</p>
+<p><strong>它做了什么：</strong> 当你在博客页面时，导航栏中的&quot;BLOG&quot;会显示绿色下划线。所有其他栏目也一样——你随时都知道自己在哪里。</p>
+<p><strong>How it works:</strong></p>
+<p>Hugo knows the URL of the current page. In the header template, we check if the current URL starts with each section&rsquo;s path. If it matches, we add the class <code>nav-active</code>.</p>
+<p>Hugo 知道当前页面的 URL。在 header 模板中，我们检查当前 URL 是否以每个栏目的路径开头。如果匹配，就添加 <code>nav-active</code> 类。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/blog/&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">hasPrefix</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">RelPermalink</span> <span style="color:#960050;background-color:#1e0010">&#34;/</span><span style="color:#a6e22e">blog</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-active&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;Blog&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><p><strong>One complication I learned:</strong> Blog and Journal are folders in the content directory, so Hugo gives them a &ldquo;section&rdquo; label. But About, Projects, Gallery, and Changelog are single files — Hugo doesn&rsquo;t label them as sections. That&rsquo;s why the first version only worked for Blog and Journal. The fix was to compare by URL path instead, which works for everything.</p>
+<p><strong>我学到的一个坑：</strong> Blog 和 Journal 是内容目录里的文件夹，所以 Hugo 给它们一个&quot;section&quot;标签。但 About、Projects、Gallery 和 Changelog 是单独的文件——Hugo 不把它们标记为 section。这就是第一个版本只对 Blog 和 Journal 有效的原因。修复方法是改用 URL 路径比较，这对所有页面都有效。</p>
+<hr>
+<h3 id="change-7-table-of-contents-for-long-posts">Change #7: Table of Contents for Long Posts</h3>
+<h3 id="变化-7长文章的目录侧边栏">变化 #7：长文章的目录侧边栏</h3>
+<p><strong>What it does:</strong> On wide screens (1300px and above), blog posts with section headings show a sticky &ldquo;Contents&rdquo; sidebar on the left. The current section highlights in green as you scroll. On small screens it hides automatically.</p>
+<p><strong>它做了什么：</strong> 在宽屏（1300px 及以上）上，有章节标题的博客文章左侧会显示一个固定的&quot;Contents&quot;侧边栏。当前所在章节会随着滚动高亮显示为绿色。在小屏幕上自动隐藏。</p>
+<p><strong>How it works:</strong></p>
+<p>Hugo automatically generates a table of contents from your headings with a single template variable:</p>
+<p>Hugo 用一个模板变量自动从标题生成目录：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ .TableOfContents }}
+</span></span></code></pre></div><p>A CSS grid splits the article area into two columns — one for the TOC, one for the content. <code>position: sticky</code> makes the TOC stay in view as you scroll down.</p>
+<p>CSS 网格将文章区域分成两列——一列给目录，一列给内容。<code>position: sticky</code> 让目录在你向下滚动时保持在视野中。</p>
+<p>The active heading highlight uses the same <code>IntersectionObserver</code> technique from Change #1 — watching headings as they scroll into view and updating the corresponding TOC link.</p>
+<p>活跃标题高亮使用了与变化 #1 相同的 <code>IntersectionObserver</code> 技术——监视标题滚动进入视野时更新对应的目录链接。</p>
+<hr>
+<h3 id="change-8-dark-mode">Change #8: Dark Mode</h3>
+<h3 id="变化-8深色模式">变化 #8：深色模式</h3>
+<p><strong>What it does:</strong> When your Mac (or phone, or PC) is set to Dark Mode, the website automatically switches to a deep forest-green dark theme. No button to press — it follows your system preference.</p>
+<p><strong>它做了什么：</strong> 当你的 Mac（或手机、PC）设置为深色模式时，网站会自动切换到深色森林绿主题。不需要按任何按钮——它跟随你的系统偏好。</p>
+<p><strong>How it works:</strong></p>
+<p>CSS has a built-in way to detect the user&rsquo;s system preference called <code>prefers-color-scheme</code>. We wrap dark-mode styles in this query, and browsers apply them automatically.</p>
+<p>CSS 有一种内置方式来检测用户的系统偏好，叫做 <code>prefers-color-scheme</code>。我们把深色模式的样式包在这个查询里，浏览器会自动应用它们。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>@<span style="color:#66d9ef">media</span> <span style="color:#f92672">(</span><span style="color:#f92672">prefers-color-scheme</span><span style="color:#f92672">:</span> <span style="color:#f92672">dark</span><span style="color:#f92672">)</span> {
+</span></span><span style="display:flex;"><span>  :<span style="color:#a6e22e">root</span> {
+</span></span><span style="display:flex;"><span>    --bg: <span style="color:#ae81ff">#0D1210</span>;       <span style="color:#75715e">/* very dark green-black */</span>
+</span></span><span style="display:flex;"><span>    --surface: <span style="color:#ae81ff">#182018</span>;
+</span></span><span style="display:flex;"><span>    --border: <span style="color:#ae81ff">#263026</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">body</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#CDD9D0</span>; }  <span style="color:#75715e">/* near-white text */</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Because the entire site uses CSS variables (like <code>--bg</code> and <code>--forest</code>) instead of hardcoded colours, we only need to redefine those variables in one place.</p>
+<p>因为整个网站使用 CSS 变量（如 <code>--bg</code> 和 <code>--forest</code>）而不是硬编码颜色，我们只需要在一个地方重新定义这些变量。</p>
+<p><strong>Note I learned:</strong> Chrome has its own appearance setting that can override your Mac&rsquo;s system preference. If dark mode doesn&rsquo;t appear in Chrome, check Chrome Settings → Appearance and switch it to &ldquo;Follow system.&rdquo;</p>
+<p><strong>我学到的注意事项：</strong> Chrome 有自己的外观设置，可能会覆盖 Mac 的系统偏好。如果深色模式在 Chrome 中不显示，检查 Chrome 设置→外观，将其切换为&quot;跟随系统&quot;。</p>
+<hr>
+<h3 id="change-9-related-posts-at-article-end">Change #9: Related Posts at Article End</h3>
+<h3 id="变化-9文章末尾的相关推荐">变化 #9：文章末尾的相关推荐</h3>
+<p><strong>What it does:</strong> At the bottom of every blog post (above the comments), three other recent articles are suggested. Each shows the title on the left and the date on the right.</p>
+<p><strong>它做了什么：</strong> 每篇博客文章的底部（评论区上方）会推荐三篇其他近期文章。每篇左边显示标题，右边显示日期。</p>
+<p><strong>How it works:</strong></p>
+<p>Hugo can access all pages on the site from any template. We filter to blog posts only, exclude the current post, and take the first three:</p>
+<p>Hugo 可以从任何模板访问网站上的所有页面。我们过滤只显示博客文章，排除当前文章，取前三篇：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ $related := first 3 (where (where .Site.RegularPages &#34;Section&#34; &#34;blog&#34;) &#34;RelPermalink&#34; &#34;ne&#34; .RelPermalink) }}
+</span></span></code></pre></div><p>Read this in plain English: <em>&ldquo;Take all pages on the site. Keep only those in the blog section. Remove the current post. Show the first three.&rdquo;</em></p>
+<p>用中文直白地读：<em>&ldquo;取网站上所有页面。只保留博客栏目的。移除当前文章。显示前三篇。&rdquo;</em></p>
+<hr>
+<h3 id="change-10-drop-cap-on-long-form-posts">Change #10: Drop Cap on Long-Form Posts</h3>
+<h3 id="变化-10长文章的首字下沉">变化 #10：长文章的首字下沉</h3>
+<p><strong>What it does:</strong> The first letter of the first paragraph in every blog post is enlarged and styled in forest green — like the opening of a printed book or magazine.</p>
+<p><strong>它做了什么：</strong> 每篇博客文章第一段的第一个字母都会被放大并以森林绿样式显示——就像印刷书籍或杂志的开篇。</p>
+<p><strong>How it works:</strong></p>
+<p>Pure CSS — no JavaScript needed. The <code>::first-letter</code> pseudo-element targets just the first character of an element:</p>
+<p>纯 CSS——不需要 JavaScript。<code>::first-letter</code> 伪元素只针对元素的第一个字符：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">has-dropcap</span> <span style="color:#f92672">&gt;</span> <span style="color:#f92672">p</span>:<span style="color:#a6e22e">first-of-type</span>::<span style="color:#a6e22e">first-letter</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">3.6</span><span style="color:#66d9ef">em</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-weight</span>: <span style="color:#ae81ff">700</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">float</span>: <span style="color:#66d9ef">left</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">0.78</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>forest);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>float: left</code> is the key — it lets the letter be large while the rest of the text wraps around it naturally.</p>
+<p><code>float: left</code> 是关键——它让字母可以很大，同时其余文字自然地环绕在它周围。</p>
+<hr>
+<h2 id="files-changed--修改了哪些文件">Files Changed / 修改了哪些文件</h2>
+<table>
+  <thead>
+      <tr>
+          <th>File</th>
+          <th>What Changed</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>themes/forest/static/css/main.css</code></td>
+          <td>Added all visual styles for every change</td>
+      </tr>
+      <tr>
+          <td><code>themes/forest/layouts/_default/baseof.html</code></td>
+          <td>Added JetBrains Mono to Google Fonts import</td>
+      </tr>
+      <tr>
+          <td><code>themes/forest/layouts/_default/single.html</code></td>
+          <td>Added TOC sidebar, reading time, progress bar, drop cap class, related posts</td>
+      </tr>
+      <tr>
+          <td><code>themes/forest/layouts/index.html</code></td>
+          <td>Added scroll stagger JavaScript</td>
+      </tr>
+      <tr>
+          <td><code>themes/forest/layouts/partials/header.html</code></td>
+          <td>Added active nav state logic</td>
+      </tr>
+      <tr>
+          <td><code>hugo.toml</code></td>
+          <td>Added table of contents configuration (h2 and h3 only)</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="new-vocabulary--今天学到的新词汇">New Vocabulary / 今天学到的新词汇</h2>
+<h3 id="intersectionobserver--交叉观察者">IntersectionObserver / 交叉观察者</h3>
+<p>A browser API that watches for when elements enter or leave the visible area of the screen. Used here for both the homepage scroll stagger and the TOC active highlighting. No scroll event listeners needed — more efficient.</p>
+<p>浏览器 API，用于监视元素何时进入或离开屏幕可见区域。这里用于首页滚动错位动画和目录活跃高亮。不需要滚动事件监听器——更高效。</p>
+<h3 id="css-pseudo-element--css-伪元素">CSS Pseudo-element / CSS 伪元素</h3>
+<p>A virtual element created by CSS that doesn&rsquo;t exist in the HTML. <code>::before</code> and <code>::after</code> create invisible elements before/after a real element. <code>::first-letter</code> targets just the first character. The grain texture overlay uses <code>body::after</code>.</p>
+<p>CSS 创建的虚拟元素，在 HTML 中不存在。<code>::before</code> 和 <code>::after</code> 在真实元素前后创建不可见元素。<code>::first-letter</code> 只针对第一个字符。颗粒纹理叠加层使用了 <code>body::after</code>。</p>
+<h3 id="css-variables--css-变量">CSS Variables / CSS 变量</h3>
+<p>Values defined once with <code>--name: value</code> and reused throughout a stylesheet with <code>var(--name)</code>. This site uses them for all colours. Dark mode works by redefining just the variable values — every place that uses <code>var(--bg)</code> updates automatically.</p>
+<p>用 <code>--name: value</code> 定义一次并在整个样式表中用 <code>var(--name)</code> 复用的值。这个网站用它来管理所有颜色。深色模式通过重新定义变量值来工作——每个使用 <code>var(--bg)</code> 的地方都会自动更新。</p>
+<h3 id="css-grid--css-网格布局">CSS Grid / CSS 网格布局</h3>
+<p>A two-dimensional layout system. Used here for the TOC sidebar: one column for the table of contents (200px), one column for the article content (flexible). Only activates on wide screens — invisible on mobile.</p>
+<p>二维布局系统。这里用于目录侧边栏：一列给目录（200px），一列给文章内容（弹性）。只在宽屏上激活——在移动端不可见。</p>
+<hr>
+<h2 id="summary--今日总结">Summary / 今日总结</h2>
+<table>
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Change</th>
+          <th>Where to see it</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Scroll stagger</td>
+          <td>Homepage — refresh and watch posts appear</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Grain texture</td>
+          <td>Everywhere — look closely at the background</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Reading time + progress bar</td>
+          <td>Any blog post — top of page + date line</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>JetBrains Mono</td>
+          <td>Any post with code blocks</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Hero animation</td>
+          <td>Homepage — watch tagline on load</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>Active nav</td>
+          <td>Click any nav link — it gets underlined</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>Table of contents</td>
+          <td>Long blog posts on wide screens</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>Dark mode</td>
+          <td>Set Mac/browser to Dark mode</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>Related posts</td>
+          <td>Bottom of any blog post</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td>Drop cap</td>
+          <td>First letter of every blog post</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="a-note-to-my-future-self--写给未来的自己">A Note to My Future Self / 写给未来的自己</h2>
+<p>Design improvements don&rsquo;t always require starting over. The most impactful session I&rsquo;ve had on this site made ten meaningful changes — each one small, targeted, and reversible. The site still uses the same theme, the same fonts, the same structure. It just breathes better now.</p>
+<p>设计改进并不总需要推倒重来。我在这个网站上最有成效的一次会话做了十项有意义的改进——每一项都小巧、精准、可撤销。网站仍然使用相同的主题、相同的字体、相同的结构。只是现在它更有生气了。</p>
+<p>The lesson: read the existing code first. Understand what&rsquo;s already there. Then find the smallest change that creates the biggest difference.</p>
+<p>教训：先读现有代码。理解已有的东西。然后找到能产生最大差异的最小改动。</p>
+<hr>
+<p><em>Written with Claude Code | Ghostty Terminal | MacBook Pro</em>
+<em>2026-03-28</em></p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/journal-cms-setup/" class="related-item">
+    <span class="related-title">How I Built a Journal Section with a Web Editor — No Terminal Required</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

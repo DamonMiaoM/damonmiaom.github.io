@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/security/</link>
+    <description>Recent content in Security on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2026 16:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding GitHub Tokens — A Beginner&#39;s Guide</title>
+      <link>https://damonmiaom.github.io/blog/understanding-github-tokens/</link>
+      <pubDate>Thu, 26 Mar 2026 16:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/understanding-github-tokens/</guid>
+      <description>&lt;p&gt;&lt;em&gt;从零开始理解 GitHub Token：它是什么，为什么需要它，为什么必须保密。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;A plain-language guide to GitHub tokens — what they are, why they exist, and why they must be kept secret.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-什么是-token为什么-github-需要它&#34;&gt;1. 什么是 Token，为什么 GitHub 需要它？&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;1. What Is a Token and Why Does GitHub Need It?&lt;/p&gt;&#xA;&lt;h3 id=&#34;生活比喻&#34;&gt;生活比喻&lt;/h3&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Real-Life Analogy&lt;/p&gt;&#xA;&lt;p&gt;想象您要进入一栋写字楼，有两种方式进入：&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Imagine entering an office building — two ways in:&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;用户名+密码&lt;/strong&gt; = 前台人工核验身份证，慢，但适合人类 / Front desk manually checks your ID — slow, but works for humans&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Token&lt;/strong&gt; = 门禁卡，刷一下就进，快速自动化，适合机器 / Key card — swipe and enter, fast and automated, designed for machines&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;为什么不直接用密码&#34;&gt;为什么不直接用密码？&lt;/h3&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Why Not Just Use a Password?&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

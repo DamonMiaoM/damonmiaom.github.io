@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding GitHub Tokens — A Beginner&#39;s Guide | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-什么是-token为什么-github-需要它">1. 什么是 Token，为什么 GitHub 需要它？</a>
+      <ul>
+        <li><a href="#生活比喻">生活比喻</a></li>
+        <li><a href="#为什么不直接用密码">为什么不直接用密码？</a></li>
+        <li><a href="#token-的本质">Token 的本质</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-repo-和-workflow-权限">2. <code>repo</code> 和 <code>workflow</code> 权限</a>
+      <ul>
+        <li><a href="#repo-权限"><code>repo</code> 权限</a></li>
+        <li><a href="#workflow-权限"><code>workflow</code> 权限</a></li>
+        <li><a href="#为什么两个都需要">为什么两个都需要？</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-为什么上一个-token-报错">3. 为什么上一个 Token 报错？</a></li>
+    <li><a href="#4-为什么-token-泄露很危险">4. 为什么 Token 泄露很危险？</a>
+      <ul>
+        <li><a href="#今天发生了什么">今天发生了什么</a></li>
+        <li><a href="#github-的自动保护">GitHub 的自动保护</a></li>
+        <li><a href="#安全使用规则">安全使用规则</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>Understanding GitHub Tokens — A Beginner&#39;s Guide</h1>
+      <time>March 26, 2026</time><span class="reading-time"> · 3 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <p><em>从零开始理解 GitHub Token：它是什么，为什么需要它，为什么必须保密。</em></p>
+<p><em>A plain-language guide to GitHub tokens — what they are, why they exist, and why they must be kept secret.</em></p>
+<hr>
+<h2 id="1-什么是-token为什么-github-需要它">1. 什么是 Token，为什么 GitHub 需要它？</h2>
+<p class="heading-note">1. What Is a Token and Why Does GitHub Need It?</p>
+<h3 id="生活比喻">生活比喻</h3>
+<p class="heading-note">Real-Life Analogy</p>
+<p>想象您要进入一栋写字楼，有两种方式进入：</p>
+<p><em>Imagine entering an office building — two ways in:</em></p>
+<ul>
+<li><strong>用户名+密码</strong> = 前台人工核验身份证，慢，但适合人类 / Front desk manually checks your ID — slow, but works for humans</li>
+<li><strong>Token</strong> = 门禁卡，刷一下就进，快速自动化，适合机器 / Key card — swipe and enter, fast and automated, designed for machines</li>
+</ul>
+<h3 id="为什么不直接用密码">为什么不直接用密码？</h3>
+<p class="heading-note">Why Not Just Use a Password?</p>
+<p>当机器（如 Claude Cowork）要推送代码时，GitHub 不允许使用真实密码，原因有三：</p>
+<p><em>When a machine pushes code, GitHub refuses real passwords for three reasons:</em></p>
+<ol>
+<li><strong>安全</strong> — 密码权限太大，泄露后攻击者可做任何事 / <strong>Security</strong> — a password has full access; if leaked, anything can be done</li>
+<li><strong>可控</strong> — Token 可限制权限范围，密码做不到 / <strong>Control</strong> — a token can be scoped to limited permissions; a password cannot</li>
+<li><strong>可撤销</strong> — Token 可随时单独删除，不影响密码 / <strong>Revocability</strong> — a token can be deleted at any time without changing your password</li>
+</ol>
+<h3 id="token-的本质">Token 的本质</h3>
+<p class="heading-note">What a Token Actually Is</p>
+<p>Token 就是一串随机字符，GitHub 服务器认识它、知道它的权限、随时可让它失效。</p>
+<p><em>A token is a random string — GitHub recognizes it, knows its permissions, and can invalidate it instantly.</em></p>
+<pre tabindex="0"><code>ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</code></pre><hr>
+<h2 id="2-repo-和-workflow-权限">2. <code>repo</code> 和 <code>workflow</code> 权限</h2>
+<p class="heading-note">The `repo` and `workflow` Scopes</p>
+<p>创建 Token 时，GitHub 让您勾选&quot;scope（权限范围）&quot;——决定这把门禁卡能开哪些门。</p>
+<p><em>When creating a token, GitHub asks you to choose &ldquo;scopes&rdquo; — which doors this key card can open.</em></p>
+<h3 id="repo-权限"><code>repo</code> 权限</h3>
+<p class="heading-note">The repo Scope</p>
+<table>
+  <thead>
+      <tr>
+          <th>✅ 能做什么</th>
+          <th>❌ 不能做什么</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>读取和推送代码</td>
+          <td>管理账户设置</td>
+      </tr>
+      <tr>
+          <td>创建和删除分支</td>
+          <td>删除账户</td>
+      </tr>
+      <tr>
+          <td>创建 Pull Request</td>
+          <td>访问他人仓库</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>比喻：</strong> 办公室钥匙，能进办公室改文件，但进不了财务室。</p>
+<p><em>Analogy: an office key — enter and edit files, but not the finance room.</em></p>
+<h3 id="workflow-权限"><code>workflow</code> 权限</h3>
+<p class="heading-note">The workflow Scope</p>
+<p><code>.github/workflows/</code> 是特殊文件——它控制自动化流程，风险更高，GitHub 单独保护它。</p>
+<p><em>Workflow files control automation — higher risk, so GitHub protects them separately.</em></p>
+<p><strong>比喻：</strong> 普通员工能搬货（<code>repo</code>），但不是谁都能改工厂流水线程序（<code>workflow</code>）。</p>
+<p><em>Analogy: staff can move goods (<code>repo</code>), but not everyone can reprogram the assembly line (<code>workflow</code>).</em></p>
+<h3 id="为什么两个都需要">为什么两个都需要？</h3>
+<p class="heading-note">Why Both?</p>
+<ul>
+<li>无 <code>repo</code> → 无法推送任何文件 ❌ / Without <code>repo</code> → cannot push any files ❌</li>
+<li>有 <code>repo</code> 无 <code>workflow</code> → 推送含工作流的代码被拒绝 ❌ / <code>repo</code> only → workflow files rejected ❌</li>
+<li>两个都有 → 完整推送成功 ✅ / Both → full push succeeds ✅</li>
+</ul>
+<hr>
+<h2 id="3-为什么上一个-token-报错">3. 为什么上一个 Token 报错？</h2>
+<p class="heading-note">Why Did the Previous Token Fail?</p>
+<p>报错信息：</p>
+<p><em>The error:</em></p>
+<pre tabindex="0"><code>remote: Invalid username or token.
+Password authentication is not supported for Git operations.
+</code></pre><p>这个报错有误导性——真正含义是 <strong>&ldquo;Token 无效或权限不足&rdquo;</strong>，而不是&quot;密码方式不支持&quot;。</p>
+<p><em>This error is misleading — it means <strong>&ldquo;token invalid or missing permissions&rdquo;</strong>, not literally &ldquo;password unsupported.&rdquo;</em></p>
+<p>原因：第一个 Token 没有勾选 <code>workflow</code>，GitHub 检测到 <code>.github/workflows/</code> 文件，发现权限不够，拒绝了整个推送。</p>
+<p><em>Cause: the first token lacked <code>workflow</code> scope. GitHub detected the workflows folder and rejected the push.</em></p>
+<blockquote>
+<p><strong>记住：</strong> 只要仓库里有 <code>.github/workflows/</code>，Token 就必须同时勾选 <code>repo</code> + <code>workflow</code>。</p>
+<p><em>Remember: if your repo has <code>.github/workflows/</code>, always check both <code>repo</code> + <code>workflow</code>.</em></p>
+</blockquote>
+<hr>
+<h2 id="4-为什么-token-泄露很危险">4. 为什么 Token 泄露很危险？</h2>
+<p class="heading-note">Why Is a Leaked Token Dangerous?</p>
+<h3 id="今天发生了什么">今天发生了什么</h3>
+<p class="heading-note">What Happened Today</p>
+<p>Token 被粘贴进了聊天窗口，等于把门禁卡照片发给了所有人。</p>
+<p><em>Pasting a token into chat is like photographing your key card and posting it publicly.</em></p>
+<p>持有者在 Token 被撤销之前，可以：</p>
+<p><em>Anyone who sees it can, before revocation:</em></p>
+<table>
+  <thead>
+      <tr>
+          <th>行动</th>
+          <th>后果</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>推送恶意代码</td>
+          <td>网站被篡改</td>
+      </tr>
+      <tr>
+          <td>删除所有分支</td>
+          <td>工作全部丢失</td>
+      </tr>
+      <tr>
+          <td>读取私有仓库</td>
+          <td>私人数据泄露</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="github-的自动保护">GitHub 的自动保护</h3>
+<p class="heading-note">GitHub's Auto-Protection</p>
+<p>GitHub 会自动扫描公开内容，一旦发现自己颁发的 Token，立即撤销——这也是为什么今天的 Token 推送失败了。</p>
+<p><em>GitHub auto-scans public content and immediately revokes any token it finds — which is why today&rsquo;s exposed tokens stopped working.</em></p>
+<h3 id="安全使用规则">安全使用规则</h3>
+<p class="heading-note">Safe Usage Rules</p>
+<table>
+  <thead>
+      <tr>
+          <th>✅ 应该</th>
+          <th>❌ 不要</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>只在 Terminal 里输入</td>
+          <td>粘贴进聊天</td>
+      </tr>
+      <tr>
+          <td>用 Mac 钥匙串存储</td>
+          <td>存在截图或记事本</td>
+      </tr>
+      <tr>
+          <td>用完即撤销</td>
+          <td>长期保留不用的 Token</td>
+      </tr>
+  </tbody>
+</table>
+<p>一劳永逸的方案</p>
+<p><em>The permanent solution:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global credential.helper osxkeychain
+</span></span></code></pre></div><hr>
+<h2 id="总结">总结</h2>
+<p class="heading-note">Summary</p>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>答案</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Token 是什么？</td>
+          <td>给机器用的&quot;门禁卡&quot;</td>
+      </tr>
+      <tr>
+          <td>为什么需要 <code>repo</code>？</td>
+          <td>推送代码的基本权限</td>
+      </tr>
+      <tr>
+          <td>为什么需要 <code>workflow</code>？</td>
+          <td>仓库有 Actions 文件，需额外权限</td>
+      </tr>
+      <tr>
+          <td>上个 Token 为何报错？</td>
+          <td>缺少 <code>workflow</code> 权限</td>
+      </tr>
+      <tr>
+          <td>Token 泄露为何危险？</td>
+          <td>持有者可完全控制仓库</td>
+      </tr>
+      <tr>
+          <td>如何安全使用？</td>
+          <td>只在 Terminal 输入，用钥匙串存储</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><em>&ldquo;了解工具背后的逻辑，比记住操作步骤更重要。&rdquo;</em></p>
+<p><em>&ldquo;Understanding the logic behind tools matters more than memorizing the steps.&rdquo;</em></p>
+<p class="post-revised">Published: Mar 26, 2026, 16:00</p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

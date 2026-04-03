@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello, World | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents"></nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>Hello, World</h1>
+      <time>March 26, 2026</time><span class="reading-time"> · 1 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <p>Welcome to my site. This is the first post — a placeholder while things get set up.</p>
+<p>I plan to write here about AI, language models, reasoning, and whatever else I find worth thinking through carefully.</p>
+<p>More soon.</p>
+<p class="post-revised">Published: Mar 26, 2026, 09:00</p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

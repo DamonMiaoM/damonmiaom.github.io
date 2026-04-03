@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Claude Code on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/claude-code/</link>
+    <description>Recent content in Claude Code on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2026 10:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>项目初始化：在开始之前，先告诉 Claude 你是谁</title>
+      <link>https://damonmiaom.github.io/blog/about-initialization/</link>
+      <pubDate>Thu, 02 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/about-initialization/</guid>
+      <description>&lt;h2 id=&#34;什么是项目初始化&#34;&gt;什么是项目初始化？&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;What Is Project Initialization?&lt;/p&gt;&#xA;&lt;p&gt;你打开一个新文件夹，准备用 Claude Code 开始一个项目。&lt;/p&gt;&#xA;&lt;p&gt;在你敲下第一行需求之前，有一件事值得先做：&lt;strong&gt;告诉 Claude，这个项目是什么，它应该怎么工作，有什么规则需要遵守。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;这件事，就叫做项目初始化。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Before you type your first request, there&amp;rsquo;s one thing worth doing: tell Claude what this project is, how it should work, and what rules to follow. That&amp;rsquo;s project initialization.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;为什么需要它&#34;&gt;为什么需要它？&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Why Does It Matter?&lt;/p&gt;&#xA;&lt;p&gt;Claude Code 的每一次对话，都从零开始。它不会自动记得你上次说了什么，也不知道你的项目叫什么名字、用什么语言、有什么约定。&lt;/p&gt;&#xA;&lt;p&gt;如果没有初始化，每次打开新 session，你都要重新解释背景；Claude 给出的建议可能和你已有的架构冲突；跨多次对话的工作会失去连续性。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;做了初始化，Claude 一开口就知道自己在哪里，在做什么。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Claude Code starts fresh every session. Without initialization, you repeat yourself every time, suggestions may conflict with your existing architecture, and work loses continuity across sessions. With initialization, Claude knows the context from the very first message.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>10 Most Powerful Claude Code Commands — And Why You Should Use Them</title>
+      <link>https://damonmiaom.github.io/blog/top-10-claude-code-commands/</link>
+      <pubDate>Fri, 27 Mar 2026 20:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/top-10-claude-code-commands/</guid>
+      <description>&lt;h1 id=&#34;10-most-powerful-claude-code-commands--and-why-you-should-use-them&#34;&gt;10 Most Powerful Claude Code Commands — And Why You Should Use Them&lt;/h1&gt;&#xA;&lt;h1 id=&#34;10-个最强大的-claude-code-命令--以及你为什么应该使用它们&#34;&gt;10 个最强大的 Claude Code 命令 — 以及你为什么应该使用它们&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;Written by a life insurance agent who learned these the hard way — one terminal session at a time.&lt;/em&gt;&#xA;&lt;em&gt;由一位寿险代理人撰写，这些命令都是一个终端会话一个终端会话学来的。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;I love Claude.&lt;/p&gt;&#xA;&lt;p&gt;After 23 sessions, 281 messages, and 49 hours inside Claude Code — building websites, converting documents, writing bilingual scripts, and rushing to finish insurance comparison decks before catching a train — I&amp;rsquo;ve learned which commands actually matter. These are the 10 I reach for most, and the ones that, once you understand them, change how you think about working with AI.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

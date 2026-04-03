@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principles of Web Design — A Practitioner&#39;s Field Notes | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#i-设计即删减--design-is-subtraction">I. 设计即删减 / Design Is Subtraction</a></li>
+    <li><a href="#ii-色板是灵魂--the-palette-is-the-soul">II. 色板是灵魂 / The Palette Is the Soul</a>
+      <ul>
+        <li><a href="#the-five-roles--颜色的五个角色">The Five Roles / 颜色的五个角色</a></li>
+      </ul>
+    </li>
+    <li><a href="#iii-字体阅读的建筑--typography-the-architecture-of-reading">III. 字体：阅读的建筑 / Typography: The Architecture of Reading</a>
+      <ul>
+        <li><a href="#两种字体最多--two-fonts-maximum">两种字体，最多 / Two Fonts, Maximum</a></li>
+        <li><a href="#层级眼睛不需要思考--scale-the-eye-should-not-need-to-think">层级：眼睛不需要思考 / Scale: The Eye Should Not Need to Think</a></li>
+        <li><a href="#行高是对读者的礼貌--line-height-is-hospitality">行高是对读者的礼貌 / Line-Height Is Hospitality</a></li>
+        <li><a href="#字距是工具不是装饰--letter-spacing-is-a-tool-not-decoration">字距是工具，不是装饰 / Letter-Spacing Is a Tool, Not Decoration</a></li>
+      </ul>
+    </li>
+    <li><a href="#iv-留白休息的哲学--whitespace-the-philosophy-of-rest">IV. 留白：休息的哲学 / Whitespace: The Philosophy of Rest</a></li>
+    <li><a href="#v-布局容器的逻辑--layout-the-logic-of-containers">V. 布局：容器的逻辑 / Layout: The Logic of Containers</a>
+      <ul>
+        <li><a href="#容器与自由--the-container-and-the-wild">容器与自由 / The Container and the Wild</a></li>
+        <li><a href="#卡片-vs-编辑式排列--cards-vs-editorial-strips">卡片 vs 编辑式排列 / Cards vs Editorial Strips</a></li>
+        <li><a href="#每个页面只做一件事--each-page-has-one-job">每个页面只做一件事 / Each Page Has One Job</a></li>
+      </ul>
+    </li>
+    <li><a href="#vi-首屏一个承诺--the-hero-a-promise">VI. 首屏：一个承诺 / The Hero: A Promise</a></li>
+    <li><a href="#vii-导航安静即力量--navigation-quiet-is-strength">VII. 导航：安静即力量 / Navigation: Quiet Is Strength</a></li>
+    <li><a href="#viii-以声明结束--end-with-a-statement">VIII. 以声明结束 / End with a Statement</a></li>
+    <li><a href="#ix-从参考中学习--learning-from-references">IX. 从参考中学习 / Learning from References</a></li>
+    <li><a href="#x-错误即课程--mistakes-are-the-curriculum">X. 错误即课程 / Mistakes Are the Curriculum</a></li>
+    <li><a href="#尾声设计究竟是什么--closing-what-design-actually-is">尾声：设计究竟是什么 / Closing: What Design Actually Is</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>Principles of Web Design — A Practitioner&#39;s Field Notes</h1>
+      <time>March 26, 2026</time><span class="reading-time"> · 12 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <p><em>这篇文章写于我从零开始搭建个人网站之后。它不是教程，不是手册，而是原则——从真实的错误、真实的参考、真实的决策中提炼出来的观察。它借鉴了 Ray Dalio 的写作方式：不是&quot;应该这样做&quot;，而是&quot;我发现事情是这样运作的&quot;。</em></p>
+<p><em>This was written after building a personal website from nothing. It is not a tutorial, not a manual, but a set of principles — observations distilled from real mistakes, real references, and real decisions. It borrows from Ray Dalio&rsquo;s approach: not &ldquo;you should do this,&rdquo; but &ldquo;here is how I found things to actually work.&rdquo;</em></p>
+<hr>
+<h2 id="i-设计即删减--design-is-subtraction">I. 设计即删减 / Design Is Subtraction</h2>
+<p>The first instinct is always to add. More color. More sections. More animation. More text. The beginner&rsquo;s page is a cluttered room where every object shouts for attention simultaneously, and nothing is heard.</p>
+<p>The mature design does the opposite. It asks: what can I remove?</p>
+<p>The Japanese call this <em>ma</em> (間) — the meaningful pause, the deliberate empty space between things. In web design, it appears as whitespace between sections, a single accent color instead of four, a navigation bar with four links instead of ten.</p>
+<p>Every reference site that shaped our work — Natsumi Nishizumi, Plum Village, Naval&rsquo;s archive — shared one characteristic: they had clearly decided what <em>not</em> to include. The restraint was not an absence of effort. It was the product of more effort than decoration ever requires.</p>
+<p><strong>原则1：在添加任何东西之前，先问自己能删掉什么。设计的质量，往往体现在它的克制上。</strong></p>
+<p><strong>Principle 1: Before adding anything, ask what you can remove. The quality of a design is often measured by its restraint.</strong></p>
+<hr>
+<h2 id="ii-色板是灵魂--the-palette-is-the-soul">II. 色板是灵魂 / The Palette Is the Soul</h2>
+<p>Color communicates before words do. A visitor <em>feels</em> the palette before they read a single sentence. The emotional register of a site — calm or urgent, warm or clinical, intimate or professional — is set almost entirely by its colors.</p>
+<p>In building this site, we moved through two palettes:</p>
+<p><strong>Old (warm forest green):</strong>
+<code>#F4F5EF</code> / <code>#7D8A35</code> / <code>#8FA882</code> / <code>#2E4A28</code> / <code>#1B2D1A</code></p>
+<p><strong>New (cool sage and near-black):</strong>
+<code>#F1F1F1</code> / <code>#DCDEDF</code> / <code>#96A89C</code> / <code>#16452C</code> / <code>#000C06</code></p>
+<p>The shift from warm olive to cool sage changed the entire emotional temperature — from &ldquo;summer garden&rdquo; to &ldquo;still water at dawn.&rdquo; Neither palette is objectively better. But each produces a different <em>feeling</em>, and the designer&rsquo;s job is to choose the feeling deliberately.</p>
+<h3 id="the-five-roles--颜色的五个角色">The Five Roles / 颜色的五个角色</h3>
+<p>Choose five colors and assign each a specific role. Discipline here eliminates hundreds of micro-decisions later.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Role</th>
+          <th>Function</th>
+          <th>Our Color</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Background</strong></td>
+          <td>The silence the content sits on</td>
+          <td><code>#F1F1F1</code></td>
+      </tr>
+      <tr>
+          <td><strong>Surface</strong></td>
+          <td>Cards, code blocks, subtle differentiation</td>
+          <td><code>#DCDEDF</code></td>
+      </tr>
+      <tr>
+          <td><strong>Text</strong></td>
+          <td>The primary voice</td>
+          <td><code>#000C06</code></td>
+      </tr>
+      <tr>
+          <td><strong>Accent</strong></td>
+          <td>The brand moment — headings, links, buttons</td>
+          <td><code>#16452C</code></td>
+      </tr>
+      <tr>
+          <td><strong>Secondary</strong></td>
+          <td>Dates, captions, metadata — the quiet parts</td>
+          <td><code>#96A89C</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>原则2：选五种颜色，给每种颜色分配一个角色。这五个角色之外，不引入额外颜色。</strong></p>
+<p><strong>Principle 2: Choose five colors and give each a role. Introduce no colors outside these five roles.</strong></p>
+<hr>
+<h2 id="iii-字体阅读的建筑--typography-the-architecture-of-reading">III. 字体：阅读的建筑 / Typography: The Architecture of Reading</h2>
+<p>Typography is not decoration — it is structure. The reader&rsquo;s eye navigates a page the way a person navigates a building: looking for doors, hallways, and rooms. The type system is that architecture.</p>
+<h3 id="两种字体最多--two-fonts-maximum">两种字体，最多 / Two Fonts, Maximum</h3>
+<p>In this project: <strong>Lora</strong> (a warm, editorial serif) carries the <em>voice</em> — body text, article titles, the hero headline. <strong>Poppins</strong> (a geometric sans-serif) handles the <em>infrastructure</em> — navigation, dates, labels, metadata.</p>
+<p>Why this pairing works: serif creates warmth and authority. Sans-serif creates clarity and precision. Together, they establish a two-register system: &ldquo;this is the content&rdquo; versus &ldquo;this is the interface.&rdquo; The reader never consciously notices the switch — but they always feel it.</p>
+<p><strong>原则3：用衬线体表达内容，用无衬线体构建界面。绝不混用超过两种字体。</strong></p>
+<p><strong>Principle 3: Use serif for voice, sans-serif for interface. Never mix more than two typefaces.</strong></p>
+<h3 id="层级眼睛不需要思考--scale-the-eye-should-not-need-to-think">层级：眼睛不需要思考 / Scale: The Eye Should Not Need to Think</h3>
+<p>Typography hierarchy means the reader instantly knows what is most important — not by reading, but by <em>seeing</em>. The jump between levels must be dramatic enough to be felt without conscious analysis.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Element</th>
+          <th>Size</th>
+          <th>Weight</th>
+          <th>Font</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Hero headline</td>
+          <td>4.8rem</td>
+          <td>400 italic</td>
+          <td>Lora</td>
+      </tr>
+      <tr>
+          <td>Article title</td>
+          <td>2.1rem</td>
+          <td>700</td>
+          <td>Lora</td>
+      </tr>
+      <tr>
+          <td>Card / list title</td>
+          <td>1.5rem</td>
+          <td>700</td>
+          <td>Lora</td>
+      </tr>
+      <tr>
+          <td>Section heading (h2)</td>
+          <td>1.35rem</td>
+          <td>600</td>
+          <td>Poppins</td>
+      </tr>
+      <tr>
+          <td>Body text</td>
+          <td>1.0625rem</td>
+          <td>400</td>
+          <td>Lora</td>
+      </tr>
+      <tr>
+          <td>Meta / caption</td>
+          <td>0.7rem</td>
+          <td>400</td>
+          <td>Poppins</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>原则4：建立字体层级。层级之间的跳跃要足够显著，让眼睛不需要思考就能识别优先级。</strong></p>
+<p><strong>Principle 4: Build a type scale. The jump between levels must be large enough that the eye recognizes hierarchy without conscious thought.</strong></p>
+<h3 id="行高是对读者的礼貌--line-height-is-hospitality">行高是对读者的礼貌 / Line-Height Is Hospitality</h3>
+<p>A line-height of 1.4 is a crowded subway car. A line-height of 1.8 is a quiet room where thinking is possible. In long-form reading — especially bilingual text where Chinese and English alternate — generous line-height is not a luxury. It is the minimum courtesy extended to the reader.</p>
+<p><strong>原则5：正文行高至少1.8；标题行高1.2。给读者足够的空气。</strong></p>
+<p><strong>Principle 5: Body text deserves <code>line-height: 1.8</code>. Headlines deserve <code>line-height: 1.2</code>. Give the reader air.</strong></p>
+<h3 id="字距是工具不是装饰--letter-spacing-is-a-tool-not-decoration">字距是工具，不是装饰 / Letter-Spacing Is a Tool, Not Decoration</h3>
+<p>Uppercase labels, navigation links, and small-cap metadata benefit from increased letter-spacing (<code>0.1em</code> to <code>0.2em</code>). It creates breathing room within compressed text and signals to the reader: &ldquo;this is a label, not content.&rdquo; Never add letter-spacing to body copy — it disrupts the reading rhythm that took centuries of typographic practice to perfect.</p>
+<p><strong>原则6：大写标签加字距。正文绝不加字距。</strong></p>
+<p><strong>Principle 6: Add letter-spacing to uppercase labels. Never add it to body copy.</strong></p>
+<hr>
+<h2 id="iv-留白休息的哲学--whitespace-the-philosophy-of-rest">IV. 留白：休息的哲学 / Whitespace: The Philosophy of Rest</h2>
+<p>We instinctively fear empty space. It feels unfinished, wasteful, lazy. This instinct is almost always wrong.</p>
+<p>The reference sites that shaped our aesthetic — Natsumi Nishizumi, Plum Village, Naval — share one defining characteristic: space. Section padding of 80 to 120 pixels. Gaps between post entries large enough to breathe between thoughts. A hero that occupies 70–80% of the viewport before anything else appears.</p>
+<p>Whitespace does several things simultaneously:</p>
+<ul>
+<li>It <strong>separates</strong> — creating clear distinctions between sections</li>
+<li>It <strong>emphasizes</strong> — an element surrounded by space is automatically important</li>
+<li>It <strong>rests</strong> — it gives the eye a pause between demands</li>
+<li>It <strong>signals quality</strong> — scarcity, not abundance, conveys value</li>
+</ul>
+<p><strong>原则7：留白不是空洞，而是节奏、休息和强调。不确定时，把内边距翻倍。</strong></p>
+<p><strong>Principle 7: Whitespace is not emptiness — it is rhythm, rest, and emphasis. When uncertain, double your padding.</strong></p>
+<hr>
+<h2 id="v-布局容器的逻辑--layout-the-logic-of-containers">V. 布局：容器的逻辑 / Layout: The Logic of Containers</h2>
+<h3 id="容器与自由--the-container-and-the-wild">容器与自由 / The Container and the Wild</h3>
+<p>Most content lives inside a constrained max-width container — ours is <code>1100px</code>. This maintains readable line lengths and consistent alignment. But certain elements should break free entirely:</p>
+<ul>
+<li><strong>The hero section</strong> spans 100% of the viewport — it is a <em>moment</em>, not content</li>
+<li><strong>The closing CTA section</strong> uses full-bleed background — signaling &ldquo;this is a different kind of statement&rdquo;</li>
+<li><strong>Code blocks and blockquotes</strong> sometimes extend slightly wider than body text — giving them visual distinction</li>
+</ul>
+<p><strong>原则8：建立内容容器，然后在关键时刻有意识地打破它。</strong></p>
+<p><strong>Principle 8: Establish a content container. Then deliberately break it at high-impact moments.</strong></p>
+<h3 id="卡片-vs-编辑式排列--cards-vs-editorial-strips">卡片 vs 编辑式排列 / Cards vs Editorial Strips</h3>
+<p>The fundamental layout decision for a content-driven site: <strong>cards</strong> (bordered boxes in a grid) or <strong>editorial strips</strong> (rows divided by horizontal rules)?</p>
+<ul>
+<li><strong>Cards</strong> belong to apps. They frame self-contained interactive objects. They suggest: &ldquo;each item is a product.&rdquo;</li>
+<li><strong>Editorial strips</strong> belong to magazines. They create reading rhythm. They suggest: &ldquo;these items are part of a sequence worth following.&rdquo;</li>
+</ul>
+<p>A personal blog is closer to a magazine than an app. When we replaced bordered card boxes with open editorial strips — separated only by a thin horizontal rule — the entire page felt more literary, more considered, more honest.</p>
+<p><strong>原则9：让布局匹配内容的本质。博客和新闻适合编辑式排列；产品和作品集适合卡片布局。</strong></p>
+<p><strong>Principle 9: Match your layout to the nature of your content. Blogs and news are editorial. Products and portfolios are card-based.</strong></p>
+<h3 id="每个页面只做一件事--each-page-has-one-job">每个页面只做一件事 / Each Page Has One Job</h3>
+<p>Every page on a site plays a specific role in the reader&rsquo;s journey:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Page</th>
+          <th>Role</th>
+          <th>Analogy</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Homepage</strong></td>
+          <td>Magazine cover</td>
+          <td>Draws you in with the best recent work</td>
+      </tr>
+      <tr>
+          <td><strong>Blog list</strong></td>
+          <td>Library index</td>
+          <td>All content, browsable, filterable by tag</td>
+      </tr>
+      <tr>
+          <td><strong>Single post</strong></td>
+          <td>The article</td>
+          <td>Focused, distraction-free reading</td>
+      </tr>
+      <tr>
+          <td><strong>About</strong></td>
+          <td>The author&rsquo;s voice</td>
+          <td>Personal, narrative, trust-building</td>
+      </tr>
+  </tbody>
+</table>
+<p>When pages try to serve two roles simultaneously — a homepage that is also a full blog archive — they serve neither well. The homepage shows <em>glimpses</em>: title and date, nothing more. The blog list shows <em>context</em>: description and tags. The single post shows <em>everything</em>.</p>
+<p><strong>原则10：每个页面只做一件事。设计的每个元素都应服务于那一件事，而非其他。</strong></p>
+<p><strong>Principle 10: Give each page one job. Every design element should serve that job and nothing else.</strong></p>
+<hr>
+<h2 id="vi-首屏一个承诺--the-hero-a-promise">VI. 首屏：一个承诺 / The Hero: A Promise</h2>
+<p>The hero section is the first thing a visitor sees. It has one job: make a promise. It says — wordlessly, through image and scale and typography — &ldquo;here is what this place is about, here is the mood, here is whether you belong here.&rdquo;</p>
+<p>Key decisions inside a hero:</p>
+<p><strong>1. 图片遮罩 / Overlay opacity</strong>: The dark overlay over a hero image serves two purposes — ensuring text legibility, and shifting the emotional register. <code>rgba(0, 12, 6, 0.48)</code> was our formula. Too dark loses the photograph; too light loses the words.</p>
+<p><strong>2. 背景定位 / Background-position</strong>: A portrait photo&rsquo;s meaningful content is rarely at the geometric center. <code>background-position: center 55%</code> showed the lotus flower rather than the blurry sky above it. Always ask: what is the <em>subject</em> of this image, and where is it in the frame?</p>
+<p><strong>3. 高度 / Height</strong>: A hero at <code>80vh</code> is an entrance — you are immersed before you scroll. At <code>50vh</code>, it is merely a header. The difference is psychological, not mathematical.</p>
+<p><strong>4. 文字层级 / Text hierarchy</strong>: One large italic serif headline. One small uppercase subtitle. Nothing else. The hero is not a place for information — it is a place for feeling.</p>
+<p><strong>原则11：首屏是一个承诺。图片、遮罩、文字、高度——每一个决定都应服务于那个承诺，而不是展示技巧。</strong></p>
+<p><strong>Principle 11: The hero is a promise. Image, overlay, text, scale — every decision must serve that promise, not demonstrate skill.</strong></p>
+<hr>
+<h2 id="vii-导航安静即力量--navigation-quiet-is-strength">VII. 导航：安静即力量 / Navigation: Quiet Is Strength</h2>
+<p>Both Natsumi Nishizumi and Naval share a navigation philosophy: almost invisible, completely functional. No dropdowns. No mega-menus. No icons. Just text links, quietly arranged.</p>
+<p>Our navigation pattern — brand name centered, links split left and right — is a classic editorial structure. It signals: &ldquo;the content is the point.&rdquo; The navigation is infrastructure, not a feature.</p>
+<p>Key navigation principles:</p>
+<ul>
+<li><strong>Flat</strong>: Never more than one level. Dropdowns add complexity that rarely earns its cost.</li>
+<li><strong>Sparse</strong>: Fewer links means each link carries more weight. If everything is reachable, nothing feels important.</li>
+<li><strong>Uppercase + letter-spacing</strong>: Makes links feel like wayfinding signs, not content.</li>
+<li><strong>Sticky</strong>: Stays visible as the user scrolls. Orientation is a courtesy.</li>
+</ul>
+<p><strong>原则12：导航应该是安静的向导，而不是一个值得注意的功能。如果你的导航感觉很显眼，它就太显眼了。</strong></p>
+<p><strong>Principle 12: Navigation should be a quiet guide, not a notable feature. If your navigation feels prominent, it is too prominent.</strong></p>
+<hr>
+<h2 id="viii-以声明结束--end-with-a-statement">VIII. 以声明结束 / End with a Statement</h2>
+<p>Natsumi Nishizumi&rsquo;s closing section — &ldquo;Start a Conversation&rdquo; — is a masterclass in what happens at the bottom of a page. It is:</p>
+<ul>
+<li><strong>Full-bleed</strong>: breaks the container, claiming the full width of the screen</li>
+<li><strong>Large type</strong>: a single serif headline at <code>4rem</code>, taking space without apology</li>
+<li><strong>One idea</strong>: not a footer menu — one thought, one action</li>
+<li><strong>An invitation</strong>: email address in quiet uppercase below the headline</li>
+</ul>
+<p>Most beginner sites let their pages trail off into a footer: copyright notice, small links, silence. This is a missed opportunity. The bottom of a page is the second most important design moment — after the opening. A visitor who reaches the bottom has given you their time and attention. Meet them there with something worth finding.</p>
+<p><strong>原则13：用一个声明结束每一个重要页面。全宽、大字、一个想法、一个行动。不要让页面悄悄消失在版权声明里。</strong></p>
+<p><strong>Principle 13: End every key page with a statement. Full-bleed, large type, one idea, one action. Do not let the page quietly disappear into a copyright notice.</strong></p>
+<hr>
+<h2 id="ix-从参考中学习--learning-from-references">IX. 从参考中学习 / Learning from References</h2>
+<p>The most efficient design education is not reading about design. It is studying specific sites that produce a specific feeling — and then asking, with precision: <em>why</em> does this work?</p>
+<p>The three references that shaped this site:</p>
+<p><strong>Natsumi Nishizumi</strong> — taught us alternating section backgrounds, mixing italic and roman type within a single headline, and the principle of the statement closing. What feeling? <em>Refined simplicity.</em> What decision produced it? Sections separated by background color instead of borders — the page breathes without hard edges.</p>
+<p><strong>Plum Village</strong> — taught us image-led editorial grids, warm off-white backgrounds, and the power of a full-bleed dark closing section. What feeling? <em>Warm, trustworthy, unhurried.</em> What decision produced it? Images that fill their grid cell completely, with no border or shadow — the content defines its own boundary.</p>
+<p><strong>Naval</strong> — taught us that a title needs nothing more than itself. What feeling? <em>Confident quietness.</em> What decision produced it? The complete removal of description, date formatting, borders, and hover effects. What remains is the title. Nothing fights with it.</p>
+<p><strong>How to study a reference site:</strong></p>
+<ol>
+<li>Name the feeling it creates, precisely</li>
+<li>Identify the single design decision most responsible for that feeling</li>
+<li>Understand <em>why</em> it works — psychological, typographic, or structural</li>
+<li>Adapt the <em>principle</em>, not the surface</li>
+</ol>
+<p><strong>原则14：建立参考库。带着&quot;为什么有效？&ldquo;这个问题研究它们。学习原则，而不是模仿表面。</strong></p>
+<p><strong>Principle 14: Build a reference library. Study each site with the question: <em>why</em> does this work? Learn the principle, not the surface.</strong></p>
+<hr>
+<h2 id="x-错误即课程--mistakes-are-the-curriculum">X. 错误即课程 / Mistakes Are the Curriculum</h2>
+<p>Web design is not planned — it is discovered. The principles above were not deduced in advance. They emerged from failures:</p>
+<ul>
+<li>Posts <strong>disappeared</strong> after dates were changed → learned that Hugo skips future-dated content in UTC, and <code>--buildFuture</code> was the fix</li>
+<li>The blog list <strong>showed full article content</strong> → learned that Hugo&rsquo;s <code>.Summary</code> pulls too much from HTML-heavy bilingual text; explicit <code>description</code> frontmatter is the clean solution</li>
+<li>The hero <strong>showed blurry sky</strong> instead of the lotus → learned that <code>background-position: center 35%</code> shows the top of a portrait image; <code>center 55%</code> shows the flower</li>
+<li>Two GitHub Actions workflows <strong>competed</strong> and overwrote each other → learned that concurrent deployments race, and the last to finish wins</li>
+<li><strong>Underlines appeared everywhere</strong> → learned that wrapping an <code>&lt;ol&gt;</code> list item&rsquo;s entire content in <code>&lt;a&gt;</code> applies browser-default link underlines to everything; the fix is to only wrap the clickable text</li>
+<li><strong>Card borders felt app-like</strong> → learned that editorial strips (top-border only, no box) create a literary feeling that bordered cards cannot</li>
+</ul>
+<p>Each failure revealed something true about how the web actually works. The mistakes were not detours from the learning — they <em>were</em> the learning.</p>
+<p><strong>原则15：设计是迭代的。错误不是弯路，而是路本身。快速构建，看到渲染结果，然后调整。从未犯错的设计师，要么从未构建，要么从未看见。</strong></p>
+<p><strong>Principle 15: Design is iterative. Mistakes are not detours — they are the road. Build fast, see it rendered, and adjust. A designer who has never made these mistakes has either never built anything or never looked.</strong></p>
+<hr>
+<h2 id="尾声设计究竟是什么--closing-what-design-actually-is">尾声：设计究竟是什么 / Closing: What Design Actually Is</h2>
+<p>After going through this process — choosing colors, fixing bugs, studying reference sites, debating whether a card border should exist, moving pixels by fractions of a rem — a definition of design becomes clear:</p>
+<p><strong>Design is the arrangement of decisions that shape how a person experiences something.</strong></p>
+<p>It is not about beauty, though beauty is a byproduct when it is done well. It is not about aesthetics, though taste is the instrument. It is about shaping <em>experience</em> — directing attention, creating rhythm, building trust, making promises, and fulfilling them quietly.</p>
+<p>The best design disappears. The visitor never thinks &ldquo;what a thoughtful font choice&rdquo; — they simply find reading easy. They never consciously appreciate the spacing — they simply feel that the page is calm. They never analyze the palette — they simply feel at home.</p>
+<p><em>好的设计会消失。访客不会想&quot;这字体选得真好&rdquo;——他们只是觉得阅读很自然。他们不会注意到间距——他们只是觉得页面很安静。他们不会欣赏色板——他们只是感到如归自家。</em></p>
+<p>That is the goal. Not to be noticed. To be <em>felt</em>.</p>
+<hr>
+<p><em>这些原则来自一个没有设计背景的寿险顾问，在搭建个人网站的过程中，通过真实的错误和真实的参考，一条一条发现的。它们不是普世真理——而是在特定条件下发现的，有效的东西。</em></p>
+<p><em>These principles were discovered by a life insurance agent with no design background, building a personal website through real mistakes and real references, one at a time. They are not universal truths — they are things found to work, under specific conditions, earned through the process of actually making something.</em></p>
+<p class="post-revised">Published: Mar 26, 2026, 22:00</p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I Added a Comment Zone to My Blog — and What It Took to Get There | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</a></li>
+    <li><a href="#change-1-a-new-hero-image">Change #1: A New Hero Image</a></li>
+    <li><a href="#变化-1换一张新的首页背景图">变化 #1：换一张新的首页背景图</a></li>
+    <li><a href="#change-2-gallery-lightbox--images-that-jump-to-greet-you">Change #2: Gallery Lightbox — Images That Jump to Greet You</a></li>
+    <li><a href="#变化-2图库弹出效果--像打招呼一样弹起来的图片">变化 #2：图库弹出效果 — 像打招呼一样弹起来的图片</a></li>
+    <li><a href="#change-3-adding-a-comment-zone-the-main-event">Change #3: Adding a Comment Zone (The Main Event)</a></li>
+    <li><a href="#变化-3添加评论区今天的重头戏">变化 #3：添加评论区（今天的重头戏）</a>
+      <ul>
+        <li><a href="#why-giscus">Why Giscus?</a></li>
+        <li><a href="#the-five-steps-i-completed">The Five Steps I Completed</a></li>
+        <li><a href="#the-error-along-the-way">The Error Along the Way</a></li>
+        <li><a href="#where-comments-appear-and-where-they-dont">Where Comments Appear (And Where They Don&rsquo;t)</a></li>
+      </ul>
+    </li>
+    <li><a href="#new-vocabulary--今天学到的新词汇">New Vocabulary / 今天学到的新词汇</a>
+      <ul>
+        <li><a href="#static-site--静态网站">Static Site / 静态网站</a></li>
+        <li><a href="#github-discussions">GitHub Discussions</a></li>
+        <li><a href="#node-id--节点-id">Node ID / 节点 ID</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary--今日总结">Summary / 今日总结</a></li>
+    <li><a href="#a-note-to-my-future-self--写给未来的自己">A Note to My Future Self / 写给未来的自己</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>How I Added a Comment Zone to My Blog — and What It Took to Get There</h1>
+      <time>March 27, 2026</time><span class="reading-time"> · 5 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <h1 id="learning-log--march-27-2026">Learning Log — March 27, 2026</h1>
+<h1 id="学习日志--2026年3月27日">学习日志 — 2026年3月27日</h1>
+<p><strong>Topic:</strong> Adding a Comment Zone, a New Hero Image, and a Gallery Lightbox
+<strong>主题：</strong> 为博客添加评论区、更换首页背景图、图库弹出效果</p>
+<hr>
+<h2 id="what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</h2>
+<p>Today I upgraded my personal site in three meaningful ways. I swapped the homepage background from a lotus to a water ripple photo I personally chose. I added a click-to-enlarge effect to the gallery. And most importantly — I gave my readers a place to talk back. Setting up the comment system turned out to be a five-step journey that required me to read, copy, and paste values myself. I did every step. That felt good.</p>
+<p>今天我对个人网站做了三项有意义的升级：把首页背景从莲花换成了我亲自选的水波纹照片，为图库添加了点击放大效果，最重要的是——我给读者开辟了一个可以回应我的地方。评论系统的搭建是一段五步的旅程，需要我亲手阅读、复制和粘贴数值。每一步我都自己完成了。那种感觉很好。</p>
+<hr>
+<h2 id="change-1-a-new-hero-image">Change #1: A New Hero Image</h2>
+<h2 id="变化-1换一张新的首页背景图">变化 #1：换一张新的首页背景图</h2>
+<p>I had a photo saved in my <code>Personal Website/Images</code> folder — dark teal water with soft concentric ripples. It felt more like me than the lotus. So I asked Claude to swap it in.</p>
+<p>我在 <code>Personal Website/Images</code> 文件夹里有一张照片 — 深青色的水面，柔和的同心涟漪。它比莲花更像我。于是我让 Claude 把它换进去。</p>
+<p><strong>What changed in the code:</strong></p>
+<p>The image is referenced in <code>main.css</code> in two places — once for the homepage hero banner, once for a sidebar panel. Both lines had to be updated:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#75715e">/* Before */</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">background-image</span><span style="color:#f92672">:</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;/images/lotus.jpg&#39;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* After */</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">background-image</span><span style="color:#f92672">:</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;/images/ripple.jpg&#39;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>The photo file was also copied into the site&rsquo;s <code>static/images/</code> folder, and added to the Gallery page using the same <code>&lt;figure&gt;</code> format as the existing lotus entry.</p>
+<p><strong>新概念：静态文件夹 (Static Folder)</strong></p>
+<p>In Hugo, anything placed in the <code>static/</code> folder becomes directly accessible on the website. Put <code>ripple.jpg</code> there, and the site can find it at <code>/images/ripple.jpg</code>. Think of it as the site&rsquo;s public filing cabinet.</p>
+<p>在 Hugo 里，放入 <code>static/</code> 文件夹的内容可以直接在网站上访问。把 <code>ripple.jpg</code> 放进去，网站就能通过 <code>/images/ripple.jpg</code> 找到它。把它想象成网站的公开文件柜。</p>
+<hr>
+<h2 id="change-2-gallery-lightbox--images-that-jump-to-greet-you">Change #2: Gallery Lightbox — Images That Jump to Greet You</h2>
+<h2 id="变化-2图库弹出效果--像打招呼一样弹起来的图片">变化 #2：图库弹出效果 — 像打招呼一样弹起来的图片</h2>
+<p>I wanted gallery images to expand when clicked — not just scale up flatly, but with a little bounce, like a friendly greeting. This is called a <strong>lightbox</strong> effect.</p>
+<p>我希望图库的图片点击后能放大 — 不是平淡地缩放，而是带点弹跳感，像一个友好的打招呼。这叫做<strong>灯箱</strong>效果。</p>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>A hidden overlay (<code>&lt;div id=&quot;lightbox&quot;&gt;</code>) sits invisibly over the whole page</li>
+<li>Clicking an image copies its source into the overlay and makes it visible</li>
+<li>A CSS animation makes the image bounce in using a spring-like curve</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">gallery-bounce</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">0</span><span style="color:#f92672">%</span>   { <span style="color:#66d9ef">transform</span>: scale(<span style="color:#ae81ff">0.4</span>); <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">60</span><span style="color:#f92672">%</span>  { <span style="color:#66d9ef">transform</span>: scale(<span style="color:#ae81ff">1.06</span>); <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">1</span>; }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">80</span><span style="color:#f92672">%</span>  { <span style="color:#66d9ef">transform</span>: scale(<span style="color:#ae81ff">0.97</span>); }
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">100</span><span style="color:#f92672">%</span> { <span style="color:#66d9ef">transform</span>: scale(<span style="color:#ae81ff">1</span>); }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The numbers <code>0.4 → 1.06 → 0.97 → 1</code> are what create the bounce — it overshoots slightly, then settles. Press <code>Esc</code> or click anywhere to close.</p>
+<p>数字 <code>0.4 → 1.06 → 0.97 → 1</code> 就是弹跳的秘密 — 稍微超出一点，然后回落到位。按 <code>Esc</code> 或点击任意处关闭。</p>
+<hr>
+<h2 id="change-3-adding-a-comment-zone-the-main-event">Change #3: Adding a Comment Zone (The Main Event)</h2>
+<h2 id="变化-3添加评论区今天的重头戏">变化 #3：添加评论区（今天的重头戏）</h2>
+<h3 id="why-giscus">Why Giscus?</h3>
+<p>For a static site on GitHub Pages, you can&rsquo;t have a database — so traditional comment systems don&rsquo;t work. <strong>Giscus</strong> solves this by storing comments in <strong>GitHub Discussions</strong>, which is free, has no ads, and fits the minimal style of my site perfectly.</p>
+<p>对于 GitHub Pages 上的静态网站，没有数据库 — 传统评论系统无法使用。<strong>Giscus</strong> 的解法是把评论存储在 <strong>GitHub Discussions</strong> 里，免费、无广告，风格简洁，完全符合我网站的气质。</p>
+<h3 id="the-five-steps-i-completed">The Five Steps I Completed</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Step</th>
+          <th>What I Did</th>
+          <th>How</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Installed the Giscus GitHub App</td>
+          <td><code>github.com/apps/giscus</code> → Install → selected my repo</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Enabled GitHub Discussions</td>
+          <td>Repo Settings → Features → checked Discussions</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Got my Repo ID</td>
+          <td>Claude fetched it via the GitHub API: <code>R_kgDORxEswg</code></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Got my Category ID</td>
+          <td>Visited <code>giscus.app</code>, entered my repo, copied <code>data-category-id</code></td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Typed the Category ID myself</td>
+          <td>Pasted <code>DIC_kwDORxEsws4C5X_o</code> directly into the chat</td>
+      </tr>
+  </tbody>
+</table>
+<p>Step 5 was my choice. I wanted to prove to myself I&rsquo;d actually read and understood the instructions — not just watched Claude do everything.</p>
+<p>第五步是我的主动选择。我想向自己证明，我真的读懂了指引 — 不只是在看 Claude 操作。</p>
+<h3 id="the-error-along-the-way">The Error Along the Way</h3>
+<p>Before the setup was complete, the comment box showed this message:</p>
+<blockquote>
+<p><em>An error occurred: giscus is not installed on this repository</em></p>
+</blockquote>
+<p><strong>What this meant:</strong> The code was correctly placed in the template, but the Giscus app hadn&rsquo;t been installed on GitHub yet. The fix wasn&rsquo;t in the code — it was a permission step in GitHub settings.</p>
+<p><strong>这意味着什么：</strong> 代码已经正确写入模板，但 Giscus 应用还没有在 GitHub 上安装。问题不在代码里 — 而是 GitHub 设置里的一个授权步骤。</p>
+<p><strong>Key lesson:</strong> Not every error means the code is wrong. Sometimes the infrastructure hasn&rsquo;t been set up yet.</p>
+<p><strong>关键领悟：</strong> 不是每个错误都意味着代码写错了。有时候是底层的基础设施还没准备好。</p>
+<h3 id="where-comments-appear-and-where-they-dont">Where Comments Appear (And Where They Don&rsquo;t)</h3>
+<p>Comments only appear on <strong>blog posts</strong> — not on Projects, About, or Gallery. This was done with a one-line condition in the Hugo template:</p>
+<p>评论区只出现在<strong>博客文章</strong>里 — 不在项目、关于或图库页面。这通过 Hugo 模板里的一行条件实现：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ if eq .Section &#34;blog&#34; }}
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- Giscus comment widget --&gt;</span>
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></div><p><strong>What this means in plain English:</strong> &ldquo;Only show the comment section if we&rsquo;re currently inside the blog section.&rdquo;</p>
+<p><strong>用中文说：</strong> &ldquo;只有当前页面属于博客板块时，才显示评论区。&rdquo;</p>
+<hr>
+<h2 id="new-vocabulary--今天学到的新词汇">New Vocabulary / 今天学到的新词汇</h2>
+<h3 id="static-site--静态网站">Static Site / 静态网站</h3>
+<p>A website made of fixed files — HTML, CSS, images. No database, no server-side logic. Fast, cheap to host, but requires creative solutions for dynamic features like comments.</p>
+<p>由固定文件组成的网站 — HTML、CSS、图片。没有数据库，没有服务器端逻辑。速度快、托管便宜，但需要创意来实现评论这样的动态功能。</p>
+<h3 id="github-discussions">GitHub Discussions</h3>
+<p>A built-in feature of GitHub repositories where people can have threaded conversations. Giscus turns these into a blog comment system — each blog post maps to one Discussion thread.</p>
+<p>GitHub 仓库的内置功能，允许人们进行有主题的对话。Giscus 把它变成博客评论系统 — 每篇博客文章对应一个 Discussion 线程。</p>
+<h3 id="node-id--节点-id">Node ID / 节点 ID</h3>
+<p>GitHub&rsquo;s internal identifier for a repository — different from the numeric ID. Giscus requires this specific format (e.g., <code>R_kgDORxEswg</code>) because it uses GitHub&rsquo;s GraphQL API under the hood.</p>
+<p>GitHub 对仓库的内部标识符 — 与数字 ID 不同。Giscus 需要这种特定格式（例如 <code>R_kgDORxEswg</code>），因为它底层使用的是 GitHub 的 GraphQL API。</p>
+<hr>
+<h2 id="summary--今日总结">Summary / 今日总结</h2>
+<table>
+  <thead>
+      <tr>
+          <th>What</th>
+          <th>Result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Hero image</td>
+          <td>Swapped lotus → water ripple</td>
+      </tr>
+      <tr>
+          <td>Gallery</td>
+          <td>New photo added + click-to-enlarge lightbox</td>
+      </tr>
+      <tr>
+          <td>Comment zone</td>
+          <td>Fully live on all blog posts via Giscus</td>
+      </tr>
+      <tr>
+          <td>Bug fixed</td>
+          <td>Comments removed from Projects page</td>
+      </tr>
+      <tr>
+          <td>Personal milestone</td>
+          <td>Typed and submitted a config value myself for the first time</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="a-note-to-my-future-self--写给未来的自己">A Note to My Future Self / 写给未来的自己</h2>
+<p>If you ever need to set up Giscus on a new site, the checklist is:</p>
+<ol>
+<li>Install app at <code>github.com/apps/giscus</code></li>
+<li>Enable Discussions in repo Settings</li>
+<li>Get <code>data-repo-id</code> and <code>data-category-id</code> from <code>giscus.app</code></li>
+<li>Paste both into the <code>single.html</code> template</li>
+<li>Make the comment block conditional: <code>{{ if eq .Section &quot;blog&quot; }}</code></li>
+</ol>
+<p>如果你以后需要在新网站上配置 Giscus，检查清单如下：</p>
+<ol>
+<li>在 <code>github.com/apps/giscus</code> 安装应用</li>
+<li>在仓库设置里开启 Discussions</li>
+<li>从 <code>giscus.app</code> 获取两个 ID</li>
+<li>粘贴到 <code>single.html</code> 模板里</li>
+<li>加上条件判断，只在博客页面显示</li>
+</ol>
+<hr>
+<p><em>Written with Claude Code | Ghostty Terminal | MacBook Pro</em>
+<em>2026-03-27</em></p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

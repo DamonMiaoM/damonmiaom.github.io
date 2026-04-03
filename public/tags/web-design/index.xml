@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Design on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/web-design/</link>
+    <description>Recent content in Web Design on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/web-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</title>
+      <link>https://damonmiaom.github.io/blog/design-upgrade-10-improvements/</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/design-upgrade-10-improvements/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-28-2026&#34;&gt;Learning Log — March 28, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月28日&#34;&gt;学习日志 — 2026年3月28日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; 10 Design Upgrades — From Flat to Felt&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;主题：&lt;/strong&gt; 10 项设计升级——从平淡到有质感&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today I worked with Claude to do a complete design audit of this site and implement 10 improvements — all in one session. We started by fetching the live site, reading the source code, and thinking like a senior web designer across every dimension: structure, aesthetics, motion, accessibility, and interactivity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Principles of Web Design — A Practitioner&#39;s Field Notes</title>
+      <link>https://damonmiaom.github.io/blog/principles-of-web-design/</link>
+      <pubDate>Thu, 26 Mar 2026 22:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/principles-of-web-design/</guid>
+      <description>&lt;p&gt;&lt;em&gt;这篇文章写于我从零开始搭建个人网站之后。它不是教程，不是手册，而是原则——从真实的错误、真实的参考、真实的决策中提炼出来的观察。它借鉴了 Ray Dalio 的写作方式：不是&amp;quot;应该这样做&amp;quot;，而是&amp;quot;我发现事情是这样运作的&amp;quot;。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;This was written after building a personal website from nothing. It is not a tutorial, not a manual, but a set of principles — observations distilled from real mistakes, real references, and real decisions. It borrows from Ray Dalio&amp;rsquo;s approach: not &amp;ldquo;you should do this,&amp;rdquo; but &amp;ldquo;here is how I found things to actually work.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;i-设计即删减--design-is-subtraction&#34;&gt;I. 设计即删减 / Design Is Subtraction&lt;/h2&gt;&#xA;&lt;p&gt;The first instinct is always to add. More color. More sections. More animation. More text. The beginner&amp;rsquo;s page is a cluttered room where every object shouts for attention simultaneously, and nothing is heard.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

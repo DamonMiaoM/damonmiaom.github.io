@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Journal on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/journal/</link>
+    <description>Recent content in Journal on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Mar 2026 18:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/journal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Built a Journal Section with a Web Editor — No Terminal Required</title>
+      <link>https://damonmiaom.github.io/blog/journal-cms-setup/</link>
+      <pubDate>Fri, 27 Mar 2026 18:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/journal-cms-setup/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-27-2026&#34;&gt;Learning Log — March 27, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月27日&#34;&gt;学习日志 — 2026年3月27日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; Building a Journal Section + Web-Based Publishing with Decap CMS&#xA;&lt;strong&gt;主题：&lt;/strong&gt; 创建 Journal 栏目 + 用 Decap CMS 实现网页端直接发布&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today I gave my site a new dimension. I created a separate Journal section — distinct from the Blog — and set up a web-based editor so I can write and publish new entries directly from a browser, without touching the terminal or pushing any code. The path to get there involved more dead ends than expected, but each one taught me something real about how the web works.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

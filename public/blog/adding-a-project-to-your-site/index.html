@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Add a Project to Your Personal Website | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#我们做了什么">我们做了什么</a></li>
+    <li><a href="#整体思路为什么要这样做">整体思路——为什么要这样做</a></li>
+    <li><a href="#核心概念">核心概念</a></li>
+    <li><a href="#完整操作过程">完整操作过程</a>
+      <ul>
+        <li><a href="#第-1-步找到网站文件夹">第 1 步：找到网站文件夹</a></li>
+        <li><a href="#第-2-步找到-projects-页面的源文件">第 2 步：找到 Projects 页面的源文件</a></li>
+        <li><a href="#第-3-步读懂-markdown-格式">第 3 步：读懂 Markdown 格式</a></li>
+        <li><a href="#第-4-步添加新项目">第 4 步：添加新项目</a></li>
+        <li><a href="#第-5-步确认改动git-status">第 5 步：确认改动——<code>git status</code></a></li>
+        <li><a href="#第-6-步暂存改动git-add">第 6 步：暂存改动——<code>git add</code></a></li>
+        <li><a href="#第-7-步提交改动git-commit">第 7 步：提交改动——<code>git commit</code></a></li>
+        <li><a href="#第-8-步推送到-githubgit-push">第 8 步：推送到 GitHub——<code>git push</code></a></li>
+        <li><a href="#第-9-步等待自动发布">第 9 步：等待自动发布</a></li>
+      </ul>
+    </li>
+    <li><a href="#三条命令的完整总结">三条命令的完整总结</a></li>
+    <li><a href="#新手常见问题">新手常见问题</a></li>
+    <li><a href="#整个流程的本质">整个流程的本质</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>How to Add a Project to Your Personal Website</h1>
+      <time>March 26, 2026</time><span class="reading-time"> · 7 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <p><em>一个关于&quot;把新项目展示在个人网站上&quot;的完整记录——每一条命令、每一个概念、每一个新手需要知道的道理。</em></p>
+<p><em>A complete record of how to showcase a new project on your personal website — every command, every concept, and everything a beginner needs to understand.</em></p>
+<hr>
+<h2 id="我们做了什么">我们做了什么</h2>
+<p class="heading-note">What We Built</p>
+<p>在我的个人网站 Projects 页面上，新增了 <strong>Word to PPT Transformer</strong> 这个项目的展示入口——和已有的 AI Glossary 保持一致的格式：项目名称、简介、跳转链接。</p>
+<p>整个过程只需要改动<strong>一个文件</strong>，再执行三条命令。没有界面操作，没有拖拽，全部通过终端完成。</p>
+<p><em>We added the <strong>Word to PPT Transformer</strong> project to the Projects page of the personal website — matching the format of the existing AI Glossary entry: title, description, and a link. The entire process required editing <strong>one file</strong> and running three commands.</em></p>
+<hr>
+<h2 id="整体思路为什么要这样做">整体思路——为什么要这样做</h2>
+<p class="heading-note">The Big Picture — Why We Do It This Way</p>
+<p>在继续之前，先建立一个心智模型：</p>
+<p><em>Before going further, here&rsquo;s the mental model you need:</em></p>
+<pre tabindex="0"><code>你编辑一个文本文件（projects.md）
+        ↓
+Hugo 把它转成网页 HTML（真正的网站）
+        ↓
+Git 追踪你做了哪些改动（像 Word 的&#34;修订追踪&#34;）
+        ↓
+git push 把改动上传到 GitHub
+        ↓
+GitHub Actions 自动重新构建并发布网站
+        ↓
+全世界都能看到更新后的页面
+</code></pre><p><em>You edit a text file → Hugo turns it into a web page → Git tracks your changes → <code>git push</code> uploads to GitHub → GitHub Actions rebuilds and publishes the site → The world sees the update.</em></p>
+<hr>
+<h2 id="核心概念">核心概念</h2>
+<p class="heading-note">Key Concepts</p>
+<table>
+  <thead>
+      <tr>
+          <th>术语</th>
+          <th>通俗解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Markdown</strong></td>
+          <td>一种极简的写作格式，用 <code>##</code> 代替标题、<code>[文字](链接)</code> 代替超链接</td>
+      </tr>
+      <tr>
+          <td><strong><code>content/projects.md</code></strong></td>
+          <td>你网站 Projects 页的&quot;源头&quot;——改这个文件，页面就变了</td>
+      </tr>
+      <tr>
+          <td><strong><code>git add</code></strong></td>
+          <td>把改动&quot;放进打包袋&quot;，准备提交</td>
+      </tr>
+      <tr>
+          <td><strong><code>git commit</code></strong></td>
+          <td>正式保存这个版本，配上一句说明——像给一张照片写注释</td>
+      </tr>
+      <tr>
+          <td><strong><code>git push</code></strong></td>
+          <td>把本地改动上传到 GitHub，触发网站重新发布</td>
+      </tr>
+      <tr>
+          <td><strong>GitHub Actions</strong></td>
+          <td>每次 push 后自动运行的机器人，负责构建和发布网站</td>
+      </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th>Term</th>
+          <th>Plain English</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Markdown</strong></td>
+          <td>A simple writing format — <code>##</code> makes a heading, <code>[text](link)</code> makes a hyperlink</td>
+      </tr>
+      <tr>
+          <td><strong><code>content/projects.md</code></strong></td>
+          <td>The source file for your Projects page — edit this, the page changes</td>
+      </tr>
+      <tr>
+          <td><strong><code>git add</code></strong></td>
+          <td>Put your changes into a &ldquo;bag&rdquo; ready to be committed</td>
+      </tr>
+      <tr>
+          <td><strong><code>git commit</code></strong></td>
+          <td>Officially save this version with a short note — like captioning a photo</td>
+      </tr>
+      <tr>
+          <td><strong><code>git push</code></strong></td>
+          <td>Upload your local changes to GitHub, triggering the site to republish</td>
+      </tr>
+      <tr>
+          <td><strong>GitHub Actions</strong></td>
+          <td>An automated robot that runs every time you push, building and publishing your site</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="完整操作过程">完整操作过程</h2>
+<p class="heading-note">The Full Process, Step by Step</p>
+<h3 id="第-1-步找到网站文件夹">第 1 步：找到网站文件夹</h3>
+<p class="heading-note">Step 1: Locate the Site Folder</p>
+<p>网站的所有文件都存在本地一个文件夹里。我们的在：</p>
+<p><em>All your website files live in a local folder. Ours is at:</em></p>
+<pre tabindex="0"><code>/Users/Damon/Projects/damonmiaom.github.io
+</code></pre><p>这个文件夹就是整个网站的&quot;源码&quot;。你在这里改动内容，再推送到 GitHub，网站就会更新。</p>
+<p><em>This folder is the &ldquo;source&rdquo; of your entire website. Edit content here, push to GitHub, and the site updates.</em></p>
+<hr>
+<h3 id="第-2-步找到-projects-页面的源文件">第 2 步：找到 Projects 页面的源文件</h3>
+<p class="heading-note">Step 2: Find the Projects Page Source File</p>
+<p>Hugo 网站的内容文件都放在 <code>content/</code> 目录下。Projects 页面对应的文件是：</p>
+<p><em>Hugo stores all page content in the <code>content/</code> folder. The Projects page lives at:</em></p>
+<pre tabindex="0"><code>content/projects.md
+</code></pre><p>打开这个文件，可以看到 AI Glossary 项目已经在里面了：</p>
+<p><em>Opening this file, we could see the AI Glossary entry already there:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#34;Projects&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## AI Glossary
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A living reference of AI and machine learning terminology, built for clarity over comprehensiveness.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">View AI Glossary →</span>](<span style="color:#a6e22e">https://damonmiaom.github.io/AI-Glossary/</span>)
+</span></span></code></pre></div><p>这就是整个 Projects 页面的全部内容。没有复杂的 HTML，只有简单的 Markdown 文本。</p>
+<p><em>This is the entire Projects page. No complex HTML — just plain Markdown text.</em></p>
+<hr>
+<h3 id="第-3-步读懂-markdown-格式">第 3 步：读懂 Markdown 格式</h3>
+<p class="heading-note">Step 3: Understanding the Markdown Format</p>
+<p>每个项目的格式是固定的三段式：</p>
+<p><em>Each project follows the same three-part structure:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## 项目名称
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>项目的一句话简介。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">跳转链接文字 →</span>](<span style="color:#a6e22e">项目网址</span>)
+</span></span></code></pre></div><ul>
+<li><code>##</code> = 二级标题，在网页上显示为较大的加粗字体</li>
+<li>下面一行 = 项目简介</li>
+<li><code>[文字](网址)</code> = 超链接，方括号里是显示文字，圆括号里是真实网址</li>
+</ul>
+<p><em><code>##</code> = a second-level heading (rendered as large bold text). The next line is the description. <code>[text](url)</code> is a hyperlink — square brackets hold the display text, parentheses hold the actual URL.</em></p>
+<hr>
+<h3 id="第-4-步添加新项目">第 4 步：添加新项目</h3>
+<p class="heading-note">Step 4: Add the New Project Entry</p>
+<p>按照同样的格式，在文件末尾加上 Word to PPT Transformer：</p>
+<p><em>Following the same format, we added the Word to PPT Transformer at the end of the file:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Word to PPT Transformer
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A web tool that converts Word exam papers into PowerPoint presentations,
+</span></span><span style="display:flex;"><span>making it easy to repurpose educational content for classroom slides.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">View Word to PPT Transformer →</span>](<span style="color:#a6e22e">https://damonmiaom.github.io/Word_To_PPT/</span>)
+</span></span></code></pre></div><p>改动后，完整的 <code>projects.md</code> 文件变成这样：</p>
+<p><em>After the edit, the complete <code>projects.md</code> file looks like this:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#34;Projects&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## AI Glossary
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A living reference of AI and machine learning terminology, built for clarity over comprehensiveness.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">View AI Glossary →</span>](<span style="color:#a6e22e">https://damonmiaom.github.io/AI-Glossary/</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Word to PPT Transformer
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A web tool that converts Word exam papers into PowerPoint presentations,
+</span></span><span style="display:flex;"><span>making it easy to repurpose educational content for classroom slides.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">View Word to PPT Transformer →</span>](<span style="color:#a6e22e">https://damonmiaom.github.io/Word_To_PPT/</span>)
+</span></span></code></pre></div><p>一个项目页面，就是这么简单。</p>
+<p><em>A project page is really that simple.</em></p>
+<hr>
+<h3 id="第-5-步确认改动git-status">第 5 步：确认改动——<code>git status</code></h3>
+<p class="heading-note">Step 5: Check the Changes — `git status`</p>
+<p>在把改动推送出去之前，先确认 Git 知道我们改了什么：</p>
+<p><em>Before pushing, we confirmed Git was aware of our change:</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /Users/Damon/Projects/damonmiaom.github.io
+</span></span><span style="display:flex;"><span>git status
+</span></span></code></pre></div><p>输出结果：</p>
+<p><em>Output:</em></p>
+<pre tabindex="0"><code>On branch main
+Your branch is up to date with &#39;origin/main&#39;.
+
+Changes not staged for commit:
+  modified:   content/projects.md
+</code></pre><p><strong>解读：</strong> <code>modified: content/projects.md</code> 告诉我们，Git 检测到这个文件被改动了，但还没有被&quot;打包&quot;准备提交。</p>
+<p><em>Reading the output: <code>modified: content/projects.md</code> tells us Git detected the change, but it hasn&rsquo;t been staged (packaged) for commit yet.</em></p>
+<hr>
+<h3 id="第-6-步暂存改动git-add">第 6 步：暂存改动——<code>git add</code></h3>
+<p class="heading-note">Step 6: Stage the Change — `git add`</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add content/projects.md
+</span></span></code></pre></div><p>这条命令的意思是：&ldquo;把 <code>content/projects.md</code> 这个文件的改动，放进准备提交的打包袋里。&rdquo;</p>
+<p><em>This command says: &ldquo;Put the changes in <code>content/projects.md</code> into the bag of things I&rsquo;m about to commit.&rdquo;</em></p>
+<p><strong>为什么不直接用 <code>git add .</code>（添加所有文件）？</strong></p>
+<p>因为 <code>.</code> 会把当前目录下的<strong>所有</strong>改动都打包，包括你可能不想提交的临时文件、个人配置等。指定具体文件名是更安全、更清晰的做法。</p>
+<p><em>Why not just <code>git add .</code> (add everything)? Because <code>.</code> would stage <strong>all</strong> changes in the folder — including temporary files or personal configs you might not want to publish. Naming the specific file is safer and cleaner.</em></p>
+<hr>
+<h3 id="第-7-步提交改动git-commit">第 7 步：提交改动——<code>git commit</code></h3>
+<p class="heading-note">Step 7: Commit the Change — `git commit`</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Add Word to PPT Transformer to Projects page&#34;</span>
+</span></span></code></pre></div><p><code>-m</code> 后面跟的是这次提交的<strong>说明信息</strong>（commit message）——简短描述你做了什么。</p>
+<p><em>The <code>-m</code> flag is followed by a <strong>commit message</strong> — a short description of what you changed.</em></p>
+<p>输出结果：</p>
+<p><em>Output:</em></p>
+<pre tabindex="0"><code>[main 75868e7] Add Word to PPT Transformer to Projects page
+ 1 file changed, 6 insertions(+)
+</code></pre><p><strong>解读：</strong></p>
+<ul>
+<li><code>main</code> = 当前所在分支</li>
+<li><code>75868e7</code> = 这次提交的唯一 ID（哈希值）——Git 自动生成</li>
+<li><code>1 file changed, 6 insertions(+)</code> = 改动了 1 个文件，新增了 6 行内容</li>
+</ul>
+<p><em>Reading the output: <code>main</code> is the current branch. <code>75868e7</code> is the unique ID (hash) Git auto-generated for this commit. <code>1 file changed, 6 insertions(+)</code> confirms exactly what changed.</em></p>
+<p><strong>类比：</strong> <code>git commit</code> 就像在 Word 里点击&quot;另存为新版本&quot;，并给这个版本写一个备注。</p>
+<p><em>Analogy: <code>git commit</code> is like &ldquo;Save as new version&rdquo; in Word — with a label describing what changed.</em></p>
+<hr>
+<h3 id="第-8-步推送到-githubgit-push">第 8 步：推送到 GitHub——<code>git push</code></h3>
+<p class="heading-note">Step 8: Push to GitHub — `git push`</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git push origin main
+</span></span></code></pre></div><p><strong>逐词解释：</strong></p>
+<p><em>Word by word:</em></p>
+<ul>
+<li><code>git push</code> = 把本地的提交上传到远程服务器</li>
+<li><code>origin</code> = 远程服务器的名字（默认叫 <code>origin</code>，指向 GitHub 上的仓库）</li>
+<li><code>main</code> = 推送到哪个分支（<code>main</code> 是主分支，也是网站的来源分支）</li>
+</ul>
+<p>输出结果：</p>
+<p><em>Output:</em></p>
+<pre tabindex="0"><code>To https://github.com/DamonMiaoM/damonmiaom.github.io.git
+   4c93d88..75868e7  main -&gt; main
+</code></pre><p><strong>解读：</strong> 这一行告诉我们，GitHub 上的 <code>main</code> 分支已经从提交 <code>4c93d88</code> 更新到了 <code>75868e7</code>——正是我们刚才的那次提交。</p>
+<p><em>Reading the output: This line confirms GitHub&rsquo;s <code>main</code> branch was updated from commit <code>4c93d88</code> to <code>75868e7</code> — our new commit.</em></p>
+<hr>
+<h3 id="第-9-步等待自动发布">第 9 步：等待自动发布</h3>
+<p class="heading-note">Step 9: Wait for Automatic Publishing</p>
+<p><code>git push</code> 完成后，我们什么都不用再做了。</p>
+<p><em>After <code>git push</code> completes, nothing else is needed.</em></p>
+<p>GitHub 收到推送后，会自动触发一个叫 <strong>GitHub Actions</strong> 的流程：</p>
+<p><em>GitHub receives the push and automatically triggers a process called <strong>GitHub Actions</strong>:</em></p>
+<pre tabindex="0"><code>git push 完成
+    ↓
+GitHub 收到新提交
+    ↓
+GitHub Actions 工作流启动
+    ↓
+Hugo 重新构建整个网站（~30秒）
+    ↓
+新网站文件自动发布到 GitHub Pages
+    ↓
+约 1 分钟后，damonmiaom.github.io 显示最新内容
+</code></pre><p>你可以在 GitHub 仓库的 <strong>Actions</strong> 标签页看到这个过程的实时状态。绿色 ✅ 表示成功，红色 ❌ 表示出了问题。</p>
+<p><em>You can watch this process in real time under the <strong>Actions</strong> tab of your GitHub repository. Green ✅ means success; red ❌ means something went wrong.</em></p>
+<hr>
+<h2 id="三条命令的完整总结">三条命令的完整总结</h2>
+<p class="heading-note">The Three Commands — A Complete Summary</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 第一步：把改动放进&#34;打包袋&#34;</span>
+</span></span><span style="display:flex;"><span>git add content/projects.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 第二步：正式保存这个版本，并写上说明</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Add Word to PPT Transformer to Projects page&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 第三步：上传到 GitHub，触发网站自动更新</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span></code></pre></div><p>这三条命令是你在这个网站上发布任何内容都会用到的核心流程。记住它们。</p>
+<p><em>These three commands are the core workflow for publishing anything on this site. Memorize them.</em></p>
+<hr>
+<h2 id="新手常见问题">新手常见问题</h2>
+<p class="heading-note">Common Beginner Questions</p>
+<p><strong>Q：为什么不能直接在 GitHub 网页上编辑？</strong></p>
+<p>可以。但在本地编辑再推送，你可以先在自己电脑上预览效果，也更容易养成好习惯。</p>
+<p><em>A: You can. But editing locally and pushing lets you preview before publishing, and builds better habits.</em></p>
+<hr>
+<p><strong>Q：commit message 重要吗？</strong></p>
+<p>非常重要。几个月后回头看历史记录时，&ldquo;Add Word to PPT Transformer to Projects page&rdquo; 比 &ldquo;update&rdquo; 有意义得多。写清楚&quot;做了什么&quot;，对未来的自己是一种善意。</p>
+<p><em>A: Very. &ldquo;Add Word to PPT Transformer to Projects page&rdquo; is far more useful than &ldquo;update&rdquo; when you look back months later. Be kind to your future self.</em></p>
+<hr>
+<p><strong>Q：推送后多久能看到更新？</strong></p>
+<p>通常 30 秒到 1 分钟。如果等了 3 分钟还没更新，去 GitHub Actions 标签页检查是否有错误。</p>
+<p><em>A: Usually 30 seconds to 1 minute. If it hasn&rsquo;t updated after 3 minutes, check the GitHub Actions tab for errors.</em></p>
+<hr>
+<p><strong>Q：如果写错了怎么办？</strong></p>
+<p>直接改文件，再走一遍 <code>git add</code> → <code>git commit</code> → <code>git push</code> 流程，新版本会覆盖旧版本。</p>
+<p><em>A: Just edit the file again and run the same three commands. The new version will overwrite the old one.</em></p>
+<hr>
+<h2 id="整个流程的本质">整个流程的本质</h2>
+<p class="heading-note">The Essence of This Workflow</p>
+<p>你刚刚做的事情，和全世界所有软件工程师每天在做的事情，在本质上是一样的：</p>
+<p><em>What you just did is, in essence, the same thing every software engineer in the world does every day:</em></p>
+<ol>
+<li><strong>修改文件</strong> — 做出改变 / <strong>Edit a file</strong> — make a change</li>
+<li><strong><code>git add</code></strong> — 确认要提交什么 / <strong><code>git add</code></strong> — decide what to commit</li>
+<li><strong><code>git commit</code></strong> — 保存版本快照 / <strong><code>git commit</code></strong> — save a snapshot</li>
+<li><strong><code>git push</code></strong> — 发布到世界 / <strong><code>git push</code></strong> — publish to the world</li>
+</ol>
+<p>规模可以从个人网站扩展到几百人的工程团队——但这个核心循环永远不变。</p>
+<p><em>The scale might range from a personal website to a team of hundreds — but this core loop never changes.</em></p>
+<hr>
+<p><em>&ldquo;每一个大项目，都是从改动一个文件开始的。&rdquo;</em></p>
+<p><em>&ldquo;Every big project starts with editing one file.&rdquo;</em></p>
+<p class="post-revised">Published: Mar 26, 2026, 16:00</p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

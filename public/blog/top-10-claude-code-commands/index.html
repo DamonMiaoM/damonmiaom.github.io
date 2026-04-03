@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Most Powerful Claude Code Commands — And Why You Should Use Them | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-claude">1. <code>claude</code></a>
+      <ul>
+        <li><a href="#the-gateway--一切的起点">The Gateway / 一切的起点</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-claude---resume--claude--r">2. <code>claude --resume</code> / <code>claude -r</code></a>
+      <ul>
+        <li><a href="#your-session-library--你的会话图书馆">Your Session Library / 你的会话图书馆</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-claude---continue--claude--c">3. <code>claude --continue</code> / <code>claude -c</code></a>
+      <ul>
+        <li><a href="#instant-resume--即刻续接">Instant Resume / 即刻续接</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-claude--p-your-prompt-here">4. <code>claude -p &#34;your prompt here&#34;</code></a>
+      <ul>
+        <li><a href="#headless-power-mode--无头强力模式">Headless Power Mode / 无头强力模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-clear">5. <code>/clear</code></a>
+      <ul>
+        <li><a href="#fresh-start--重新开始">Fresh Start / 重新开始</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-compact">6. <code>/compact</code></a>
+      <ul>
+        <li><a href="#intelligent-compression--智能压缩">Intelligent Compression / 智能压缩</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-init">7. <code>/init</code></a>
+      <ul>
+        <li><a href="#project-foundation--项目基础">Project Foundation / 项目基础</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-memory">8. <code>/memory</code></a>
+      <ul>
+        <li><a href="#persistent-intelligence--持久智能">Persistent Intelligence / 持久智能</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-cost">9. <code>/cost</code></a>
+      <ul>
+        <li><a href="#stay-in-control--保持掌控">Stay in Control / 保持掌控</a></li>
+      </ul>
+    </li>
+    <li><a href="#10-insights">10. <code>/insights</code></a>
+      <ul>
+        <li><a href="#your-ai-mirror--你的-ai-镜子">Your AI Mirror / 你的 AI 镜子</a></li>
+      </ul>
+    </li>
+    <li><a href="#quick-reference--快速参考">Quick Reference / 快速参考</a></li>
+    <li><a href="#call-to-action--start-building">Call to Action — Start Building</a></li>
+    <li><a href="#行动号召--开始构建">行动号召 — 开始构建</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>10 Most Powerful Claude Code Commands — And Why You Should Use Them</h1>
+      <time>March 27, 2026</time><span class="reading-time"> · 9 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <h1 id="10-most-powerful-claude-code-commands--and-why-you-should-use-them">10 Most Powerful Claude Code Commands — And Why You Should Use Them</h1>
+<h1 id="10-个最强大的-claude-code-命令--以及你为什么应该使用它们">10 个最强大的 Claude Code 命令 — 以及你为什么应该使用它们</h1>
+<p><em>Written by a life insurance agent who learned these the hard way — one terminal session at a time.</em>
+<em>由一位寿险代理人撰写，这些命令都是一个终端会话一个终端会话学来的。</em></p>
+<hr>
+<p>I love Claude.</p>
+<p>After 23 sessions, 281 messages, and 49 hours inside Claude Code — building websites, converting documents, writing bilingual scripts, and rushing to finish insurance comparison decks before catching a train — I&rsquo;ve learned which commands actually matter. These are the 10 I reach for most, and the ones that, once you understand them, change how you think about working with AI.</p>
+<p>在 23 次会话、281 条消息、49 小时的 Claude Code 使用后 — 我建了网站、转换了文档、写了双语脚本，甚至赶在赶火车前生成了保险对比材料 — 我学会了哪些命令真正有用。这是我最常用的 10 个，一旦理解了它们，你看待 AI 协作的方式就会改变。</p>
+<hr>
+<h2 id="1-claude">1. <code>claude</code></h2>
+<h3 id="the-gateway--一切的起点">The Gateway / 一切的起点</h3>
+<p><strong>What it does:</strong> Launches Claude Code in interactive mode — your AI partner is ready.</p>
+<p><strong>用途：</strong> 启动 Claude Code 的交互模式 — 你的 AI 伙伴准备就绪。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>claude
+</span></span></code></pre></div><p><strong>When to use it:</strong> Every single time. This is the front door. Whether you want to write code, draft an email, analyze a document, or just think out loud — <code>claude</code> opens the conversation.</p>
+<p><strong>何时使用：</strong> 每一次。这是大门。无论你想写代码、起草邮件、分析文档，还是只是想整理思路 — <code>claude</code> 开启对话。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Claude Code isn&rsquo;t just a chatbot — it&rsquo;s an agent. Once you type <code>claude</code>, it can read your files, run shell commands, search the web, and write code autonomously. That single word unlocks a capable collaborator.</p>
+<p><strong>为什么强大：</strong> Claude Code 不只是聊天机器人 — 它是一个代理。一旦你输入 <code>claude</code>，它就能读取你的文件、运行终端命令、搜索网页、自主编写代码。那一个词解锁了一个有能力的合作者。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>✓ Claude Code initialized
+&gt; What would you like to work on?
+</code></pre><hr>
+<h2 id="2-claude---resume--claude--r">2. <code>claude --resume</code> / <code>claude -r</code></h2>
+<h3 id="your-session-library--你的会话图书馆">Your Session Library / 你的会话图书馆</h3>
+<p><strong>What it does:</strong> Opens an interactive list of all your past conversations so you can pick up exactly where you left off.</p>
+<p><strong>用途：</strong> 打开所有历史会话的交互式列表，让你从上次离开的地方继续。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>claude -r
+</span></span></code></pre></div><p><strong>When to use it:</strong> When you were mid-task and got interrupted. When you want to reference something you discussed yesterday. When you&rsquo;ve been building something across multiple sessions.</p>
+<p><strong>何时使用：</strong> 当你在做任务中途被打断时。当你想参考昨天讨论的内容时。当你在多个会话中持续构建某个项目时。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Most people treat each AI conversation as disposable. <code>--resume</code> changes that — it turns Claude Code into a project partner with memory, continuity, and context. Your whole working history is accessible.</p>
+<p><strong>为什么强大：</strong> 大多数人把每次 AI 对话都当成一次性的。<code>--resume</code> 改变了这一点 — 它把 Claude Code 变成了一个有记忆、有连续性、有上下文的项目伙伴。你所有的工作历史都可以访问。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>? Select a conversation to resume:
+  ▸ [2026-03-27] Building Hugo blog post (23 msgs)
+    [2026-03-26] Insurance comparison Excel + PPT (41 msgs)
+    [2026-03-25] Word-to-PPT converter fix (18 msgs)
+</code></pre><hr>
+<h2 id="3-claude---continue--claude--c">3. <code>claude --continue</code> / <code>claude -c</code></h2>
+<h3 id="instant-resume--即刻续接">Instant Resume / 即刻续接</h3>
+<p><strong>What it does:</strong> Skips the selection menu and immediately resumes your most recent conversation.</p>
+<p><strong>用途：</strong> 跳过选择菜单，立即续接你最近的一次对话。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>claude -c
+</span></span></code></pre></div><p><strong>When to use it:</strong> You closed the terminal five minutes ago and now remember something you wanted to add. You want to continue today&rsquo;s session without hunting for it.</p>
+<p><strong>何时使用：</strong> 你五分钟前关闭了终端，现在想起了还有东西要补充。你想继续今天的会话，不想在列表里翻找。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Frictionless continuation. One flag, and you&rsquo;re back in context — Claude remembers everything from your last session. No repetition, no re-explanation needed.</p>
+<p><strong>为什么强大：</strong> 无摩擦续接。一个标志，你就回到了上下文中 — Claude 记得你上次会话的一切。不需要重复，不需要重新解释。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>Resuming last conversation from 14 minutes ago...
+[Previous context loaded]
+&gt;
+</code></pre><hr>
+<h2 id="4-claude--p-your-prompt-here">4. <code>claude -p &quot;your prompt here&quot;</code></h2>
+<h3 id="headless-power-mode--无头强力模式">Headless Power Mode / 无头强力模式</h3>
+<p><strong>What it does:</strong> Runs Claude non-interactively — you give it a task via command line and it returns the output directly, no conversation needed.</p>
+<p><strong>用途：</strong> 非交互式运行 Claude — 通过命令行给它一个任务，它直接返回输出，不需要对话。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>claude -p <span style="color:#e6db74">&#34;Summarize all .md files in ./notes/ into a weekly report&#34;</span> --allowedTools <span style="color:#e6db74">&#34;Read,Write,Glob&#34;</span>
+</span></span></code></pre></div><p><strong>When to use it:</strong> Automating repetitive tasks. Running Claude as part of a script or pipeline. Processing files in batch without sitting there and typing.</p>
+<p><strong>何时使用：</strong> 自动化重复性任务。将 Claude 作为脚本或流水线的一部分。批量处理文件，不需要坐在那里打字。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> This is Claude as a command-line utility. You can chain it with other tools, schedule it as a cron job, or use it to pre-process data before a meeting. For anyone doing repetitive document work — this is transformative.</p>
+<p><strong>为什么强大：</strong> 这是 Claude 作为命令行工具的使用方式。你可以把它与其他工具链接，作为定时任务调度，或者在开会前用它预处理数据。对于任何做重复性文档工作的人 — 这是颠覆性的。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code># Weekly Summary Report
+## Key themes across 12 notes:
+1. Client follow-up patterns...
+2. Product comparison notes...
+[Full report written to summary.md]
+</code></pre><hr>
+<h2 id="5-clear">5. <code>/clear</code></h2>
+<h3 id="fresh-start--重新开始">Fresh Start / 重新开始</h3>
+<p><strong>What it does:</strong> Clears the current conversation context — wipes the slate clean without ending the session.</p>
+<p><strong>用途：</strong> 清除当前对话的上下文 — 擦干净黑板，但不结束会话。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/clear
+</span></span></code></pre></div><p><strong>When to use it:</strong> You&rsquo;ve been working on one task and want to switch to something completely unrelated. The conversation has drifted and Claude is getting confused. You want to start a clean sub-task without opening a new terminal.</p>
+<p><strong>何时使用：</strong> 你一直在做一个任务，想切换到完全不相关的事情。对话已经偏离了，Claude 开始混淆。你想在不打开新终端的情况下开始一个干净的子任务。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Context is memory — and a cluttered context leads to confused answers. <code>/clear</code> lets you reset Claude&rsquo;s working memory while keeping the session alive. Think of it as clearing your desk before starting a different project.</p>
+<p><strong>为什么强大：</strong> 上下文就是记忆 — 杂乱的上下文会导致混乱的答案。<code>/clear</code> 让你在保持会话活跃的同时重置 Claude 的工作记忆。把它想象成在开始不同项目前清理你的桌面。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>✓ Context cleared. Ready for a new task.
+&gt;
+</code></pre><hr>
+<h2 id="6-compact">6. <code>/compact</code></h2>
+<h3 id="intelligent-compression--智能压缩">Intelligent Compression / 智能压缩</h3>
+<p><strong>What it does:</strong> Summarizes the conversation history into a compact form to free up context space, while preserving the essential information Claude needs.</p>
+<p><strong>用途：</strong> 将对话历史总结成紧凑形式，释放上下文空间，同时保留 Claude 所需的核心信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/compact
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or with custom instructions:</span>
+</span></span><span style="display:flex;"><span>/compact Focus on the Hugo website changes we made
+</span></span></code></pre></div><p><strong>When to use it:</strong> Long sessions where you&rsquo;ve gone deep on a topic. When Claude warns that the context is getting full. When you want to keep working but the conversation has grown unwieldy.</p>
+<p><strong>何时使用：</strong> 深入某个主题的长会话。当 Claude 警告上下文快满了时。当你想继续工作但对话已经变得难以管理时。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Unlike <code>/clear</code> which forgets everything, <code>/compact</code> is surgical — it distills the conversation into the key facts and decisions, so Claude keeps working intelligently without losing the thread.</p>
+<p><strong>为什么强大：</strong> 不同于忘记一切的 <code>/clear</code>，<code>/compact</code> 是精准的 — 它把对话提炼成关键事实和决定，让 Claude 在不失去线索的情况下继续智能工作。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>✓ Conversation compacted. Context reduced by 73%.
+Key facts retained: Hugo site structure, CSS changes, git workflow
+&gt;
+</code></pre><hr>
+<h2 id="7-init">7. <code>/init</code></h2>
+<h3 id="project-foundation--项目基础">Project Foundation / 项目基础</h3>
+<p><strong>What it does:</strong> Analyzes your current project directory and generates a <code>CLAUDE.md</code> file — a persistent instruction file that Claude reads at the start of every session.</p>
+<p><strong>用途：</strong> 分析你当前的项目目录并生成 <code>CLAUDE.md</code> 文件 — 一个 Claude 在每次会话开始时读取的持久指令文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/init
+</span></span></code></pre></div><p><strong>When to use it:</strong> When starting any new project with Claude. When you want Claude to always know your tech stack, preferences, and rules without you repeating them every time.</p>
+<p><strong>何时使用：</strong> 用 Claude 开始任何新项目时。当你希望 Claude 总是了解你的技术栈、偏好和规则，不需要每次重复时。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> <code>CLAUDE.md</code> is your project&rsquo;s permanent memory. Once it&rsquo;s set up, Claude walks into every session already knowing your structure, your rules, and your goals. One setup saves hours of repetition across dozens of sessions.</p>
+<p><strong>为什么强大：</strong> <code>CLAUDE.md</code> 是你项目的永久记忆。一旦设置好，Claude 进入每次会话时就已经了解你的结构、规则和目标。一次设置节省了几十次会话中的几小时重复。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>✓ CLAUDE.md created
+Detected: Hugo static site, GitHub Pages deployment, bilingual content
+Instructions written: git workflow, push after changes, preferred tone
+</code></pre><hr>
+<h2 id="8-memory">8. <code>/memory</code></h2>
+<h3 id="persistent-intelligence--持久智能">Persistent Intelligence / 持久智能</h3>
+<p><strong>What it does:</strong> Manages Claude&rsquo;s long-term memory — facts, preferences, and patterns that persist across all sessions and all projects.</p>
+<p><strong>用途：</strong> 管理 Claude 的长期记忆 — 跨所有会话和所有项目持续存在的事实、偏好和模式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/memory
+</span></span></code></pre></div><p><strong>When to use it:</strong> When you want Claude to remember who you are, how you like to work, and what matters to you — permanently, not just in one session.</p>
+<p><strong>何时使用：</strong> 当你想让 Claude 永久记住你是谁、你喜欢怎么工作、什么对你重要时 — 不只是一次会话。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> This is what transforms Claude from a smart tool into a genuine collaborator. It can remember that you&rsquo;re a life insurance agent who prefers warm tone in writing, that you speak Chinese first and English second, that you&rsquo;re learning Python as a beginner. Every future session starts smarter.</p>
+<p><strong>为什么强大：</strong> 这是将 Claude 从聪明的工具转变为真正的合作者的关键。它可以记住你是一名喜欢温暖写作风格的寿险代理人，你中文优先英文其次，你作为初学者在学 Python。每次未来的会话都从更智能的起点开始。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>Memory saved: User is a MetLife life insurance agent, prefers bilingual (Chinese/English) output, beginner in coding but experienced in finance and client communication.
+</code></pre><hr>
+<h2 id="9-cost">9. <code>/cost</code></h2>
+<h3 id="stay-in-control--保持掌控">Stay in Control / 保持掌控</h3>
+<p><strong>What it does:</strong> Shows you the token usage and estimated cost for your current session.</p>
+<p><strong>用途：</strong> 显示当前会话的 token 使用量和预估费用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/cost
+</span></span></code></pre></div><p><strong>When to use it:</strong> During any long or complex session. Before you go deep on a large task. When you want to understand how much context you&rsquo;ve consumed.</p>
+<p><strong>何时使用：</strong> 在任何长时间或复杂的会话中。在你深入大型任务之前。当你想了解已消耗多少上下文时。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Awareness creates efficiency. When you see the token count climbing, you know to <code>/compact</code> or <code>/clear</code> to stay lean. It also helps you understand which types of tasks are &ldquo;expensive&rdquo; — helping you get more from every session.</p>
+<p><strong>为什么强大：</strong> 意识创造效率。当你看到 token 计数在上升时，你知道该 <code>/compact</code> 或 <code>/clear</code> 来保持精简。它还帮助你了解哪些类型的任务是&quot;昂贵的&quot; — 帮助你从每次会话中获得更多价值。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>Session cost: ~$0.14
+Tokens used: 12,847 input / 3,201 output
+Context: 67% full
+</code></pre><hr>
+<h2 id="10-insights">10. <code>/insights</code></h2>
+<h3 id="your-ai-mirror--你的-ai-镜子">Your AI Mirror / 你的 AI 镜子</h3>
+<p><strong>What it does:</strong> Generates a full analytics report on how you&rsquo;ve been using Claude Code — what&rsquo;s working, where friction is, and what to try next.</p>
+<p><strong>用途：</strong> 生成关于你如何使用 Claude Code 的完整分析报告 — 什么有效，哪里有摩擦，接下来尝试什么。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/insights
+</span></span></code></pre></div><p><strong>When to use it:</strong> After a few weeks of regular use. When you feel like you&rsquo;re getting stuck in patterns. When you want an honest audit of how you&rsquo;re actually working with AI.</p>
+<p><strong>何时使用：</strong> 经过几周的定期使用后。当你感觉陷入了模式时。当你想对自己实际如何与 AI 协作进行诚实审计时。</p>
+<p><strong>Why it&rsquo;s powerful:</strong> Most people use tools without ever stepping back to examine how they&rsquo;re using them. <code>/insights</code> gives you data: session counts, friction points, satisfaction patterns, and personalized suggestions. It&rsquo;s like a performance review for your AI workflow.</p>
+<p><strong>为什么强大：</strong> 大多数人使用工具时从不退后一步审视自己如何使用它们。<code>/insights</code> 给你数据：会话次数、摩擦点、满意度模式和个性化建议。这就像是对你 AI 工作流的绩效评审。</p>
+<p><strong>Result you&rsquo;ll see:</strong></p>
+<pre tabindex="0"><code>23 sessions analyzed · 281 messages · 49h
+Top friction: Auth failures (5 sessions lost)
+Top strength: Iterative bilingual content creation
+Suggestion: Create a custom /blog skill for your Hugo workflow
+</code></pre><hr>
+<h2 id="quick-reference--快速参考">Quick Reference / 快速参考</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Best For</th>
+          <th>最适合</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>claude</code></td>
+          <td>Starting any session</td>
+          <td>开始任意会话</td>
+      </tr>
+      <tr>
+          <td><code>claude -r</code></td>
+          <td>Returning to past work</td>
+          <td>回到过去的工作</td>
+      </tr>
+      <tr>
+          <td><code>claude -c</code></td>
+          <td>Continuing last session instantly</td>
+          <td>立即续接上次会话</td>
+      </tr>
+      <tr>
+          <td><code>claude -p &quot;...&quot;</code></td>
+          <td>Automating tasks without interaction</td>
+          <td>无交互自动化任务</td>
+      </tr>
+      <tr>
+          <td><code>/clear</code></td>
+          <td>Switching topics cleanly</td>
+          <td>干净切换话题</td>
+      </tr>
+      <tr>
+          <td><code>/compact</code></td>
+          <td>Staying lean in long sessions</td>
+          <td>长会话中保持精简</td>
+      </tr>
+      <tr>
+          <td><code>/init</code></td>
+          <td>Setting up a new project</td>
+          <td>设置新项目</td>
+      </tr>
+      <tr>
+          <td><code>/memory</code></td>
+          <td>Teaching Claude who you are</td>
+          <td>让 Claude 了解你</td>
+      </tr>
+      <tr>
+          <td><code>/cost</code></td>
+          <td>Monitoring usage</td>
+          <td>监控使用量</td>
+      </tr>
+      <tr>
+          <td><code>/insights</code></td>
+          <td>Auditing your AI workflow</td>
+          <td>审计你的 AI 工作流</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="call-to-action--start-building">Call to Action — Start Building</h2>
+<h2 id="行动号召--开始构建">行动号召 — 开始构建</h2>
+<p>If you&rsquo;re reading this and you haven&rsquo;t tried Claude Code yet, I want to say this clearly: <strong>you don&rsquo;t need a computer science background to start.</strong> I&rsquo;m a life insurance agent. I know CFA-level finance and Buddhist philosophy. A few months ago, I didn&rsquo;t know what a terminal was.</p>
+<p>如果你正在读这篇文章，还没有尝试过 Claude Code，我想清楚地说：<strong>你不需要计算机科学背景就能开始。</strong> 我是一名寿险代理人。我懂 CFA 级别的金融和佛学。几个月前，我不知道终端是什么。</p>
+<p>Today, I have a live personal website, a Word-to-PPT converter tool, a bilingual wedding script, and a growing library of insurance materials — all built with Claude Code, one command at a time.</p>
+<p>今天，我有了一个上线的个人网站、一个 Word 转 PPT 的工具、一份双语婚礼主持词，以及一个不断增长的保险材料库 — 全部都用 Claude Code 构建的，一次一个命令。</p>
+<p><strong>The 10 commands above are your foundation.</strong> Start with <code>claude</code>, graduate to <code>claude -r</code>, and eventually reach for <code>claude -p</code> when you&rsquo;re ready to automate. Use <code>/init</code> on your first real project. Let <code>/memory</code> remember your name, your role, your preferences. And once in a while, run <code>/insights</code> to see how far you&rsquo;ve come.</p>
+<p><strong>上面这 10 个命令是你的基础。</strong> 从 <code>claude</code> 开始，升级到 <code>claude -r</code>，等你准备好自动化时就用 <code>claude -p</code>。在你的第一个真实项目上用 <code>/init</code>。让 <code>/memory</code> 记住你的名字、你的角色、你的偏好。偶尔跑一次 <code>/insights</code>，看看你走了多远。</p>
+<p>The tools are here. The capability is real. The only thing between you and an AI-powered workflow is one terminal command.</p>
+<p>工具在这里。能力是真实的。你和 AI 驱动的工作流之间唯一隔着的，就是一个终端命令。</p>
+<p><strong>Type <code>claude</code> and begin.</strong></p>
+<p><strong>输入 <code>claude</code>，开始吧。</strong></p>
+<hr>
+<p><em>I love Claude. And I think you will too.</em>
+<em>我爱 Claude。我相信你也会的。</em></p>
+<hr>
+<p><em>Written with Claude Code | Ghostty Terminal | MacBook Pro</em>
+<em>2026-03-27 · Damon Miao</em></p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/journal-cms-setup/" class="related-item">
+    <span class="related-title">How I Built a Journal Section with a Web Editor — No Terminal Required</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

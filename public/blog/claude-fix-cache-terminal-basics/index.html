@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My App Was Spinning and I Had No Idea Why — Here&#39;s How I Fixed It | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</a></li>
+    <li><a href="#obstacle-1-how-do-i-know-if-im-logged-in">Obstacle #1: How Do I Know If I&rsquo;m Logged In?</a></li>
+    <li><a href="#问题-1怎么知道自己是否已登录">问题 #1：怎么知道自己是否已登录？</a></li>
+    <li><a href="#obstacle-2-claude-desktop-app-stuck-on-a-loading-spinner">Obstacle #2: Claude Desktop App Stuck on a Loading Spinner</a></li>
+    <li><a href="#问题-2claude-桌面应用卡在加载转圈圈">问题 #2：Claude 桌面应用卡在加载转圈圈</a>
+      <ul>
+        <li><a href="#the-command-i-used--使用的命令">The Command I Used / 使用的命令</a></li>
+        <li><a href="#how-i-verified-it-worked--如何确认成功了">How I Verified It Worked / 如何确认成功了</a></li>
+      </ul>
+    </li>
+    <li><a href="#new-vocabulary--今天学到的新词汇">New Vocabulary / 今天学到的新词汇</a>
+      <ul>
+        <li><a href="#cache--缓存">Cache / 缓存</a></li>
+        <li><a href="#terminal-no-news-is-good-news-rule--终端的没消息就是好消息规则">Terminal &ldquo;No News Is Good News&rdquo; Rule / 终端的&quot;没消息就是好消息&quot;规则</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-quote-commands-in-conversation--日常英文怎么提到命令">How to Quote Commands in Conversation / 日常英文怎么提到命令</a></li>
+    <li><a href="#a-new-habit-born-today--今天养成的新习惯">A New Habit Born Today / 今天养成的新习惯</a></li>
+    <li><a href="#summary--今日总结">Summary / 今日总结</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>My App Was Spinning and I Had No Idea Why — Here&#39;s How I Fixed It</h1>
+      <time>March 27, 2026</time><span class="reading-time"> · 4 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <h1 id="learning-log--march-27-2026">Learning Log — March 27, 2026</h1>
+<h1 id="学习日志--2026年3月27日">学习日志 — 2026年3月27日</h1>
+<p><strong>Topic:</strong> Fixing the Claude Desktop App &amp; Learning Terminal Basics
+<strong>主题：</strong> 修复 Claude 桌面应用 &amp; 终端基础入门</p>
+<hr>
+<h2 id="what-happened-today--今天发生了什么">What Happened Today / 今天发生了什么</h2>
+<p>Today was a hands-on day. I ran into a real problem with the Claude desktop app and solved it step by step using the terminal. Along the way, I picked up some foundational knowledge about how computers work behind the scenes.</p>
+<p>今天是实战日。我遇到了 Claude 桌面应用的一个真实问题，并一步步通过终端解决了它。过程中，我学到了一些关于计算机幕后工作原理的基础知识。</p>
+<hr>
+<h2 id="obstacle-1-how-do-i-know-if-im-logged-in">Obstacle #1: How Do I Know If I&rsquo;m Logged In?</h2>
+<h2 id="问题-1怎么知道自己是否已登录">问题 #1：怎么知道自己是否已登录？</h2>
+<p><strong>The question:</strong> I wasn&rsquo;t sure if I was logged in to Claude Code.</p>
+<p><strong>What I learned:</strong> If you&rsquo;re already chatting inside Claude Code (like in Ghostty terminal), that itself proves you&rsquo;re logged in. But you can also verify with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>claude --version
+</span></span></code></pre></div><p>This returned: <code>2.1.85 (Claude Code)</code> — confirming the app is running and I&rsquo;m logged in.</p>
+<p><strong>Key takeaway:</strong> In the terminal, a successful command often just returns a result with no fanfare. If it doesn&rsquo;t say &ldquo;error&rdquo;, you&rsquo;re good.</p>
+<p><strong>今天学到的：</strong> 如果你已经在 Claude Code 里面聊天了（比如在 Ghostty 终端里），这本身就证明你已经登录了。也可以用 <code>claude --version</code> 命令来确认。</p>
+<hr>
+<h2 id="obstacle-2-claude-desktop-app-stuck-on-a-loading-spinner">Obstacle #2: Claude Desktop App Stuck on a Loading Spinner</h2>
+<h2 id="问题-2claude-桌面应用卡在加载转圈圈">问题 #2：Claude 桌面应用卡在加载转圈圈</h2>
+<p><strong>The problem:</strong> I opened the Claude desktop app and it just showed a spinning circle — nothing loaded.</p>
+<p><strong>问题描述：</strong> 打开 Claude 桌面应用，只有一个转圈圈，什么都加载不出来。</p>
+<p><strong>The fix:</strong> Clear the app&rsquo;s cache by deleting its data folder.</p>
+<p><strong>解决方法：</strong> 清除应用缓存，删除它的数据文件夹。</p>
+<h3 id="the-command-i-used--使用的命令">The Command I Used / 使用的命令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf ~/Library/Application<span style="color:#ae81ff">\ </span>Support/Claude/
+</span></span></code></pre></div><p><strong>Breaking it down / 命令拆解：</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Part</th>
+          <th>What it means</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>rm</code></td>
+          <td>&ldquo;remove&rdquo; — delete something / 删除</td>
+      </tr>
+      <tr>
+          <td><code>-rf</code></td>
+          <td>forcefully delete everything inside, no questions asked / 强制删除所有内容</td>
+      </tr>
+      <tr>
+          <td><code>~/Library/Application Support/Claude/</code></td>
+          <td>the folder where Claude stores its local data / Claude 存储本地数据的文件夹路径</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>In plain English:</strong> &ldquo;Delete the Claude app&rsquo;s data folder and everything inside it.&rdquo;</p>
+<p><strong>用中文说：</strong> &ldquo;强制删除 Claude 应用的数据文件夹，里面的所有内容一并删掉。&rdquo;</p>
+<h3 id="how-i-verified-it-worked--如何确认成功了">How I Verified It Worked / 如何确认成功了</h3>
+<p>I ran:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls ~/Library/Application<span style="color:#ae81ff">\ </span>Support/Claude/
+</span></span></code></pre></div><p>It showed only one item: <code>sentry</code> — which is a crash-reporting tool the app recreates automatically. That&rsquo;s normal. The important cache files were gone.</p>
+<p>只剩下一个叫 <code>sentry</code> 的文件，这是应用自动重建的崩溃报告工具，完全正常。重要的缓存文件已经被成功删除。</p>
+<p><strong>Result:</strong> Reopened the desktop app — it loaded perfectly!</p>
+<p><strong>结果：</strong> 重新打开桌面应用，正常加载了！</p>
+<hr>
+<h2 id="new-vocabulary--今天学到的新词汇">New Vocabulary / 今天学到的新词汇</h2>
+<h3 id="cache--缓存">Cache / 缓存</h3>
+<p><strong>The restaurant kitchen analogy:</strong></p>
+<p>Think of it like a chef who pre-prepares ingredients so dishes come out faster. The app saves data locally so it doesn&rsquo;t have to reload everything from the internet every time — this makes it <strong>faster</strong>.</p>
+<p><strong>把它想象成餐厅厨房：</strong> 厨师提前准备好食材，下次做菜更快。应用把数据存在本地，不用每次都从网上重新加载，速度更<strong>快</strong>。</p>
+<p>But sometimes those pre-prepared ingredients <strong>go stale</strong> — the cache gets corrupted. That&rsquo;s when you need to delete and start fresh.</p>
+<p>但有时候提前准备的食材<strong>变质了</strong> — 缓存损坏了，这时候就需要删除重来。</p>
+<p><strong>Simple rule:</strong> Cache = speed helper. Sometimes it breaks and needs a reset.
+<strong>简单规律：</strong> 缓存 = 加速小助手。有时候它坏了，需要重置。</p>
+<h3 id="terminal-no-news-is-good-news-rule--终端的没消息就是好消息规则">Terminal &ldquo;No News Is Good News&rdquo; Rule / 终端的&quot;没消息就是好消息&quot;规则</h3>
+<p>In the terminal, if a command runs and <strong>returns nothing</strong>, that usually means <strong>it worked</strong>. Errors always show up as text. Silence = success.</p>
+<p>在终端里，命令执行后<strong>什么都不返回</strong>，通常意味着<strong>成功了</strong>。错误会以文字形式出现。沉默 = 成功。</p>
+<hr>
+<h2 id="how-to-quote-commands-in-conversation--日常英文怎么提到命令">How to Quote Commands in Conversation / 日常英文怎么提到命令</h2>
+<p>When talking about terminal commands casually:</p>
+<ul>
+<li>Say the command name out loud: <strong>&ldquo;rm-rf&rdquo;</strong> or <strong>&ldquo;R-M-R-F&rdquo;</strong></li>
+<li>Or just describe what it does: <strong>&ldquo;I cleared the cache&rdquo;</strong></li>
+<li>Example: <em>&ldquo;I ran that rm-rf command to delete the Claude folder.&rdquo;</em></li>
+</ul>
+<p>大多数人直接念字母 <strong>&ldquo;R-M-R-F&rdquo;</strong>，或者直接说 <strong>&ldquo;我清了缓存&rdquo;</strong> 就好了。</p>
+<hr>
+<h2 id="a-new-habit-born-today--今天养成的新习惯">A New Habit Born Today / 今天养成的新习惯</h2>
+<p>Starting today, I&rsquo;m keeping an <strong>&ldquo;along-the-road literary documentary&rdquo;</strong> — a running log of everything I learn while building my personal site and exploring AI tools. Each session gets compiled into a <code>.md</code> file and pushed to my personal website at <a href="https://damonmiaom.github.io">damonmiaom.github.io</a>.</p>
+<p>从今天起，我开始记录**&ldquo;沿途文学纪录片&rdquo;** — 把每次学习过程整理成 <code>.md</code> 文件，推送到我的个人网站。这样，一个保险代理人的 AI 探索之旅就被完整记录下来了。</p>
+<p>The idea: a life insurance agent with little CS background, learning AI tools one obstacle at a time, documenting every step in plain language so anyone can follow along.</p>
+<hr>
+<h2 id="summary--今日总结">Summary / 今日总结</h2>
+<table>
+  <thead>
+      <tr>
+          <th>What</th>
+          <th>Result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Login check</td>
+          <td>Confirmed logged in via <code>claude --version</code></td>
+      </tr>
+      <tr>
+          <td>Desktop app bug</td>
+          <td>Fixed by clearing cache with <code>rm -rf</code></td>
+      </tr>
+      <tr>
+          <td>New concept learned</td>
+          <td>Cache — what it is and why we sometimes delete it</td>
+      </tr>
+      <tr>
+          <td>New habit started</td>
+          <td>Along-the-road literary documentary</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><em>Written with Claude Code | Ghostty Terminal | MacBook Pro</em>
+<em>2026-03-27</em></p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/about-initialization/" class="related-item">
+    <span class="related-title">项目初始化：在开始之前，先告诉 Claude 你是谁</span>
+    <time class="related-date">Apr 2026</time>
+  </a>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

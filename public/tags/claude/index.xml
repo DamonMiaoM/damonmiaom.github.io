@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Claude on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/claude/</link>
+    <description>Recent content in Claude on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/claude/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My App Was Spinning and I Had No Idea Why — Here&#39;s How I Fixed It</title>
+      <link>https://damonmiaom.github.io/blog/claude-fix-cache-terminal-basics/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/claude-fix-cache-terminal-basics/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-27-2026&#34;&gt;Learning Log — March 27, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月27日&#34;&gt;学习日志 — 2026年3月27日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; Fixing the Claude Desktop App &amp;amp; Learning Terminal Basics&#xA;&lt;strong&gt;主题：&lt;/strong&gt; 修复 Claude 桌面应用 &amp;amp; 终端基础入门&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today was a hands-on day. I ran into a real problem with the Claude desktop app and solved it step by step using the terminal. Along the way, I picked up some foundational knowledge about how computers work behind the scenes.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

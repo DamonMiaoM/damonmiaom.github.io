@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on Damon Miao</title>
+    <link>https://damonmiaom.github.io/tags/tutorial/</link>
+    <description>Recent content in Tutorial on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Mar 2026 16:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add a Project to Your Personal Website</title>
+      <link>https://damonmiaom.github.io/blog/adding-a-project-to-your-site/</link>
+      <pubDate>Thu, 26 Mar 2026 16:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/adding-a-project-to-your-site/</guid>
+      <description>&lt;p&gt;&lt;em&gt;一个关于&amp;quot;把新项目展示在个人网站上&amp;quot;的完整记录——每一条命令、每一个概念、每一个新手需要知道的道理。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;A complete record of how to showcase a new project on your personal website — every command, every concept, and everything a beginner needs to understand.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;我们做了什么&#34;&gt;我们做了什么&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;What We Built&lt;/p&gt;&#xA;&lt;p&gt;在我的个人网站 Projects 页面上，新增了 &lt;strong&gt;Word to PPT Transformer&lt;/strong&gt; 这个项目的展示入口——和已有的 AI Glossary 保持一致的格式：项目名称、简介、跳转链接。&lt;/p&gt;&#xA;&lt;p&gt;整个过程只需要改动&lt;strong&gt;一个文件&lt;/strong&gt;，再执行三条命令。没有界面操作，没有拖拽，全部通过终端完成。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;We added the &lt;strong&gt;Word to PPT Transformer&lt;/strong&gt; project to the Projects page of the personal website — matching the format of the existing AI Glossary entry: title, description, and a link. The entire process required editing &lt;strong&gt;one file&lt;/strong&gt; and running three commands.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My First Website — A Beginner&#39;s Journey</title>
+      <link>https://damonmiaom.github.io/blog/my-first-website-journey/</link>
+      <pubDate>Thu, 26 Mar 2026 14:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/my-first-website-journey/</guid>
+      <description>&lt;p&gt;&lt;em&gt;一个没有编程背景的寿险顾问，如何在一个下午完整搭建并上线个人网站——每一个障碍、每一次修复、每一条经验。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;How a life insurance agent with no coding background built and deployed a real website in one afternoon — every obstacle, every fix, and every lesson.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;我们做了什么&#34;&gt;我们做了什么&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;What We Built&lt;/p&gt;&#xA;&lt;p&gt;我们用 &lt;strong&gt;Hugo&lt;/strong&gt;（一个把简单文本文件转换成完整网站的工具）搭建了一个自定义&amp;quot;forest&amp;quot;主题的个人网站——简洁、极简，包含：&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;A personal website using &lt;strong&gt;Hugo&lt;/strong&gt; (a tool that turns simple text files into a full website) with a custom &amp;ldquo;forest&amp;rdquo; theme — clean, minimal, with:&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;主页：个人标语 + 最新博客文章 / A homepage with tagline and recent blog posts&lt;/li&gt;&#xA;&lt;li&gt;About、Blog、Projects、Gallery 四个导航页面 / About, Blog, Projects, and Gallery pages&lt;/li&gt;&#xA;&lt;li&gt;每次推送代码后自动部署 / Automatic deployment every time you push changes to GitHub&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;整体逻辑它是如何运行的&#34;&gt;整体逻辑——它是如何运行的&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;The Big Picture — How It All Works&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

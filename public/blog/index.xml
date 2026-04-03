@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Damon Miao</title>
+    <link>https://damonmiaom.github.io/blog/</link>
+    <description>Recent content in Blog on Damon Miao</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2026 10:00:00 +0000</lastBuildDate>
+    <atom:link href="https://damonmiaom.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>项目初始化：在开始之前，先告诉 Claude 你是谁</title>
+      <link>https://damonmiaom.github.io/blog/about-initialization/</link>
+      <pubDate>Thu, 02 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/about-initialization/</guid>
+      <description>&lt;h2 id=&#34;什么是项目初始化&#34;&gt;什么是项目初始化？&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;What Is Project Initialization?&lt;/p&gt;&#xA;&lt;p&gt;你打开一个新文件夹，准备用 Claude Code 开始一个项目。&lt;/p&gt;&#xA;&lt;p&gt;在你敲下第一行需求之前，有一件事值得先做：&lt;strong&gt;告诉 Claude，这个项目是什么，它应该怎么工作，有什么规则需要遵守。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;这件事，就叫做项目初始化。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Before you type your first request, there&amp;rsquo;s one thing worth doing: tell Claude what this project is, how it should work, and what rules to follow. That&amp;rsquo;s project initialization.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;为什么需要它&#34;&gt;为什么需要它？&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Why Does It Matter?&lt;/p&gt;&#xA;&lt;p&gt;Claude Code 的每一次对话，都从零开始。它不会自动记得你上次说了什么，也不知道你的项目叫什么名字、用什么语言、有什么约定。&lt;/p&gt;&#xA;&lt;p&gt;如果没有初始化，每次打开新 session，你都要重新解释背景；Claude 给出的建议可能和你已有的架构冲突；跨多次对话的工作会失去连续性。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;做了初始化，Claude 一开口就知道自己在哪里，在做什么。&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Claude Code starts fresh every session. Without initialization, you repeat yourself every time, suggestions may conflict with your existing architecture, and work loses continuity across sessions. With initialization, Claude knows the context from the very first message.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</title>
+      <link>https://damonmiaom.github.io/blog/design-upgrade-10-improvements/</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/design-upgrade-10-improvements/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-28-2026&#34;&gt;Learning Log — March 28, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月28日&#34;&gt;学习日志 — 2026年3月28日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; 10 Design Upgrades — From Flat to Felt&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;主题：&lt;/strong&gt; 10 项设计升级——从平淡到有质感&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today I worked with Claude to do a complete design audit of this site and implement 10 improvements — all in one session. We started by fetching the live site, reading the source code, and thinking like a senior web designer across every dimension: structure, aesthetics, motion, accessibility, and interactivity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>10 Most Powerful Claude Code Commands — And Why You Should Use Them</title>
+      <link>https://damonmiaom.github.io/blog/top-10-claude-code-commands/</link>
+      <pubDate>Fri, 27 Mar 2026 20:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/top-10-claude-code-commands/</guid>
+      <description>&lt;h1 id=&#34;10-most-powerful-claude-code-commands--and-why-you-should-use-them&#34;&gt;10 Most Powerful Claude Code Commands — And Why You Should Use Them&lt;/h1&gt;&#xA;&lt;h1 id=&#34;10-个最强大的-claude-code-命令--以及你为什么应该使用它们&#34;&gt;10 个最强大的 Claude Code 命令 — 以及你为什么应该使用它们&lt;/h1&gt;&#xA;&lt;p&gt;&lt;em&gt;Written by a life insurance agent who learned these the hard way — one terminal session at a time.&lt;/em&gt;&#xA;&lt;em&gt;由一位寿险代理人撰写，这些命令都是一个终端会话一个终端会话学来的。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;I love Claude.&lt;/p&gt;&#xA;&lt;p&gt;After 23 sessions, 281 messages, and 49 hours inside Claude Code — building websites, converting documents, writing bilingual scripts, and rushing to finish insurance comparison decks before catching a train — I&amp;rsquo;ve learned which commands actually matter. These are the 10 I reach for most, and the ones that, once you understand them, change how you think about working with AI.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How I Built a Journal Section with a Web Editor — No Terminal Required</title>
+      <link>https://damonmiaom.github.io/blog/journal-cms-setup/</link>
+      <pubDate>Fri, 27 Mar 2026 18:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/journal-cms-setup/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-27-2026&#34;&gt;Learning Log — March 27, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月27日&#34;&gt;学习日志 — 2026年3月27日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; Building a Journal Section + Web-Based Publishing with Decap CMS&#xA;&lt;strong&gt;主题：&lt;/strong&gt; 创建 Journal 栏目 + 用 Decap CMS 实现网页端直接发布&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today I gave my site a new dimension. I created a separate Journal section — distinct from the Blog — and set up a web-based editor so I can write and publish new entries directly from a browser, without touching the terminal or pushing any code. The path to get there involved more dead ends than expected, but each one taught me something real about how the web works.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How I Added a Comment Zone to My Blog — and What It Took to Get There</title>
+      <link>https://damonmiaom.github.io/blog/adding-comments-giscus-hugo/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/adding-comments-giscus-hugo/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-27-2026&#34;&gt;Learning Log — March 27, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月27日&#34;&gt;学习日志 — 2026年3月27日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; Adding a Comment Zone, a New Hero Image, and a Gallery Lightbox&#xA;&lt;strong&gt;主题：&lt;/strong&gt; 为博客添加评论区、更换首页背景图、图库弹出效果&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today I upgraded my personal site in three meaningful ways. I swapped the homepage background from a lotus to a water ripple photo I personally chose. I added a click-to-enlarge effect to the gallery. And most importantly — I gave my readers a place to talk back. Setting up the comment system turned out to be a five-step journey that required me to read, copy, and paste values myself. I did every step. That felt good.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My App Was Spinning and I Had No Idea Why — Here&#39;s How I Fixed It</title>
+      <link>https://damonmiaom.github.io/blog/claude-fix-cache-terminal-basics/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/claude-fix-cache-terminal-basics/</guid>
+      <description>&lt;h1 id=&#34;learning-log--march-27-2026&#34;&gt;Learning Log — March 27, 2026&lt;/h1&gt;&#xA;&lt;h1 id=&#34;学习日志--2026年3月27日&#34;&gt;学习日志 — 2026年3月27日&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topic:&lt;/strong&gt; Fixing the Claude Desktop App &amp;amp; Learning Terminal Basics&#xA;&lt;strong&gt;主题：&lt;/strong&gt; 修复 Claude 桌面应用 &amp;amp; 终端基础入门&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-happened-today--今天发生了什么&#34;&gt;What Happened Today / 今天发生了什么&lt;/h2&gt;&#xA;&lt;p&gt;Today was a hands-on day. I ran into a real problem with the Claude desktop app and solved it step by step using the terminal. Along the way, I picked up some foundational knowledge about how computers work behind the scenes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Principles of Web Design — A Practitioner&#39;s Field Notes</title>
+      <link>https://damonmiaom.github.io/blog/principles-of-web-design/</link>
+      <pubDate>Thu, 26 Mar 2026 22:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/principles-of-web-design/</guid>
+      <description>&lt;p&gt;&lt;em&gt;这篇文章写于我从零开始搭建个人网站之后。它不是教程，不是手册，而是原则——从真实的错误、真实的参考、真实的决策中提炼出来的观察。它借鉴了 Ray Dalio 的写作方式：不是&amp;quot;应该这样做&amp;quot;，而是&amp;quot;我发现事情是这样运作的&amp;quot;。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;This was written after building a personal website from nothing. It is not a tutorial, not a manual, but a set of principles — observations distilled from real mistakes, real references, and real decisions. It borrows from Ray Dalio&amp;rsquo;s approach: not &amp;ldquo;you should do this,&amp;rdquo; but &amp;ldquo;here is how I found things to actually work.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;i-设计即删减--design-is-subtraction&#34;&gt;I. 设计即删减 / Design Is Subtraction&lt;/h2&gt;&#xA;&lt;p&gt;The first instinct is always to add. More color. More sections. More animation. More text. The beginner&amp;rsquo;s page is a cluttered room where every object shouts for attention simultaneously, and nothing is heard.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building a Word-to-PPT Transformer: A Developer&#39;s Journal</title>
+      <link>https://damonmiaom.github.io/blog/word-to-ppt-transformer-journal/</link>
+      <pubDate>Thu, 26 Mar 2026 18:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/word-to-ppt-transformer-journal/</guid>
+      <description>&lt;p&gt;&lt;em&gt;一个寿险顾问，如何用 AI 把一张 Word 试卷变成一套漂亮的 PPT——六个阶段、八个 Bug、以及一路走来的收获。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;How a life insurance agent used AI to turn a Word exam paper into a clean PowerPoint deck — six phases, eight bugs, and everything learned along the way.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;工具地址 / Live URL:&lt;/strong&gt; &lt;a href=&#34;https://damonmiaom.github.io/Word_To_PPT&#34;&gt;damonmiaom.github.io/Word_To_PPT&lt;/a&gt;&#xA;&lt;strong&gt;源代码 / GitHub:&lt;/strong&gt; &lt;a href=&#34;https://github.com/DamonMiaoM/Word_To_PPT&#34;&gt;github.com/DamonMiaoM/Word_To_PPT&lt;/a&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Background&lt;/p&gt;&#xA;&lt;p&gt;我是一名寿险顾问，同时也在给孩子们做数学辅导。上课时，我发现把试卷上的题目一道一道地展示在屏幕上，比让学生盯着一整张密密麻麻的 Word 文档要好得多。于是我想：能不能做一个工具，自动把 Word 试卷转换成演示用的 PowerPoint？&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;I&amp;rsquo;m a life insurance agent who also tutors children in mathematics. In class, I found that showing questions one at a time on screen — rather than scrolling through a dense Word document — made lessons far more engaging. So I asked: could I build a tool to automatically convert a Word exam paper into presentation-ready PowerPoint slides?&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Add a Project to Your Personal Website</title>
+      <link>https://damonmiaom.github.io/blog/adding-a-project-to-your-site/</link>
+      <pubDate>Thu, 26 Mar 2026 16:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/adding-a-project-to-your-site/</guid>
+      <description>&lt;p&gt;&lt;em&gt;一个关于&amp;quot;把新项目展示在个人网站上&amp;quot;的完整记录——每一条命令、每一个概念、每一个新手需要知道的道理。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;A complete record of how to showcase a new project on your personal website — every command, every concept, and everything a beginner needs to understand.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;我们做了什么&#34;&gt;我们做了什么&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;What We Built&lt;/p&gt;&#xA;&lt;p&gt;在我的个人网站 Projects 页面上，新增了 &lt;strong&gt;Word to PPT Transformer&lt;/strong&gt; 这个项目的展示入口——和已有的 AI Glossary 保持一致的格式：项目名称、简介、跳转链接。&lt;/p&gt;&#xA;&lt;p&gt;整个过程只需要改动&lt;strong&gt;一个文件&lt;/strong&gt;，再执行三条命令。没有界面操作，没有拖拽，全部通过终端完成。&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;We added the &lt;strong&gt;Word to PPT Transformer&lt;/strong&gt; project to the Projects page of the personal website — matching the format of the existing AI Glossary entry: title, description, and a link. The entire process required editing &lt;strong&gt;one file&lt;/strong&gt; and running three commands.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Understanding GitHub Tokens — A Beginner&#39;s Guide</title>
+      <link>https://damonmiaom.github.io/blog/understanding-github-tokens/</link>
+      <pubDate>Thu, 26 Mar 2026 16:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/understanding-github-tokens/</guid>
+      <description>&lt;p&gt;&lt;em&gt;从零开始理解 GitHub Token：它是什么，为什么需要它，为什么必须保密。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;A plain-language guide to GitHub tokens — what they are, why they exist, and why they must be kept secret.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-什么是-token为什么-github-需要它&#34;&gt;1. 什么是 Token，为什么 GitHub 需要它？&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;1. What Is a Token and Why Does GitHub Need It?&lt;/p&gt;&#xA;&lt;h3 id=&#34;生活比喻&#34;&gt;生活比喻&lt;/h3&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Real-Life Analogy&lt;/p&gt;&#xA;&lt;p&gt;想象您要进入一栋写字楼，有两种方式进入：&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Imagine entering an office building — two ways in:&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;用户名+密码&lt;/strong&gt; = 前台人工核验身份证，慢，但适合人类 / Front desk manually checks your ID — slow, but works for humans&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Token&lt;/strong&gt; = 门禁卡，刷一下就进，快速自动化，适合机器 / Key card — swipe and enter, fast and automated, designed for machines&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;为什么不直接用密码&#34;&gt;为什么不直接用密码？&lt;/h3&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;Why Not Just Use a Password?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My First Website — A Beginner&#39;s Journey</title>
+      <link>https://damonmiaom.github.io/blog/my-first-website-journey/</link>
+      <pubDate>Thu, 26 Mar 2026 14:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/my-first-website-journey/</guid>
+      <description>&lt;p&gt;&lt;em&gt;一个没有编程背景的寿险顾问，如何在一个下午完整搭建并上线个人网站——每一个障碍、每一次修复、每一条经验。&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;How a life insurance agent with no coding background built and deployed a real website in one afternoon — every obstacle, every fix, and every lesson.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;我们做了什么&#34;&gt;我们做了什么&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;What We Built&lt;/p&gt;&#xA;&lt;p&gt;我们用 &lt;strong&gt;Hugo&lt;/strong&gt;（一个把简单文本文件转换成完整网站的工具）搭建了一个自定义&amp;quot;forest&amp;quot;主题的个人网站——简洁、极简，包含：&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;A personal website using &lt;strong&gt;Hugo&lt;/strong&gt; (a tool that turns simple text files into a full website) with a custom &amp;ldquo;forest&amp;rdquo; theme — clean, minimal, with:&lt;/em&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;主页：个人标语 + 最新博客文章 / A homepage with tagline and recent blog posts&lt;/li&gt;&#xA;&lt;li&gt;About、Blog、Projects、Gallery 四个导航页面 / About, Blog, Projects, and Gallery pages&lt;/li&gt;&#xA;&lt;li&gt;每次推送代码后自动部署 / Automatic deployment every time you push changes to GitHub&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;整体逻辑它是如何运行的&#34;&gt;整体逻辑——它是如何运行的&lt;/h2&gt;&#xA;&lt;p class=&#34;heading-note&#34;&gt;The Big Picture — How It All Works&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello, World</title>
+      <link>https://damonmiaom.github.io/blog/first-post/</link>
+      <pubDate>Thu, 26 Mar 2026 09:00:00 +0000</pubDate>
+      <guid>https://damonmiaom.github.io/blog/first-post/</guid>
+      <description>&lt;p&gt;Welcome to my site. This is the first post — a placeholder while things get set up.&lt;/p&gt;&#xA;&lt;p&gt;I plan to write here about AI, language models, reasoning, and whatever else I find worth thinking through carefully.&lt;/p&gt;&#xA;&lt;p&gt;More soon.&lt;/p&gt;&#xA;&lt;p class=&#34;post-revised&#34;&gt;Published: Mar 26, 2026, 09:00&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

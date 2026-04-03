@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目初始化：在开始之前，先告诉 Claude 你是谁 | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/">About</a>
+      <a href="/blog/" class="nav-active">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+
+<div class="post-layout has-toc">
+  
+  <aside class="toc-sidebar">
+    <p class="toc-label">Contents</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是项目初始化">什么是项目初始化？</a></li>
+    <li><a href="#为什么需要它">为什么需要它？</a></li>
+    <li><a href="#怎么做">怎么做？</a>
+      <ul>
+        <li><a href="#方法一claude-code-内建的-init">方法一：Claude Code 内建的 <code>/init</code></a></li>
+        <li><a href="#方法二42plugin-的-cc101-init-skill">方法二：42plugin 的 <code>cc101-init</code> Skill</a></li>
+      </ul>
+    </li>
+    <li><a href="#初始化创建了哪些文件它们为什么存在">初始化创建了哪些文件？它们为什么存在？</a>
+      <ul>
+        <li><a href="#claudemd--claude-的岗位说明书">CLAUDE.md — Claude 的岗位说明书</a></li>
+        <li><a href="#readmemd--写给人看的项目说明">README.md — 写给人看的项目说明</a></li>
+        <li><a href="#gitignore--告诉-git-什么不需要记录">.gitignore — 告诉 Git 什么不需要记录</a></li>
+        <li><a href="#claudeignore--告诉-claude-什么不需要读">.claudeignore — 告诉 Claude 什么不需要读</a></li>
+      </ul>
+    </li>
+    <li><a href="#一句话总结">一句话总结</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+  <article class="post-single">
+    
+    <header class="post-header">
+      <h1>项目初始化：在开始之前，先告诉 Claude 你是谁</h1>
+      <time>April 2, 2026</time><span class="reading-time"> · 2 min read</span>
+    </header>
+    
+    <div class="post-content has-dropcap">
+      <h2 id="什么是项目初始化">什么是项目初始化？</h2>
+<p class="heading-note">What Is Project Initialization?</p>
+<p>你打开一个新文件夹，准备用 Claude Code 开始一个项目。</p>
+<p>在你敲下第一行需求之前，有一件事值得先做：<strong>告诉 Claude，这个项目是什么，它应该怎么工作，有什么规则需要遵守。</strong></p>
+<p>这件事，就叫做项目初始化。</p>
+<p><em>Before you type your first request, there&rsquo;s one thing worth doing: tell Claude what this project is, how it should work, and what rules to follow. That&rsquo;s project initialization.</em></p>
+<hr>
+<h2 id="为什么需要它">为什么需要它？</h2>
+<p class="heading-note">Why Does It Matter?</p>
+<p>Claude Code 的每一次对话，都从零开始。它不会自动记得你上次说了什么，也不知道你的项目叫什么名字、用什么语言、有什么约定。</p>
+<p>如果没有初始化，每次打开新 session，你都要重新解释背景；Claude 给出的建议可能和你已有的架构冲突；跨多次对话的工作会失去连续性。</p>
+<p><strong>做了初始化，Claude 一开口就知道自己在哪里，在做什么。</strong></p>
+<p><em>Claude Code starts fresh every session. Without initialization, you repeat yourself every time, suggestions may conflict with your existing architecture, and work loses continuity across sessions. With initialization, Claude knows the context from the very first message.</em></p>
+<hr>
+<h2 id="怎么做">怎么做？</h2>
+<p class="heading-note">How To Do It</p>
+<h3 id="方法一claude-code-内建的-init">方法一：Claude Code 内建的 <code>/init</code></h3>
+<p>Claude Code 自带一个 <code>/init</code> 命令。它会<strong>扫描你已有的代码库</strong>，自动分析结构，然后生成一个 <code>CLAUDE.md</code> 文件。</p>
+<p>适合：项目已经存在，想让 Claude 理解现有代码。</p>
+<p><em>Claude Code has a built-in <code>/init</code> command. It scans your existing codebase, analyzes the structure, and generates a <code>CLAUDE.md</code> file. Best for: projects that already exist.</em></p>
+<h3 id="方法二42plugin-的-cc101-init-skill">方法二：42plugin 的 <code>cc101-init</code> Skill</h3>
+<p><code>cc101-init</code> 是 42plugin 提供的自定义 Skill，适合<strong>从零开始的新项目</strong>。它不分析代码，而是问你两个问题——项目名称和类型——然后一次性创建完整的项目脚手架。</p>
+<p><em><code>cc101-init</code> is a custom skill from 42plugin, designed for brand-new projects. It asks two questions — name and type — then creates a complete project scaffold in one step.</em></p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th>Claude Code <code>/init</code></th>
+          <th>42plugin <code>cc101-init</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>适合场景</td>
+          <td>已有代码库</td>
+          <td>全新项目</td>
+      </tr>
+      <tr>
+          <td>工作方式</td>
+          <td>分析现有代码</td>
+          <td>询问后生成</td>
+      </tr>
+      <tr>
+          <td>创建文件</td>
+          <td>CLAUDE.md</td>
+          <td>CLAUDE.md + README + .gitignore + .claudeignore + 目录结构</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="初始化创建了哪些文件它们为什么存在">初始化创建了哪些文件？它们为什么存在？</h2>
+<p class="heading-note">What Files Are Created, and Why?</p>
+<h3 id="claudemd--claude-的岗位说明书">CLAUDE.md — Claude 的岗位说明书</h3>
+<p>这是最重要的文件。Claude Code 在每次 session 开始时会自动读取它，就像员工上班前看一眼今天的工作要求。</p>
+<p>你可以在里面写：项目是什么、用什么技术、有什么规则、什么事情不能做。</p>
+<p><strong>不创建它会怎样？</strong> Claude 对你的项目一无所知，每次对话都像第一次见面。</p>
+<p><em>CLAUDE.md is Claude&rsquo;s briefing document — read automatically at the start of every session. Without it, Claude knows nothing about your project. Every session starts from zero.</em></p>
+<hr>
+<h3 id="readmemd--写给人看的项目说明">README.md — 写给人看的项目说明</h3>
+<p>README 是给<strong>人</strong>看的——包括未来的你。当你三个月后回来看这个项目，README 告诉你：&ldquo;这个项目是什么，当时为什么建它，怎么用它。&rdquo;</p>
+<p><strong>不创建它会怎样？</strong> 三个月后你打开这个文件夹，完全不记得它是干什么的。</p>
+<p><em>README.md is for humans — including your future self. Without it, you&rsquo;ll open the folder three months later and have no idea what it was for.</em></p>
+<hr>
+<h3 id="gitignore--告诉-git-什么不需要记录">.gitignore — 告诉 Git 什么不需要记录</h3>
+<p>Git 默认会追踪文件夹里的所有变化。但有些文件不应该被追踪：比如包含密码的 <code>.env</code> 文件，或者系统自动生成的 <code>.DS_Store</code>。</p>
+<p><code>.gitignore</code> 就是一份&quot;排除名单&quot;，列出哪些文件不需要 Git 管理。</p>
+<p><strong>不创建它会怎样？</strong> 你可能不小心把 API Key 提交到 GitHub，任何人都能看到。这是真实发生过的安全事故。</p>
+<p><em><code>.gitignore</code> is an exclusion list — it tells Git what NOT to track. Without it, you might accidentally commit your API keys to GitHub. This is a real security risk that has happened to many developers.</em></p>
+<hr>
+<h3 id="claudeignore--告诉-claude-什么不需要读">.claudeignore — 告诉 Claude 什么不需要读</h3>
+<p>和 <code>.gitignore</code> 类似，<code>.claudeignore</code> 告诉 Claude 哪些文件不需要读取。这样 Claude 不会把注意力浪费在无关文件上，也避免它读到不该读的内容。</p>
+<p><strong>不创建它会怎样？</strong> Claude 可能把时间花在读取大量无关文件上，降低效率。</p>
+<p><em><code>.claudeignore</code> tells Claude what files to skip. Without it, Claude may waste context reading irrelevant files — reducing efficiency and focus.</em></p>
+<hr>
+<h2 id="一句话总结">一句话总结</h2>
+<p class="heading-note">One-Line Summary</p>
+<p>初始化不是&quot;程序员才需要做的仪式&quot;，而是让 Claude 真正能帮上你忙的前提条件。</p>
+<p><strong>五分钟的初始化，换来每次对话都不用重新解释。</strong></p>
+<p><em>Initialization isn&rsquo;t a developer ritual. It&rsquo;s the prerequisite for Claude to actually help you. Five minutes of setup saves you from explaining context every single session.</em></p>
+
+    </div>
+  </article>
+</div>
+
+
+
+
+<aside class="related-posts">
+  <p class="related-label">More Writing</p>
+  
+  <a href="/blog/design-upgrade-10-improvements/" class="related-item">
+    <span class="related-title">How I Upgraded My Site&#39;s Design in One Session — 10 Changes Explained</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/top-10-claude-code-commands/" class="related-item">
+    <span class="related-title">10 Most Powerful Claude Code Commands — And Why You Should Use Them</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+  <a href="/blog/journal-cms-setup/" class="related-item">
+    <span class="related-title">How I Built a Journal Section with a Web Editor — No Terminal Required</span>
+    <time class="related-date">Mar 2026</time>
+  </a>
+  
+</aside>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+<section class="comments-section">
+  <script src="https://giscus.app/client.js"
+    data-repo="damonmiaom/damonmiaom.github.io"
+    data-repo-id="R_kgDORxEswg"
+    data-category="Announcements"
+    data-category-id="DIC_kwDORxEsws4C5X_o"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</section>
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

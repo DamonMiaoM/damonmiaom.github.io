@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Damon Miao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=4">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --near-black: #CDD9D0;
+        --forest: #5a9e78;
+      }
+      .ph-title    { color: #CDD9D0; }
+      .ph-title-zh { color: #849E8C; }
+      .ph-desc     { color: #849E8C; }
+      .ph-desc-zh  { color: #849E8C; opacity: 0.7; }
+      .nav-left a.nav-active,
+      .nav-right a.nav-active { color: #849E8C; }
+      .nav-left a.nav-active::after,
+      .nav-right a.nav-active::after { background: #849E8C; }
+      .post-header h1,
+      .page-header h1 { color: #CDD9D0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-grid">
+    <div class="nav-left">
+      <a href="/about/" class="nav-active">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/journal/">Journal</a>
+    </div>
+    <div class="nav-center">
+      <a href="/" class="site-title">Damon Miao</a>
+    </div>
+    <div class="nav-right">
+      <a href="/projects/">Projects</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/changelog/">Changelog</a>
+    </div>
+  </nav>
+</header>
+
+  
+  <main class="main-content">
+    
+<div id="reading-progress"></div>
+
+<style>
+@media (prefers-color-scheme: dark) {
+  .ph-title    { color: #CDD9D0 !important; }
+  .ph-title-zh { color: #849E8C !important; }
+  .ph-desc     { color: #849E8C !important; }
+  .ph-desc-zh  { color: #849E8C !important; opacity: 0.7; }
+}
+</style>
+<header class="ph-header">
+  <p class="ph-eyebrow">The Person Behind the Page&nbsp;·&nbsp;这个人是谁</p>
+  <h1 class="ph-title">
+    About
+    <span class="ph-title-zh">关于我</span>
+  </h1>
+  <p class="ph-desc">
+    A life insurance advisor learning to build with AI — one project at a time
+    <span class="ph-desc-zh">一位寿险顾问，借助 AI，正在一步步建造属于自己的数字世界</span>
+  </p>
+</header>
+
+
+<div class="post-layout">
+  
+  <article class="post-single">
+    
+    <div class="post-content">
+      <p>Hi, I&rsquo;m Damon Miao. I write about AI, technology, and thinking clearly.</p>
+<p>I&rsquo;m interested in how large language models work, how to reason carefully about complex systems, and what it means to think well in a technical world.</p>
+<p>This site is where I share notes, essays, and projects.</p>
+<p>Thanks to Claude Code, even without any developing experience, I&rsquo;m able do create this site. It gives me a feeling of discovery something new, a new world, continent, planet.</p>
+<p>Now I&rsquo;m building up something from nowhere, and I&rsquo;m going to grow it to somewhere we can meet, by destiney.</p>
+<p>Thank you for coming by.</p>
+
+    </div>
+  </article>
+</div>
+
+
+
+<script>
+(function () {
+  var bar = document.getElementById('reading-progress');
+  var content = document.querySelector('.post-content');
+  if (!bar || !content) return;
+  function update() {
+    var top = content.getBoundingClientRect().top + window.scrollY;
+    var pct = Math.min(Math.max((window.scrollY - top) / content.offsetHeight, 0), 1);
+    bar.style.width = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
+(function () {
+  var tocLinks = document.querySelectorAll('.toc-sidebar a');
+  if (!tocLinks.length) return;
+  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        tocLinks.forEach(function (l) { l.classList.remove('toc-active'); });
+        var a = document.querySelector('.toc-sidebar a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('toc-active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function (h) { observer.observe(h); });
+})();
+</script>
+
+
+
+  </main>
+  <footer class="site-footer">
+  <p>&copy; 2026 Damon Miao</p>
+</footer>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
