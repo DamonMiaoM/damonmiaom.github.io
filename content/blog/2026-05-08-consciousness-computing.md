@@ -7,7 +7,10 @@ tags: [AI, 哲学, 意识, 思辨, Deep Talk]
 slug: consciousness-computing
 ---
 
-![两个人在咖啡馆外对坐交谈，树荫斑驳。Photo by Juri Gianfrancesco on Unsplash](/images/consciousness-computing-cover.jpg)
+<figure style="margin: 2em 0;">
+  <img src="/images/consciousness-computing-cover.jpg" alt="两个人在咖啡馆外对坐交谈，树荫斑驳" style="width: 100%; max-width: 720px; display: block; margin: 0 auto; border-radius: 6px;">
+  <figcaption style="text-align: center; font-size: 13px; color: #888; margin-top: 0.5em;">Photo by Juri Gianfrancesco on Unsplash</figcaption>
+</figure>
 
 昨天我跟朋友聊天时，表达了这样一个观点：我觉得未来真正值钱的东西是上下文，是真实的环境，因为只有真实的环境里，才能发现真实的问题，并且有相应的解决的意图（intent）。
 
